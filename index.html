@@ -6,19 +6,25 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <title>Departement Informatique Cegep T-R</title>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap" rel="stylesheet">     
         <link rel="stylesheet" type="text/css" href="Menu/menu.css"/>
         <link rel="stylesheet" type="text/css" href="Accueil/accueil.css"/>
+        <link rel="stylesheet" type="text/css" href="Pied-Page/pied-page.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
         <div id="menu"></div>
         <div class="bloc-corps"></div>
+        <div id="piedPage"></div>
     </body>
 </html>
 
 <script>
     $(document).ready(function() {
         $("#menu").load("Menu/menu.html")
+        $("#piedPage").load("Pied-Page/pied-page.html")
     })
 </script>
