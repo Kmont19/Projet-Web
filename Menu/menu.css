@@ -59,6 +59,5 @@ a:hover {
 }
 
 .dropdown-item:active {
-    background-color: #061f50 !important;
-    color: white !important;
+    background-color:  whitesmoke!important;
 }
