@@ -8,12 +8,13 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap" rel="stylesheet">     
         <link rel="stylesheet" type="text/css" href="Menu/menu.css"/>
         <link rel="stylesheet" type="text/css" href="Accueil/accueil.css"/>
         <link rel="stylesheet" type="text/css" href="Accueil/carrousel.css"/>
-        <link rel="stylesheet" type="text/css" href="Pied-Page/pied-page.css"/>        
+        <link rel="stylesheet" type="text/css" href="Footer/footer.css"/>        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
@@ -21,7 +22,7 @@
         <div class="bloc-corps">
            <div id="carrousel"></div>
         </div>
-        <div id="piedPage"></div>
+        <div id="footer"></div>
     </body>
 </html>
 
@@ -29,6 +30,6 @@
     $(document).ready(function() {
         $("#menu").load("Menu/menu.html")
         $("#carrousel").load("Accueil/carrousel.html")
-        $("#piedPage").load("Pied-Page/pied-page.html")
+        $("#footer").load("Footer/footer.html")
     })
 </script>
