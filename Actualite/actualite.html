@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <title>Departement Informatique Cegep T-R</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
+            
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">     
+        <link rel="stylesheet" type="text/css" href="../Accueil/accueil.css"/>
+        <link rel="stylesheet" type="text/css" href="actualite.css"/>
+        <link rel="stylesheet" type="text/css" href="../Menu/menu.css"/> 
+        <script src="actualite.js" ></script>
+
+    </head>
+    <body onload="GenererActu()">
+        <div id="menu">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-auto">
+                        <div class="bloc-logo">
+                            <a href="../intro.html">
+                                <img src="../Images/logo-cegep.jpg" alt="Logo" id="logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col" id="titre">
+                        <div class="row justify-content-center">
+                            <h1>Département d'informatique</h1>
+                        </div>
+                            <ul class="nav nav-pills nav-fill justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Accueil" href="../intro.html">Accueil</a>  
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="programme">Programme</a>
+                                    <div class="dropdown-menu" aria-labelledby="programme">
+                                        <a href="#" class="dropdown-item" id="cours">Cours</a>
+                                        <a href="#" class="dropdown-item" id="equipe">Équipe</a>
+                                    </div>   
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="actualite" href="Actualite/actualite.html">Actualité</a>    
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="liens-utiles">Liens Utiles</a> 
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="evenement"  href="../Evenement/evenement.html">Évènements</a> 
+                                </li>
+                            </ul>            
+                    </div>                
+                </div>
+            </div>   
+        </div>
+
+        <section id="barreRechercheActu">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Recherche Par
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Titre</a>
+                    <a class="dropdown-item" href="#">Catégorie</a>
+                    <a class="dropdown-item" href="#">Autre</a>
+                </div>
+            </div> 
+            <div class="input-group mb-3 ">
+                <input type="text" class="form-control" id="champRechActu" placeholder="Recherche">
+                <div class="input-group-append">
+                    <button class="btn btn-success" id="btnRechActu" type="submit">OK</button>
+                </div>
+            </div>
+           
+        </section>
+
+        <div class="bloc-corps">
+
+            
+
+            <section id="cntActu">
+
+              <!--  <div class="card">
+                    <img class="card-img-top imgCarte" src="../Images/imgActu.jpg" alt="Image de l'actualité">
+                    <div class="card-body corpCarteActu">
+                        <h4 class="card-title">Nouveau serveur</h4>
+                        <p class="card-text texteCarte"><b>28 Janvier 2021</b> - Le département d'informatique viens d'acquérir un tout nouveau serveur
+                            super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</p>
+                        <a href="#" class="btn btn-primary stretched-link">Plus</a>
+                    </div>
+                </div>
+            -->
+
+
+           </section>
+
+           <section class="modal modal fade " id="modaleActu">
+
+            <div class="modal-dialog modal-lg modal-dialog">
+                <div class="modal-content">
+            
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <div id="ctnheadMod">            
+                      <!--  <button type="button" id="btnXmodal" class="close" data-dismiss="modal">&times;</button>-->
+                        <img src="../Images/imgActu.jpg"  id="imgModal" alt="Image de l'actualité">
+                        
+                    </div>
+                  </div>
+            
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <h2 class="modal-title">Nouveau serveur</h2>
+                    <p><b>28 Janvier 2021</b>
+                    </p>
+                    <p> Le département d'informatique viens d'acquérir un tout nouveau serveur
+                        super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</br>
+                        Et blababla blablabla blablabla blablabla.</br>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
+                    </p>
+                  </div>
+            
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                  </div>
+            
+                </div>
+              </div>
+           </section>
+        </div>
+
+    </body>
+
+    <script>
+   
+    </script>
+</html>
+
