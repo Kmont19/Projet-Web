@@ -1,15 +1,4 @@
-html, body {
-    height: 100%;
+.bloc-corps .row {
     width: 100%;
-    
 }
 
-.bloc-corps {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-#carrousel {
-    max-height: 200px !important;
-}
