@@ -15,7 +15,7 @@ function GenererCarteEvenement(){
 
     carteEvenmt.setAttribute('class', 'card');
     imgEvenmt.setAttribute('class', 'card-img imgCarteEvenmt');
-    imgEvenmt.setAttribute('src', '../Images/imgActu.jpg');
+    imgEvenmt.setAttribute('src', 'Images/imgActu.jpg');
     imgEvenmt.setAttribute('alt', 'Image de l\'Évènement');
     corpCarte.setAttribute('class', 'card-body corpCarteEvenmt');
     titreCarte.setAttribute('class', 'card-title');

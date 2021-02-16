@@ -1,6 +1,3 @@
-
-
-
 function GenererCarteActu(){
 
     let ctncarte = document.getElementById("cntActu");
@@ -14,7 +11,7 @@ function GenererCarteActu(){
 
     carteActu.setAttribute('class', 'card');
     imgActu.setAttribute('class', 'card-img-top imgCarteActu');
-    imgActu.setAttribute('src', '../Images/imgActu.jpg');
+    imgActu.setAttribute('src', 'Images/imgActu.jpg');
     imgActu.setAttribute('alt', 'Image de l\'actualité');
     corpCarte.setAttribute('class', 'card-body corpCarteActu');
     titreCarte.setAttribute('class', 'card-title');
