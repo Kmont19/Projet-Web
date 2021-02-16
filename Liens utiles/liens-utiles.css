@@ -1,0 +1,39 @@
+h1 {
+    font-size: large;
+    color:blue;
+    margin-left: 15%;
+}
+
+h4 {
+    font-size: small;
+    color:cadetblue;
+    margin-left: 20%;
+}
+
+a:hover {
+    color:darkblue;
+}
+
+a:visited {
+    color:darkmagenta;
+}
+
+a:link {
+    color:darkcyan;
+}
+
+a:active {
+    color:red;
+}
+
+p.bordure {
+    border-bottom:1px solid red;
+    width:70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    align-content: center;
+}
+
+.bloc-corps {
+    margin-top: 5%;
+}
