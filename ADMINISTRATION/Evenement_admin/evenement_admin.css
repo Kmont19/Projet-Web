@@ -1,0 +1,93 @@
+
+.bloc-corps {
+    height: 700px;
+    padding: 2% 3%;
+}
+
+#ctnAdminEvenmt{
+    height:81%;
+    width: 81%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    margin-top: 4%;
+    padding: 1%;
+    background: rgb(248, 248, 248);
+    box-shadow: 1px 1px 2px 0 grey, 1px 1px 2px 0 grey;
+    border: 1px solid rgb(185, 184, 184);
+    border-radius: 25px;
+}
+
+#adminRechEvenmt{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#adminFormEvenmt{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1.5%;
+}
+#adminFormEvenmt form{
+    height: 100%;
+}
+
+#ctnRechEvenmt{
+    width: 100%;
+    height: 10%;
+    margin-bottom: 32px;  
+}
+
+#ctntblEvenmt{
+    width: 100%;
+    height: 90%;
+}
+
+table{
+    width: 100%;
+    height: 100%;
+}
+
+table, tr, th, td{
+    border: 1px solid blue;
+    background-color: white;
+}
+
+#ctnBtnEvenmt{
+    width: 100%;
+    height: 10%;
+    margin-top: 50px;  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-between;
+}
+
+.btnFormAdminEvenmt{
+    width:30%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.btnFormAdminEvenmt button{
+    width:100%;
+}
+
+#ddwRechEvenmt{
+    width: 30%;
+    height: 78%;
+}
+
+#barreRechEvenmt{
+    width: 70%;
+}
+
+#btnTelecharger{
+    height: 72%!important;
+}
