@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <title>Departement Informatique Cegep T-R</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <link rel="stylesheet" type="text/css" href="Menu/menu.css"/>
+        <link rel="stylesheet" type="text/css" href="liens-utiles.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div class="bloc-corps">
+            <h1>Pour tes études</h1><br>
+            <a href="https://www.cegeptr.qc.ca/" target="_blank"><h4>Site du Cégep</h4></a><br>
+            <a href="https://athena-portail.cegeptr.qc.ca/Grille/Index?programmeP=420B0" target="_blank"><h4>Programme de la formation</h4></a><br>
+            <a href="https://cegeptr.omnivox.ca/" target="_blank"><h4>Omnivox</h4></a><br>
+            <a href="https://sesame.cegeptr.qc.ca/" target="_blank"><h4>Sesame</h4></a><br>
+            <a href="http://portal.office.com/" target="_blank"><h4>Office 365</h4></a><br>
+            <br><p class="bordure"></p><br>
+            <h1>Emplois</h1><br>
+            <a href="https://www.cegeptr.qc.ca/wp-content/uploads/2019/05/Admissibilite_stage-ATE-420.B0.pdf" target="_blank"></a><h4>Admissibilité aux stages ATE</h4><br>
+            <a href="https://formation-mauricie.ca/soutien-stages-emplois/etudiants/" target="_blank"></a><h4>Stages et emplois</h4><br>
+            
+        </div>
+    </body>
+</html>
+
+<script>
+    $(document).ready(function() {
+        $("#menu").load("Menu/menu.html")
+    })
+</script>
