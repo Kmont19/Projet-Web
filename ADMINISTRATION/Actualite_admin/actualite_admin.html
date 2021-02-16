@@ -10,9 +10,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">     
         <link rel="stylesheet" type="text/css" href="actualite_admin.css"/>
         <link rel="stylesheet" type="text/css" href="/SERVEUR_YAN/Projet_Web/Menu/menu.css"/> 
-     
-    </head>
+        <script src="actualite_admin.js"></script>
 
+    </head>
+   
 
 
     <body>
@@ -142,7 +143,7 @@
 
                 <section id="adminFormActu">
 
-                        <form action="">
+                        <form id="frmAdminActualite" method="post" enctype="multipart/form-data" action="">
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -156,10 +157,15 @@
                                   </div>    
                                 <input type="date" class="form-control" placeholder="Date de l'actualité" id="dateActu">
                             </div>
-                            <div class="form-group">
-                                <label for="texteActu">Texte:</label>
+                           
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-info" style="color: white;">Texte</span>
+                                </div>    
                                 <textarea class="form-control" rows="5"  placeholder="Texte de l'actualité" id="texteActu"></textarea>
                             </div>
+
+
                           
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -173,13 +179,13 @@
 
                             <div id="ctnBtnActu">
                                 <div class="input-group-append btnFormAdminActu">
-                                    <button class="btn btn-primary" id="btnAjoutActu" type="submit">Ajouter</button>
+                                    <button class="btn btn-primary" id="btnAjoutActu" type="button">Ajouter</button>
                                 </div>
                                 <div class="input-group-append btnFormAdminActu">
-                                    <button class="btn btn-primary" id="btnModifActu" type="submit">Modifier</button>
+                                    <button class="btn btn-primary" id="btnModifActu" type="button">Modifier</button>
                                 </div>
                                 <div class="input-group-append btnFormAdminActu">
-                                    <button class="btn btn-primary" id="btnSupprimerActu" type="submit">Supprimer</button>
+                                    <button class="btn btn-primary" id="btnSupprimerActu" type="button">Supprimer</button>
                                 </div>
                             </div> 
 
@@ -203,11 +209,8 @@
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
 
-        $('#imageActu').filestyle({
-			
-				buttonText : 'Select File',
-                buttonName : 'btn-warning'
-			});            
+     
+		
     </script>
 </html>
 
