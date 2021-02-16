@@ -1,0 +1,40 @@
+.footer {
+    background-color:  #061f50;
+    text-align: center;
+    font-family: "Fira Sans", sans-serif;
+}
+
+.footer h4 {
+    font-weight: 400;
+    color: white;
+    margin: 0 0 0.5em 0;
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
+.footer-social-section {
+    border-top: 2px solid white;
+}
+
+.footer .social-media-links {
+    height: 28px;
+    width: 28px;
+    display: inline-block;
+    border-radius: 50%;
+    transition: transform 0.2s ease 0s;
+    overflow: hidden;
+}
+
+.footer .social-media-links:not(:last-of-type) {
+    margin-right: 25px;
+}
+
+.footer .social-media-links {
+    transform: scale(1.2);
+}
+
+.footer .social-media-icons {
+    width: 100%;
+    height: 100%;
+    border-style: none;
+}
