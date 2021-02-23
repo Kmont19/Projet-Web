@@ -1,0 +1,32 @@
+.section-presentation {
+    margin: 0 200px;
+}
+
+.section-presentation .sous-titre {
+    border-bottom: 2px solid #da1a32;
+}
+
+.section-presentation h2 {
+    text-transform: uppercase;
+    color: #061f50;
+    font-family: 'ff-tisa-sans-web-pro', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+}
+
+.section-presentation h3 {
+    text-transform: uppercase;
+    color: #061f50;
+    font-family: 'ff-tisa-sans-web-pro', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.section-presentation .text-presentation {
+    width: 75%;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 18px;
+}

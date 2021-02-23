@@ -32,12 +32,18 @@
     margin-top: 1.5%;
 }
 
-.container-fluid a {
-    text-align: center;
+.container-fluid a:hover {
     cursor: pointer;
-    font-size: 16px;
+}
+
+.container-fluid a {
+    font-family: inherit;
+    color: white;
     font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: default;
 }
 
 .nav-pills .nav-link {
