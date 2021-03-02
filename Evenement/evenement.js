@@ -13,15 +13,15 @@ function GenererCarteEvenement(){
     let btnLien = document.createElement("a");
     let dateBold = "";
 
-    carteEvenmt.setAttribute('class', 'card');
-    imgEvenmt.setAttribute('class', 'card-img imgCarteEvenmt');
+    carteEvenmt.setAttribute('class', 'card mb-4 ml-3');
+    imgEvenmt.setAttribute('class', 'card-img');
     imgEvenmt.setAttribute('src', 'Images/imgActu.jpg');
     imgEvenmt.setAttribute('alt', 'Image de l\'Évènement');
-    corpCarte.setAttribute('class', 'card-body corpCarteEvenmt');
-    titreCarte.setAttribute('class', 'card-title');
-    texteCarte.setAttribute('class', 'card-text texteCarteEvenmt');
+    corpCarte.setAttribute('class', 'card-body');
+    titreCarte.setAttribute('class', 'card-title mb-4');
+    texteCarte.setAttribute('class', 'card-text');
     btnLien.setAttribute('href', '#');
-    btnLien.setAttribute('class', 'btn btn-primary stretched-link');
+    btnLien.setAttribute('class', 'btn stretched-link');
     btnLien.setAttribute('data-toggle', 'modal');
     btnLien.setAttribute('data-target', '#modaleActu');
    

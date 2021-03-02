@@ -1,5 +1,5 @@
 .carousel .carousel-item {
-    height: 450px;
+    height: 580px;
     min-width: 100% !important;
 }
 
@@ -55,20 +55,4 @@
 
 .carousel-cards h2 {
     margin-top: 1%;
-}
-
-.carousel-cards .card{
-    border-radius: 5px !important;
-    background-color: black;
-    width: 350px;
-    height: 450px;
-    max-width: 300px;
-    max-height: 450px;
-    align-items: center !important;
-}
-
-.carousel-cards .card-img-top{
-    border-radius: 5px !important;
-    width: 100%;
-    height: 150px;
 }

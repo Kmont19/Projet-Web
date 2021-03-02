@@ -10,14 +10,14 @@ function GenererCarteActu(){
     let dateBold = "";
 
     carteActu.setAttribute('class', 'card');
-    imgActu.setAttribute('class', 'card-img-top imgCarteActu');
+    imgActu.setAttribute('class', 'card-img-top');
     imgActu.setAttribute('src', 'Images/imgActu.jpg');
     imgActu.setAttribute('alt', 'Image de l\'actualité');
-    corpCarte.setAttribute('class', 'card-body corpCarteActu');
+    corpCarte.setAttribute('class', 'card-body');
     titreCarte.setAttribute('class', 'card-title');
-    texteCarte.setAttribute('class', 'card-text texteCarteActu');
+    texteCarte.setAttribute('class', 'card-text m-0');
     btnLien.setAttribute('href', '#');
-    btnLien.setAttribute('class', 'btn btn-primary stretched-link');
+    btnLien.setAttribute('class', 'btn stretched-link');
     btnLien.setAttribute('data-toggle', 'modal');
     btnLien.setAttribute('data-target', '#modaleActu');
    

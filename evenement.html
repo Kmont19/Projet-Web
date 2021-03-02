@@ -18,16 +18,43 @@
     <body onload="GenererEvenmt()">
         <div id="menu"></div>
 
-        <div class="bloc-corps">
-
+        <div class="bloc-events pt-5">
+            <div class="header row justify-content-center no-gutters">
+                <h2 class="col-sm-5 pl-5">Évènements</h2>
+                <div class=" col-sm-7 pr-5">
+                    <section class="search-bar mt-5">
+                        <form>
+                            <div class="input-group col-md-12">
+                                <input type="search" class="form-control" placeholder="Rechercher">
+                                <div class="input-group-append">
+                                    <button class="btn btn-search btn-link" type="submit">
+                                        <i class="material-icons">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>                
+            </div>           
+            <section class="filtre-bar">
+                <ul class="filtre-events mx-auto">
+                    <label>Filtrer par: </label>
+                    <li class="active">
+                        <a id="filtre-recent">Le plus récents</a>
+                    </li>
+                    <li>
+                        <a id="filtre-nom">Par order alphabetique</a>
+                    </li>
+                </ul>
+            </section>
             
 
-            <section id="cntEvenmt">
+            <section class="d-flex flex-wrap" id="cntEvenmt">
             <!--  <div class="card">
-                    <img class="card-img imgCarteEvenmt" src="../Images/imgActu.jpg" alt="Image de l'Évènement">
-                    <div class="card-body corpCarteEvenmt">
+                    <img class="card-img" src="../Images/imgActu.jpg" alt="Image de l'Évènement">
+                    <div class="card-body">
                         <h4 class="card-title">Nouveau serveur</h4>
-                        <p class="card-text texteCarteEvenmt"><b>28 Janvier 2021</b> - Le département d'informatique viens d'acquérir un tout nouveau serveur
+                        <p class="card-text "><b>28 Janvier 2021</b> - Le département d'informatique viens d'acquérir un tout nouveau serveur
                             super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</p>
                         <div>
                             <a href="#" class="btn btn-primary stretched-link">Plus</a>

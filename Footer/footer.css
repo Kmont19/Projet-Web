@@ -1,5 +1,5 @@
 .footer {
-    background-color:  #061f50;
+    background-image: -webkit-linear-gradient(left, #092d74, #061f50);
     text-align: center;
     font-family: "Fira Sans", sans-serif;
 }

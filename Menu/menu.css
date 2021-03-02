@@ -1,4 +1,4 @@
-.container-fluid{
+.menu{
     width: 100%;
     background-image: -webkit-linear-gradient(left, #092d74, #061f50);
     color: white;
@@ -6,18 +6,11 @@
     font-style: normal;
 }
 
-.bloc-logo {
-    padding: 5px 0;
-    height: 100%;
-    width: 90px;
+.logo {
+    max-width: 100px;
 }
 
-#logo {
-    width: 100%;
-    height: 100%;
-}
-
-.container-fluid h5 {
+.navbar-brand h5 {
     font-family: inherit;
     color: white;
     font-weight: 600;
@@ -25,32 +18,28 @@
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    cursor: default;
 }
 
-.container-fluid .nav {
-    margin-top: 1.5%;
-}
-
-.container-fluid a:hover {
+.menu a:hover {
     cursor: pointer;
 }
 
-.container-fluid a {
+.menu a {
+    height: 100%;
     font-family: inherit;
     color: white;
     font-weight: 600;
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    cursor: default;
+    cursor: pointer;
 }
 
 .nav-pills .nav-link {
     color: white;
 }
 
-a:hover {
+menu a:hover {
     color:#da1a32 !important;
 }
 
