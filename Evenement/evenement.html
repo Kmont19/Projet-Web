@@ -15,13 +15,13 @@
         <script src="evenenement.js" ></script>
 
     </head>
-    <body onload="GenererEvenmt()">
+    <body>
         <div id="menu">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-auto">
                         <div class="bloc-logo">
-                            <a href="../intro.html">
+                            <a href="../index.html">
                                 <img src="../Images/logo-cegep.jpg" alt="Logo" id="logo">
                             </a>
                         </div>
@@ -32,7 +32,7 @@
                         </div>
                             <ul class="nav nav-pills nav-fill justify-content-center">
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Accueil" href="../intro.html">Accueil</a>  
+                                    <a class="nav-link" id="Accueil" href="../index.html">Accueil</a>  
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="programme">Programme</a>
@@ -97,55 +97,21 @@
 
 
 
-           <section class="modal modal fade " id="modaleActu">
+           <section class="modal modal fade " id="modaleEvenmt">
 
             <div class="modal-dialog modal-lg modal-dialog">
                 <div class="modal-content">
                         <div class="modal-header">
                     <div id="ctnheadMod">            
-                        <img src="../Images/imgActu.jpg"  id="imgModal" alt="Image de l'actualité">               
+                        <img src=""  id="imgModalEvenmt" alt="Image de l'actualité">               
                     </div>
                   </div>
             
                   <div class="modal-body">
-                    <h2 class="modal-title">Nouveau serveur</h2>
-                    <p><b>28 Janvier 2021</b>
+                    <h2 class="modal-title" id="titreModaleEvenmt"></h2>
+                    <p><b id="dateModaleEvenmt"></b>
                     </p>
-                    <p> Le département d'informatique viens d'acquérir un tout nouveau serveur
-                        super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</br>
-                        Et blababla blablabla blablabla blablabla.</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
+                    <p id="texteModaleEvenmt"> 
                     </p>
                   </div>
             

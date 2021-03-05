@@ -1,0 +1,65 @@
+{
+    "todohighlight.isEnable": true,
+    "todohighlight.isCaseSensitive": true,
+    "todohighlight.keywords": [
+        "DEBUG:",
+        "REVIEW:",
+
+        {
+            "text": "BUG:",
+            "color": "yellow",
+            "backgroundColor": "red",
+            "isWholeLine": true,
+            "border": "1px solid yellow",
+            "borderRadius": "2px", 
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "NOTE:",
+            "color": "#020229",
+            "backgroundColor": "cyan",
+            "isWholeLine": true,
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "HACK:",
+            "color": "#770303",
+            "backgroundColor": "orangered",
+            "isWholeLine": true,
+        },
+        {
+            "text": "TODO:",
+            "color": "black",
+            "isWholeLine": true,
+            //"border": "1px solid red",
+           // "borderRadius": "2px", //NOTE: using borderRadius along with `border` or you will see nothing change
+            "backgroundColor": "rgb(0, 255, 42)",
+            //other styling properties goes here ... 
+        }
+    ],
+
+    "todohighlight.exclude": [
+
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.vscode/**",
+        "**/.github/**",
+        "**/_output/**",
+        "**/*.min.*",
+        "**/*.map",
+        "**/.next/**"
+    ],
+    "todohighlight.include": [
+
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.html",
+        "**/*.php",
+        "**/*.css",
+        "**/*.scss"
+    ]
+}
