@@ -4,14 +4,18 @@
     padding: 2% 3%;
 }
 
+h1{
+    text-align: center;
+}
+
 #ctnAdminActu{
     height:81%;
     width: 81%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     margin: auto;
-    margin-top: 4%;
+    margin-top: 2%;
     padding: 1%;
     background: rgb(248, 248, 248);
     box-shadow: 1px 1px 2px 0 grey, 1px 1px 2px 0 grey;
@@ -20,46 +24,93 @@
 }
 
 #adminRechActu{
-    width: 40%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-#adminFormActu{
-    width: 60%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 1.5%;
+#adminFormActu h4{
+    text-align: center;
+   
+
 }
 #adminFormActu form{
-    height: 100%;
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #ctnRechActu{
     width: 100%;
     height: 10%;
-    margin-bottom: 32px;  
 }
 
 #ctntblActu{
     width: 100%;
-    height: 90%;
+    max-height: 80%;
 }
 
-table{
+
+
+
+#tblActu tbody{
+    position: absolute;
+    overflow-y: scroll;
+    height: 80%;
+}
+
+#tblActu thead th{
+    width: 33%;
+    text-align: center;
+    color: white;
+}
+
+#tblActu tr{
     width: 100%;
-    height: 100%;
+    table-layout: fixed;
+    display: inline-table;
 }
 
-table, tr, th, td{
-    border: 1px solid blue;
-    background-color: white;
+#tblActu thead > tr > th {
+    border: none;
 }
 
-#ctnBtnActu{
+#tblActu tbody > tr > td {
+    text-align: center;
+}
+
+/*
+#tblActu thead th{   
+   width:33% !important;
+   background-color: blue;
+  }
+
+#tblActu tbody {   
+    display: block;
+    max-height: 330px;
+    overflow-y: scroll;	
+  }
+*/
+ 
+  /*
+ #tblActu tbody {
+    height:30px;
+    display:block;
+    overflow-y:scroll;
+    width:100%;
+  }
+  */
+
+
+  #texteActu{
+    resize: none;
+  }
+
+#ctnBtnActu, #ctnBtnModalAjoutActu{
     width: 100%;
     height: 10%;
     margin-top: 50px;  
@@ -84,10 +135,34 @@ table, tr, th, td{
     height: 78%;
 }
 
+#dpdTypeRequete option{
+    color: blue !important;
+    background-color: white !important;
+}
+#dpdTypeRequete option:first-child{
+    color: rgb(167, 167, 207) !important;
+    
+}
+
+
 #barreRechActu{
     width: 70%;
 }
 
 #btnTelecharger{
     height: 72%!important;
+}
+
+.ctnInput{
+  /*  display: flex;
+    flex-direction: column;*/
+}
+
+.lblValid{
+    color: green;
+    font-size: 14px;
+}
+.lblNonValid{
+    color: red;
+    font-size: 14px;
 }

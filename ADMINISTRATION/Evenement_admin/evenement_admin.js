@@ -1,82 +1,84 @@
 
-
-let idActu = "";
-let ActuActif= "";
+let idEvenmt = "";
+let EvenmtActif= "";
 $(document).ready(function () {
 
-    AjoutActualite();
-    ModifierActualite();
-    SupprimerActualite();
-    AffichageActu_Tous();
-    IdActuTableau();
-    RemplirFormActu();
-    ValidationChamps();
-    Annuler();
+    AjoutEvenememt();
+    ModifierEvenememt();
+    SupprimerEvenememt();
+    AffichageEvenmt_Tous();
+  //  AffichageEvenmt_Titre();
+    RemplirFormEvnmt();
+   // PopoverLigne();
+
+   
 });
 
 
 //TODO: VALIDATIONS DES ENTRÉES
-function AjoutActualite(){
+function AjoutEvenememt(){
 
-    $("#btnAjoutActu").unbind().click(function (e) {    
+    $("#btnAjoutEvenement").unbind().click(function (e) {    
        e.preventDefault();
 
-      
-        let form_data = new FormData();
-        let fichierImage = $('#imageActu').prop('files')[0];
-        form_data.append('imageActu', fichierImage);
-        form_data.append('action', 'Ajouter');
-        form_data.append('titreActu', $("#titreActu").val());
-        form_data.append('dateActu', $("#dateActu").val());
-        form_data.append('texteActu', $("#texteActu").val());
+       let form_data = new FormData();
+       let fichierImage = $('#imageEvenement').prop('files')[0];
+       form_data.append('imageEvenement', fichierImage);
 
-        if(ValidationActu()==true){
-            $.ajax({
-                url: '../ADMIN_PHP/actualite_admin.php',
-                method: 'POST',
-                async: true,
-                dataType: "json", 
-                contentType: false,
-                processData: false,
-                data: form_data,               
-                success: function (result, statusTxt, xhr) {
-        
-                },
-                error: function(xhr, status, error) {
+
+       form_data.append('action', 'Ajouter');
+       form_data.append('titreEvenement', $("#titreEvenement").val());
+       form_data.append('dateEvenement', $("#dateEvenement").val());
+       form_data.append('texteEvenement', $("#texteEvenement").val());
+
+        $.ajax({
+            url: '../ADMIN_PHP/evenement_admin.php',
+            method: 'POST',
+            async: true,
+            dataType: "json", 
+            contentType: false,
+            processData: false,
+            data: form_data,               
+            success: function (result, statusTxt, xhr) {
+      
+      
+                ViderChampsFrm();
+            },
+            error: function(xhr, status, error) {
+         
+            },
+            complete: function(xhr, status) {
             
-                },
-                complete: function(xhr, status) {
-                
-                }
-            });
-        AffichageActu_Tous();
-        }
+            }
+        });
+        AffichageEvenmt_Tous();
     });
-    
+
 }
 
 
 //TODO: VALIDATIONS DES ENTRÉES
-function ModifierActualite(){
-    
-    $("#btnModifActu").unbind().click(function (e) {    
+function ModifierEvenememt(){
+
+    $("#btnModifEvenement").unbind().click(function (e) {    
        e.preventDefault();
 
        let form_data = new FormData();
-       let fichierImage = $('#imageActu').prop('files')[0];
-       form_data.append('imageActu', fichierImage);
-
-       form_data.append('action', 'Modifier');
-       form_data.append('idActu', idActu);
-       form_data.append('titreActu', $("#titreActu").val());
-       form_data.append('dateActu', $("#dateActu").val());
-       form_data.append('texteActu', $("#texteActu").val());
+       let fichierImage = $('#imageEvenement').prop('files')[0];
+       form_data.append('imageEvenement', fichierImage);
 
         //BUG: PROBLÈME AVEC LA MODIFICATION DES IMAGES.
 
-        if(ValidationActu()==true){
+       form_data.append('action', 'Modifier');
+       form_data.append('idEvnmt', idEvenmt);
+       form_data.append('titreEvenement', $("#titreEvenement").val());
+       form_data.append('dateEvenement', $("#dateEvenement").val());
+       form_data.append('texteEvenement', $("#texteEvenement").val());
+
+       //Bug pour l'image.
+
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: '../ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -93,44 +95,40 @@ function ModifierActualite(){
             
             }
         });
-        AffichageActu_Tous();
-    }
-       
+        AffichageEvenmt_Tous();
     });
-    
+
 }
 
+function SupprimerEvenememt(){
 
-
-
-function SupprimerActualite(){
-
+   
     let objActif= "";
-    $("#btnSupprimerActu").unbind().click(function (e) {    
+    $("#btnSupprimerEvenement").unbind().click(function (e) {    
        e.preventDefault();
-    
-    $.ajax({
-        url: '../ADMIN_PHP/actualite_admin.php',
+
+       $.ajax({
+        url: '../ADMIN_PHP/evenement_admin.php',
         method: 'POST',
         async: true,
         data: { action: "infoActif",
-                idActu: idActu},
+                idEvnmt: idEvenmt},
         dataType: 'text',        
         success: function(result, status, xhr) {
-            reqActu = JSON.parse(result);    
-            if(reqActu[0].actif==0){
+            reqEvenmt = JSON.parse(result);   
+            if(reqEvenmt[0].actif==0){
                 objActif = "react";
-            }else if(reqActu[0].actif==1){
+            }else if(reqEvenmt[0].actif==1){
                 objActif = "sup";        
             }
 
             let form_data = new FormData();
             form_data.append('action', 'Supprimer');
-            form_data.append('idActu', idActu);
+            form_data.append('idEvnmt', idEvenmt);
             form_data.append('actif', objActif);
     
             $.ajax({
-                url: '../ADMIN_PHP/actualite_admin.php',
+                url: '../ADMIN_PHP/evenement_admin.php',
                 method: 'POST',
                 async: true,
                 dataType: "json", 
@@ -138,157 +136,166 @@ function SupprimerActualite(){
                 processData: false,
                 data: form_data,               
                 success: function (result, statusTxt, xhr) {
-                    AffichageActu_Tous();
+                    AffichageEvenmt_Tous();
                 },
-                error: function(xhr, status, error) {            
+                error: function(xhr, status, error) {         
                 },
-                complete: function(xhr, status) {                
+                complete: function(xhr, status) {           
                 }
-            });           
+            });     
         },
         error: function(xhr, status, error) {
         },
         complete: function(xhr, status) {       
         }     
     });
-
+             
     });
-   
+
 }
 
 
+function AffichageEvenmt_Tous(){
 
-
-function AffichageActu_Tous(){
-    EffacerTableau();
-    var reqActu = new Array();
-    var actualite;  
+    var reqEvenmt = new Array();
+    var evenement;  
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: '../ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
-            data: { action: "listeActuTous" },
+            data: { action: "listeEvenmtTous" },
             dataType: 'text',        
             success: function(result, status, xhr) {
-                reqActu = JSON.parse(result);                               
-                let tableActu = document.getElementById("corpsTabActu");
+                reqEvenmt = JSON.parse(result);                               
+                let tableEvenmt = document.getElementById("corpsTabEvenement");
 
-                for (x in reqActu) {
-                    actualite = reqActu[x];
+                for (x in reqEvenmt) {
+                    evenement = reqEvenmt[x];
                     let lgnTab = document.createElement("tr");
                     let colTitre = document.createElement("td");
                     let colDate = document.createElement("td");
                     let colAutre = document.createElement("td");
-                    let idLgn = "idActu_" + actualite.idActualite;
+                    let idLgn = "idEvenmt_" + evenement.idEvenement;
                     lgnTab.setAttribute("id", idLgn);
-                    lgnTab.setAttribute("class", "lgnTblActu");
+                    lgnTab.setAttribute("class", "lgnTblEvenmt");
                     lgnTab.setAttribute("data-toggle", "modal");
-                    lgnTab.setAttribute("data-target", "#adminFormActu");
-                    colTitre.innerHTML = actualite.titreActu;
-                    colDate.innerHTML = actualite.dateActu;
+                    lgnTab.setAttribute("data-target", "#adminFormEvenement"); 
+                    colTitre.innerHTML = evenement.titreEvenement;
+                    colDate.innerHTML = evenement.dateEvenement;
                     colAutre.innerHTML = "Autre";                  
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
                     lgnTab.appendChild(colAutre);
-                    if(actualite.actif==0){
+                    if(evenement.actif==0){
                         lgnTab.setAttribute("style", "background-color:  #d9534f ;");
                     }
-                    tableActu.appendChild(lgnTab);                   
+                    tableEvenmt.appendChild(lgnTab);                   
                 }              
             },
             error: function(xhr, status, error) {
-                alert("Erreur");
-            },         
-        });
 
+            },
+            complete: function(xhr, status) {
+            
+            }         
+        });
 
 }
 
 
 
 //TODO: FONCTIONS DE RECHERCHES
-function AffichageActu_Titre(){
+function AffichageEvenmt_Titre(){
+
     EffacerTableau();
-    var reqActu = new Array();
-    var actualite;  
+    var reqEvenmt = new Array();
+    var evenement;  
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: '../ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
-            data: { action: "listeActuTitre" },
+            data: { action: "listeEvenmtTitre" },
             dataType: 'text',        
             success: function(result, status, xhr) {
-                reqActu = JSON.parse(result);                               
-                let tableActu = document.getElementById("corpsTabActu");
+                reqEvenmt = JSON.parse(result);                               
+                let tableEvenmt = document.getElementById("corpsTabEvenement");
 
-                for (x in reqActu) {
-                    actualite = reqActu[x];
+                for (x in reqEvenmt) {
+                    evenement = reqEvenmt[x];
                     let lgnTab = document.createElement("tr");
                     let colTitre = document.createElement("td");
                     let colDate = document.createElement("td");
                     let colAutre = document.createElement("td");
-                    let idLgn = "idActu_" + actualite.idActualite;
+                    let idLgn = "idEvenmt_" + evenement.idEvenement;
                     lgnTab.setAttribute("id", idLgn);
-                    lgnTab.setAttribute("class", "lgnTblActu");
+                    lgnTab.setAttribute("class", "lgnTblEvenmt");
                     lgnTab.setAttribute("data-toggle", "modal");
-                    lgnTab.setAttribute("data-target", "#adminFormActu");
-                    colTitre.innerHTML = actualite.titreActu;
-                    colDate.innerHTML = actualite.dateActu;
+                    lgnTab.setAttribute("data-target", "#adminFormEvenement"); 
+                    colTitre.innerHTML = evenement.titreEvenement;
+                    colDate.innerHTML = evenement.dateActu;
                     colAutre.innerHTML = "Autre";                  
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
                     lgnTab.appendChild(colAutre);
-                    tableActu.appendChild(lgnTab);                   
-                }              
+                    if(evenement.actif==0){
+                        lgnTab.setAttribute("style", "background-color:  #d9534f ;");
+                    }
+                    tableEvenmt.appendChild(lgnTab);
+                }             
             },
             error: function(xhr, status, error) {
                 alert("Erreur");
-            },         
+            },
+            complete: function(xhr, status) {
+            
+            }
+                    
         });
 
 
 }
 
-
 function EffacerTableau(){
-    $("#corpsTabActu").empty();
+    $("#corpsTabEvenement").empty();
     
 }
 
-function RemplirFormActu(){
+function RemplirFormEvnmt(){
 
-    $(document).on("click", ".lgnTblActu", function() {
-        idActu =  $(this).attr("id");
-        idActu = idActu.slice(idActu.indexOf("_") + 1, idActu.length);
-        
+    $(document).on("click", ".lgnTblEvenmt", function() {
+        idEvenmt =  $(this).attr("id");
+        idEvenmt = idEvenmt.slice(idEvenmt.indexOf("_") + 1, idEvenmt.length);
+    //    ModaleAjout();
 
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: '../ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
-            data: { action: "infoActualite" ,
-                    idActu: idActu},
+            data: { action: "infoEvenement" ,
+                    idEvnmt: idEvenmt},
             dataType: 'text',        
             success: function(result, status, xhr) {
-                reqActu = JSON.parse(result);
+                reqEvenmt = JSON.parse(result);
 
-                $("#titreActu").val(reqActu[0].titreActu);
-                $("#dateActu").val(reqActu[0].dateActu);
-                $("#texteActu").val(reqActu[0].texteActu);
-             /*   var strUrl = reqActu[0].photoActu;
-                    strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                 
-                $("#lgnTblActu").text(strUrl.slice(strUrl.lastIndexOf("/") + 1, strUrl.length));*/
-                if(reqActu[0].actif==0){
+                $("#titreEvenement").val(reqEvenmt[0].titreEvenement);
+                $("#dateEvenement").val(reqEvenmt[0].dateEvenement);
+                $("#texteEvenement").val(reqEvenmt[0].texteEvenement);
+               /* var strUrl = reqEvenmt[0].photoEvenement;
+                    strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                   
+                $("#lblImgEvent").text(strUrl.slice(strUrl.lastIndexOf("/") + 1, strUrl.length));*/
+
+                if(reqEvenmt[0].actif==0){
                     $("#btnSupprimerActu").css("background-color", " #f0ad4e ");
                     $("#btnSupprimerActu").css("color", "black ");
                     $("#btnSupprimerActu").text("Réactiver");
-                    ActuActif = false;
+                    EvenmtActif = false;
                 }else{
                     $("#btnSupprimerActu").css("background-color", " #d9534f  ");
                     $("#btnSupprimerActu").css("color", "white ");
                     $("#btnSupprimerActu").text("Supprimer");
-                    ActuActif = true;
+                    EvenmtActif = true;
                 }
+              
             },
             error: function(xhr, status, error) {
                 alert("Erreur");
@@ -297,33 +304,31 @@ function RemplirFormActu(){
             
             }     
         });
-        $("#btnAjoutActu").hide();
-        $("#btnModifActu").show();
-        $("#btnSupprimerActu").show();
-       
+        $("#btnAjoutEvenement").hide();
+        $("#btnModifEvenement").show();
+        $("#btnSupprimerEvenement").show();
     });
 }
 
-
 function ModaleAjout(){
     
-    $("#btnModifActu").hide();
-    $("#btnSupprimerActu").hide();
-    $("#btnAjoutActu").show();
-    ViderChampsFrm();
-
+    $("#btnModifEvenement").hide();
+    $("#btnSupprimerEvenement").hide();
+    $("#btnAjoutEvenement").show();
+         ViderChampsFrm();
+    
 }
 
 function ViderChampsFrm(){
-    $("#titreActu").val("");
-    $("#dateActu").val("");
-    $("#texteActu").val("");                 
-    $("#lgnTblActu").text("");
+    $("#titreEvenement").val("");
+    $("#dateEvenement").val("");
+    $("#texteEvenement").val("");                 
+    $("#lblImgEvent").text("");
 }
 
 function Annuler(){
    
-    $("#btnAnnulerActu").click(function (e) { 
+    $("#btnAnnulerEvenement").click(function (e) { 
         e.preventDefault();
         ViderChampsFrm();
 
@@ -331,20 +336,39 @@ function Annuler(){
         $("#lblTexte").remove();
         $("#lblDate").remove();
 
-        $("#titreActu").css("border-color", "initial");
-        $("#dateActu").css("border-color", "initial");
-        $("#texteActu").css("border-color", "initial");
+        $("#titreEvenement").css("border-color", "initial");
+        $("#dateEvenement").css("border-color", "initial");
+        $("#texteEvenement").css("border-color", "initial");
 
     
     });
 }
 
-function IdActuTableau(){
+function PopoverLigne(){
 
-    let idActu = "";
-    $(".lgnTblActu").hover(function () {
+    
+  /*  $(".lgnTblEvenmt").hover(function () {
 
-         idActu =  $(this).attr("id");
+       // idEvenmt =  $(this).attr("id");
+            alert("hover");
+        }, function () {
+            alert("hover");
+        }
+    );*/
+       // return idEvenmt;
+
+      
+   
+    
+}
+
+
+function IdEvenmtTableau(){
+
+    let idEvenmt = "";
+    $(".lgnTblEvenmt").hover(function () {
+
+        idEvenmt =  $(this).attr("id");
             alert("hover");
         }, function () {
             // out
@@ -352,8 +376,6 @@ function IdActuTableau(){
     );
 
 }
-
-
 
 function ValidationActu(){
 
@@ -375,74 +397,74 @@ function ValidationActu(){
     var regex_StringTousCaracteres_OUI = /((^[A-Z a-z 0-9 |(){}\[\]±@£¢­<>#!%?$&*-+\/=,.;:´`'\"«»°_\ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
 
 
-    var titreActu =   $("#titreActu").val();
+    var titreEvenmt =   $("#titreEvenement").val();
        var lblvalidTitre = document.createElement("p");
        lblvalidTitre.setAttribute("id", "lblTitre");
-        if(regex_Vide_OUI.test(titreActu)==true){
+        if(regex_Vide_OUI.test(titreEvenmt)==true){
             lblvalidTitre.setAttribute("class", "lblNonValid");
             lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-            $("#titreActu").css("border-color", "red");
+            $("#titreEvenement").css("border-color", "red");
             titreValide = false;
         }else{
-            if(regex_StringTousCaracteres_OUI.test(titreActu)==false){       
+            if(regex_StringTousCaracteres_OUI.test(titreEvenmt)==false){       
                 lblvalidTitre.setAttribute("class", "lblNonValid");
                 lblvalidTitre.innerHTML = "Titre non-valide ";
-                $("#titreActu").css("border-color", "red");
+                $("#titreEvenement").css("border-color", "red");
                 titreValide = false;
             }else{           
                 lblvalidTitre.setAttribute("class", "lblValid");
                 lblvalidTitre.innerHTML = "Titre valide";
-                $("#titreActu").css("border-color", "green");
+                $("#titreEvenement").css("border-color", "green");
                 titreValide = true;
             }
         }
-            $(lblvalidTitre).insertAfter("#divTitreActu");
+            $(lblvalidTitre).insertAfter("#divTitreEvent");
 
 
 
-            var texteActu =   $("#texteActu").val();      
+            var texteEvenmt =   $("#texteEvenement").val();      
             var lblvalidTexte = document.createElement("p");
             lblvalidTexte.setAttribute("id", "lblTexte");
-             if(regex_Vide_OUI.test(texteActu)==true){
+             if(regex_Vide_OUI.test(texteEvenmt)==true){
                 lblvalidTexte.setAttribute("class", "lblNonValid");
                 lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-                $("#texteActu").css("border-color", "red");
+                $("#texteEvenement").css("border-color", "red");
                 texteValide = false;
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(texteActu)==false){       
+                 if(regex_StringTousCaracteres_OUI.test(texteEvenmt)==false){       
                     lblvalidTexte.setAttribute("class", "lblNonValid");
                     lblvalidTexte.innerHTML = "Texte non-valide ";
-                    $("#texteActu").css("border-color", "red");
+                    $("#texteEvenement").css("border-color", "red");
                     texteValide = false;
                  }else{           
                     lblvalidTexte.setAttribute("class", "lblValid");
                     lblvalidTexte.innerHTML = "Texte valide";
-                    $("#texteActu").css("border-color", "green");
+                    $("#texteEvenement").css("border-color", "green");
                     texteValide = true;
                  }
              }
-                 $(lblvalidTexte).insertAfter("#divTexteActu");
+                 $(lblvalidTexte).insertAfter("#divTexteEvent");
 
 
-                 var dateActu =   $("#dateActu").val();    
+                 var dateEvenmt =   $("#dateEvenement").val();    
                  var lblvalidDate = document.createElement("p");
                  lblvalidDate.setAttribute("id", "lblDate");
-                 if(regex_Vide_OUI.test(dateActu)==true){
+                 if(regex_Vide_OUI.test(dateEvenmt)==true){
                      lblvalidDate.setAttribute("class", "lblNonValid");
                      lblvalidDate.innerHTML = "Vous devez entrer une date";
-                     $("#dateActu").css("border-color", "red");
+                     $("#dateEvenement").css("border-color", "red");
                      dateValide = false;
                  }else{
-                     if(regex_Date_Int_OUI.test(dateActu)==false){       
+                     if(regex_Date_Int_OUI.test(dateEvenmt)==false){       
                          lblvalidDate.setAttribute("class", "lblNonValid");
                          lblvalidDate.innerHTML = "Date non-valide ";
-                         $("#dateActu").css("border-color", "red");
+                         $("#dateEvenement").css("border-color", "red");
                          dateValide = false;
                      }else{           
          
                          let dateJour = new Date();
                          let dateFuture = new Date("01 Jan 2070");
-                         let dateUser = new Date(dateActu);
+                         let dateUser = new Date(dateEvenmt);
                      
                          if((dateUser < dateJour) || (dateFuture < dateUser)){
                              lblvalidDate.setAttribute("class", "lblNonValid");
@@ -451,19 +473,17 @@ function ValidationActu(){
                          }else{
                              lblvalidDate.setAttribute("class", "lblValid");
                              lblvalidDate.innerHTML = "Date valide";
-                             $("#dateActu").css("border-color", "green");
+                             $("#dateEvenement").css("border-color", "green");
                              dateValide = true;
                          }
                      }
                  }
-                     $(lblvalidDate).insertAfter("#divDateActu");
+                     $(lblvalidDate).insertAfter("#divDateEvent");
 
 
         if((titreValide==true)&&(texteValide==true)&&(dateValide==true)){
             entreeValide = true;
         }
-        alert("titreValide: " + titreValide + " || " + "texteValide: " + texteValide + " || " + "dateValide: " + dateValide + " || ");
-        alert("entreeValide: " + entreeValide);
         return entreeValide;
 }
 
@@ -480,96 +500,96 @@ function ValidationChamps(){
     var regex_MotDePasse_OUI = /((^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#!\"$%?&*()_+|=\/*]).{8,}$))/;
     var regex_StringTousCaracteres_OUI = /((^[A-Z a-z 0-9 |(){}\[\]±@£¢­<>#!%?$&*-+\/=,.;:´`'\"«»°_\ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
 
-    $("#titreActu").focus(function (e) { 
+    $("#titreEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblTitre").remove();
-        $("#titreActu").css("border-color", "initial")
+        $("#titreEvenement").css("border-color", "initial")
     });
-    $("#texteActu").focus(function (e) { 
+    $("#texteEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblTexte").remove();
     });
-    $("#dateActu").focus(function (e) { 
+    $("#dateEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblDate").remove();
     });
 
 
-   $("#titreActu").blur(function (e) { 
+   $("#titreEvenement").blur(function (e) { 
        e.preventDefault();
-       var titreActu =   $("#titreActu").val();
+       var titreEvenmt =   $("#titreEvenement").val();
        var lblvalidTitre = document.createElement("p");
        lblvalidTitre.setAttribute("id", "lblTitre");
-        if(regex_Vide_OUI.test(titreActu)==true){
+        if(regex_Vide_OUI.test(titreEvenmt)==true){
             lblvalidTitre.setAttribute("class", "lblNonValid");
             lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-            $("#titreActu").css("border-color", "red");
+            $("#titreEvenement").css("border-color", "red");
            
         }else{
-            if(regex_StringTousCaracteres_OUI.test(titreActu)==false){       
+            if(regex_StringTousCaracteres_OUI.test(titreEvenmt)==false){       
                 lblvalidTitre.setAttribute("class", "lblNonValid");
                 lblvalidTitre.innerHTML = "Titre non-valide ";
-                $("#titreActu").css("border-color", "red");
+                $("#titreEvenement").css("border-color", "red");
                 
             }else{           
                 lblvalidTitre.setAttribute("class", "lblValid");
                 lblvalidTitre.innerHTML = "Titre valide";
-                $("#titreActu").css("border-color", "green");
+                $("#titreEvenement").css("border-color", "green");
                 
             }
         }
-            $(lblvalidTitre).insertAfter("#divTitreActu");
+            $(lblvalidTitre).insertAfter("#divTitreEvent");
    });
        
 
-   $("#texteActu").blur(function (e) { 
+   $("#texteEvenement").blur(function (e) { 
     e.preventDefault();
-    var texteActu =   $("#texteActu").val();      
+    var texteEvenmt =   $("#texteEvenement").val();      
     var lblvalidTexte = document.createElement("p");
     lblvalidTexte.setAttribute("id", "lblTexte");
-     if(regex_Vide_OUI.test(texteActu)==true){
+     if(regex_Vide_OUI.test(texteEvenmt)==true){
         lblvalidTexte.setAttribute("class", "lblNonValid");
         lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-        $("#texteActu").css("border-color", "red");
+        $("#texteEvenement").css("border-color", "red");
         
      }else{
-         if(regex_StringTousCaracteres_OUI.test(texteActu)==false){       
+         if(regex_StringTousCaracteres_OUI.test(texteEvenmt)==false){       
             lblvalidTexte.setAttribute("class", "lblNonValid");
             lblvalidTexte.innerHTML = "Texte non-valide ";
-            $("#texteActu").css("border-color", "red");
+            $("#texteEvenement").css("border-color", "red");
            
          }else{           
             lblvalidTexte.setAttribute("class", "lblValid");
             lblvalidTexte.innerHTML = "Texte valide";
-            $("#texteActu").css("border-color", "green");
+            $("#texteEvenement").css("border-color", "green");
             
          }
      }
-         $(lblvalidTexte).insertAfter("#divTexteActu");
+         $(lblvalidTexte).insertAfter("#divTexteEvent");
     });
 
 
-    $("#dateActu").blur(function (e) { 
+    $("#dateEvenement").blur(function (e) { 
         e.preventDefault();
-        var dateActu =   $("#dateActu").val();    
+        var dateEvenmt =   $("#dateEvenement").val();    
         var lblvalidDate = document.createElement("p");
         lblvalidDate.setAttribute("id", "lblDate");
-        if(regex_Vide_OUI.test(dateActu)==true){
+        if(regex_Vide_OUI.test(dateEvenmt)==true){
             lblvalidDate.setAttribute("class", "lblNonValid");
             lblvalidDate.innerHTML = "Vous devez entrer une date";
-            $("#dateActu").css("border-color", "red");
+            $("#dateEvenement").css("border-color", "red");
             
         }else{
-            if(regex_Date_Int_OUI.test(dateActu)==false){       
+            if(regex_Date_Int_OUI.test(dateEvenmt)==false){       
                 lblvalidDate.setAttribute("class", "lblNonValid");
                 lblvalidDate.innerHTML = "Date non-valide ";
-                $("#dateActu").css("border-color", "red");
+                $("#dateEvenement").css("border-color", "red");
                
             }else{           
 
                 let dateJour = new Date();
                 let dateFuture = new Date("01 Jan 2070");
-                let dateUser = new Date(dateActu);
+                let dateUser = new Date(dateEvenmt);
             
                 if((dateUser < dateJour) || (dateFuture < dateUser)){
                     lblvalidDate.setAttribute("class", "lblNonValid");
@@ -578,28 +598,12 @@ function ValidationChamps(){
                 }else{
                     lblvalidDate.setAttribute("class", "lblValid");
                     lblvalidDate.innerHTML = "Date valide";
-                    $("#dateActu").css("border-color", "green");
+                    $("#dateEvenement").css("border-color", "green");
                     
                 }
             }
         }
-            $(lblvalidDate).insertAfter("#divDateActu");
+            $(lblvalidDate).insertAfter("#divDateEvent");
     });
 
 }
-
-
-
-/*
-function TypeRequete(){
-
-
-    if(($("#dpdTypeRequete").val()=="titre")&&()){
-        AffichageActu_Titre();
-    }
-    else{
-        AffichageActu_Tous();
-    }
-
-
-}*/
