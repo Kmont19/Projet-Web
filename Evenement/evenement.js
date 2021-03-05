@@ -1,6 +1,7 @@
 
 let infoEvenmt="";
 let evenement="";
+
 $(document).ready(function () {
 
     Remplirmodale();
@@ -53,7 +54,6 @@ function Gen_CtnEvenement(infoEvenmt){
 
     carteEvenmt.appendChild(imgEvenmt);
     carteEvenmt.appendChild(corpCarte);
-
     ctncarte.appendChild(carteEvenmt);
 
 }
@@ -62,6 +62,7 @@ function Gen_CtnEvenement(infoEvenmt){
 function GenererCarteEvenmt(evenement) {
     var ficheEvenmt;
     ficheEvenmt = Gen_CtnEvenement(evenement);   
+   
 }
 
 
@@ -69,7 +70,7 @@ function requeteFicheEvenmt(){
 
     let ReqEvenement = new Array();
     $.ajax({
-        url: '../Evenement/evenement.php',
+        url: 'Evenement/evenement.php',
         method: 'POST',
         async: true,
         data: { action: "infoEvenmtTous" },
@@ -101,7 +102,7 @@ function Remplirmodale(){
         idEvenmtMdl = idEvenmtMdl.slice(idEvenmtMdl.indexOf("_") + 1, idEvenmtMdl.length);
         
         $.ajax({
-            url: '../Evenement/evenement.php',
+            url: 'Evenement/evenement.php',
             method: 'POST',
             async: true,
             data: { action: "infoModale",

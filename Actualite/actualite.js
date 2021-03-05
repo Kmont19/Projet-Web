@@ -55,7 +55,6 @@ function Gen_CtnActualite(infoActu){
 
     carteActu.appendChild(imgActu);
     carteActu.appendChild(corpCarte);
-
     ctncarte.appendChild(carteActu);
 
 }
@@ -75,7 +74,7 @@ function requeteFicheActu(){
 
     let ReqActualite = new Array();
     $.ajax({
-        url: '../Actualite/actualite.php',
+        url: 'Actualite/actualite.php',
         method: 'POST',
         async: true,
         data: { action: "infoActuTous" },
@@ -85,6 +84,7 @@ function requeteFicheActu(){
             for (x in ReqActualite) {
                 actualite = ReqActualite[x];
                 GenererCarteActu(actualite);
+               
             }
 
         },
@@ -107,7 +107,7 @@ function Remplirmodale(){
         idActuMdl = idActuMdl.slice(idActuMdl.indexOf("_") + 1, idActuMdl.length);
         
         $.ajax({
-            url: '../Actualite/actualite.php',
+            url: 'Actualite/actualite.php',
             method: 'POST',
             async: true,
             data: { action: "infoModale",
