@@ -2,7 +2,8 @@
 let idEvenmt = "";
 let EvenmtActif= "";
 $(document).ready(function () {
-
+    $("#menu").load("menu.html")
+    $("#footer").load("footer.html")
     AjoutEvenememt();
     ModifierEvenememt();
     SupprimerEvenememt();
@@ -39,7 +40,7 @@ function AjoutEvenememt(){
 
        if(ValidationEvenemt()==true){
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -88,7 +89,7 @@ function ModifierEvenememt(){
        
        if(ValidationEvenemt()==true){
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -119,7 +120,7 @@ function SupprimerEvenememt(){
        e.preventDefault();
 
        $.ajax({
-        url: '../ADMIN_PHP/evenement_admin.php',
+        url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
         method: 'POST',
         async: true,
         data: { action: "infoActif",
@@ -139,7 +140,7 @@ function SupprimerEvenememt(){
             form_data.append('actif', objActif);
     
             $.ajax({
-                url: '../ADMIN_PHP/evenement_admin.php',
+                url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
                 method: 'POST',
                 async: true,
                 dataType: "json", 
@@ -172,7 +173,7 @@ function AffichageEvenmt_Tous(){
     var reqEvenmt = new Array();
     var evenement;  
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
             data: { action: "listeEvenmtTous" },
@@ -223,7 +224,7 @@ function AffichageEvenmt_Titre(){
     var reqEvenmt = new Array();
     var evenement;  
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
             data: { action: "listeEvenmtTitre" },
@@ -280,7 +281,7 @@ function RemplirFormEvnmt(){
     //    ModaleAjout();
 
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
             method: 'POST',
             async: true,
             data: { action: "infoEvenement" ,

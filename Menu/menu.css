@@ -62,3 +62,9 @@ menu a:hover {
 .dropdown-item:active {
     background-color:  whitesmoke!important;
 }
+
+@media (max-width: 1289px){
+    .navbar-brand h5{
+        display: none;
+    }
+}

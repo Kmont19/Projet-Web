@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <head>
+        <link rel="stylesheet" type="text/css" href="Menu/menu.css"/>
+        <script src="Menu/menu.js"></script>
+    </head>
     <body>
         <!--Menu-->
         <nav class="navbar navbar-expand-lg menu navbar-dark p-0 fixed-top pr-3">
@@ -21,12 +25,8 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="accueil" href="index.html">Accueil</a>  
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="programme">Programme</a>
-                        <div class="dropdown-menu" aria-labelledby="programme">
-                            <a href="programme.html" class="dropdown-item" id="cours">Cours</a>
-                            <a href="#" class="dropdown-item" id="equipe">Équipe</a>
-                        </div>   
+                    <li class="nav-item">
+                        <a class="nav-link" id="programme" href="programme.html">Programme</a>    
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="actualite" href="actualite.html">Actualité</a>    
@@ -44,10 +44,4 @@
             </div> 
     </body>
 </html>
-
-<script>
-    $(document).ready(function() {
-        checkPage();
-    })
-</script>
 

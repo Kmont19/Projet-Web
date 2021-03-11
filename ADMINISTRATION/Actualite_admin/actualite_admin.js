@@ -3,7 +3,8 @@
 let idActu = "";
 let ActuActif= "";
 $(document).ready(function () {
-
+    $("#menu").load("menu.html")
+    $("#footer").load("footer.html")
     AjoutActualite();
     ModifierActualite();
     SupprimerActualite();
@@ -13,7 +14,6 @@ $(document).ready(function () {
     ValidationChamps();
     Annuler();
 });
-
 
 //TODO: VALIDATIONS DES ENTRÉES
 function AjoutActualite(){
@@ -32,7 +32,7 @@ function AjoutActualite(){
 
         if(ValidationActu()==true){
             $.ajax({
-                url: '../ADMIN_PHP/actualite_admin.php',
+                url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
                 method: 'POST',
                 async: true,
                 dataType: "json", 
@@ -76,7 +76,7 @@ function ModifierActualite(){
 
         if(ValidationActu()==true){
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -110,7 +110,7 @@ function SupprimerActualite(){
        e.preventDefault();
     
     $.ajax({
-        url: '../ADMIN_PHP/actualite_admin.php',
+        url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
         method: 'POST',
         async: true,
         data: { action: "infoActif",
@@ -130,7 +130,7 @@ function SupprimerActualite(){
             form_data.append('actif', objActif);
     
             $.ajax({
-                url: '../ADMIN_PHP/actualite_admin.php',
+                url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
                 method: 'POST',
                 async: true,
                 dataType: "json", 
@@ -164,7 +164,7 @@ function AffichageActu_Tous(){
     var reqActu = new Array();
     var actualite;  
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
             method: 'POST',
             async: true,
             data: { action: "listeActuTous" },
@@ -212,7 +212,7 @@ function AffichageActu_Titre(){
     var reqActu = new Array();
     var actualite;  
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
             method: 'POST',
             async: true,
             data: { action: "listeActuTitre" },
@@ -263,7 +263,7 @@ function RemplirFormActu(){
         
 
         $.ajax({
-            url: '../ADMIN_PHP/actualite_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
             method: 'POST',
             async: true,
             data: { action: "infoActualite" ,
