@@ -153,7 +153,7 @@
                                         </div>
                                         <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="imageActu">
-                                            <label class="custom-file-label" for="imageActu">Image de l'actualité:</label>                             
+                                            <label class="custom-file-label" id="lblImgActu" for="imageActu">Image de l'actualité:</label>                             
                                         </div>
                                     </div>    
                                     <div id="ctnBtnActu">

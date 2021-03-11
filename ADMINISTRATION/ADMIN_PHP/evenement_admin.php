@@ -8,7 +8,10 @@ include("../ADMIN_PHP/FONCTIONS PHP/Regex.php");
 
 
 $titreEvenmt = "";
+$lieuEvenmt = "";
 $dateEvenmt = "";
+$hrDebutEvenmt = "";
+$hrFinEvenmt = "";
 $texteEvenmt = "";
 
 $dossierTlcg = "";
@@ -32,8 +35,17 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")
     $RETOUR_ENTRE = GestionErreursSanitization(($_POST["titreEvenement"]), $regex_StringTousCaracteres_OUI, "string");
     $titreEvenmt = $RETOUR_ENTRE["Valeur"];
 
+    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["lieuEvenmt"]), $regex_StringTousCaracteres_OUI, "string");
+    $lieuEvenmt = $RETOUR_ENTRE["Valeur"];
+
     $RETOUR_ENTRE = GestionErreursSanitization(($_POST["dateEvenement"]), $regex_StringTousCaracteres_OUI, "string");
     $dateEvenmt = $RETOUR_ENTRE["Valeur"];
+    
+    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["hrDebutEvenmt"]), $regex_StringTousCaracteres_OUI, "string");
+    $hrDebutEvenmt = $RETOUR_ENTRE["Valeur"];
+    
+    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["hrFinEvenmt"]), $regex_StringTousCaracteres_OUI, "string");
+    $hrFinEvenmt = $RETOUR_ENTRE["Valeur"];
     
     $RETOUR_ENTRE = GestionErreursSanitization(($_POST["texteEvenement"]), $regex_StringTousCaracteres_OUI, "string");
     $texteEvenmt = $RETOUR_ENTRE["Valeur"];
@@ -67,19 +79,28 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $reqInsert = $PDO1->prepare("INSERT INTO `evenement`(titreEvenement,
-                                                                dateEvenement,
+                                                                lieuEvenement,
+                                                                dateEvenement,                                                              
+                                                                heureDebutEvenmt,
+                                                                heureFinEvenmt,                                                              
                                                                 texteEvenement,
                                                                 photoEvenement
                                                                 )
                                                         VALUES (:titreEvenement,
+                                                                :lieuEvenement,
                                                                 :dateEvenement,
+                                                                :heureDebutEvenmt,
+                                                                :heureFinEvenmt,
                                                                 :texteEvenement,
                                                                 :photoEvenement
                                                                 );");
 
 
             $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
+            $reqInsert->bindParam(":lieuEvenement", $lieuEvenmt);
             $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
+            $reqInsert->bindParam(":heureDebutEvenmt", $hrDebutEvenmt);
+            $reqInsert->bindParam(":heureFinEvenmt", $hrFinEvenmt);
             $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
             $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
@@ -110,14 +131,20 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $reqInsert = $PDO1->prepare("UPDATE `evenement` SET titreEvenement = :titreEvenement,
+                                                                    lieuEvenement = :lieuEvenement,
                                                                     dateEvenement = :dateEvenement,
+                                                                    heureDebutEvenmt = :heureDebutEvenmt,
+                                                                    heureFinEvenmt = :heureFinEvenmt,
                                                                     texteEvenement= :texteEvenement,
                                                                     photoEvenement = :photoEvenement                                                      
                                     WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
                                 );
 
             $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
+            $reqInsert->bindParam(":lieuEvenement", $lieuEvenmt);
             $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
+            $reqInsert->bindParam(":heureDebutEvenmt", $hrDebutEvenmt);
+            $reqInsert->bindParam(":heureFinEvenmt", $hrFinEvenmt);
             $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
             $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
@@ -262,7 +289,10 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
          
                  $reqActualite = "SELECT idEvenement,
                                         titreEvenement,
-                                        dateEvenement,
+                                        lieuEvenement,
+                                        dateEvenement,                                                              
+                                        heureDebutEvenmt,
+                                        heureFinEvenmt,                                                              
                                         texteEvenement,
                                         photoEvenement
                                 FROM `evenement`
