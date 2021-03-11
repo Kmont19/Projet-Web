@@ -7,27 +7,54 @@
         <title>Departement Informatique Cegep T-R</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">        
-            
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">     
         <link rel="stylesheet" type="text/css" href="Footer/footer.css"/>
         <link rel="stylesheet" type="text/css" href="Evenement/evenement.css"/>
         <link rel="stylesheet" type="text/css" href="Menu/menu.css"/> 
         <script src="Evenement/evenement.js" ></script>
-
+        <script src="Menu/menu.js"></script>
     </head>
-    <body onload="GenererEvenmt()">
+    <body>
         <div id="menu"></div>
 
-        <div class="bloc-corps">
-
+        <div class="bloc-events pt-5">
+            <div class="header row justify-content-center no-gutters">
+                <h2 class="col-sm-5 pl-5">Évènements</h2>
+                <div class=" col-sm-7 pr-5">
+                    <section class="search-bar mt-5">
+                        <form>
+                            <div class="input-group col-md-12">
+                                <input type="search" class="form-control" placeholder="Rechercher">
+                                <div class="input-group-append">
+                                    <button class="btn btn-search btn-link" type="submit">
+                                        <i class="material-icons">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>                
+            </div>           
+            <section class="filtre-bar">
+                <ul class="filtre-events mx-auto">
+                    <label>Filtrer par: </label>
+                    <li class="active">
+                        <a id="filtre-recent">Le plus récents</a>
+                    </li>
+                    <li>
+                        <a id="filtre-nom">Par order alphabetique</a>
+                    </li>
+                </ul>
+            </section>
             
 
-            <section id="cntEvenmt">
+            <section class="d-flex flex-wrap" id="cntEvenmt">
             <!--  <div class="card">
-                    <img class="card-img imgCarteEvenmt" src="../Images/imgActu.jpg" alt="Image de l'Évènement">
-                    <div class="card-body corpCarteEvenmt">
+                    <img class="card-img" src="../Images/imgActu.jpg" alt="Image de l'Évènement">
+                    <div class="card-body">
                         <h4 class="card-title">Nouveau serveur</h4>
-                        <p class="card-text texteCarteEvenmt"><b>28 Janvier 2021</b> - Le département d'informatique viens d'acquérir un tout nouveau serveur
+                        <p class="card-text "><b>28 Janvier 2021</b> - Le département d'informatique viens d'acquérir un tout nouveau serveur
                             super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</p>
                         <div>
                             <a href="#" class="btn btn-primary stretched-link">Plus</a>
@@ -39,55 +66,21 @@
 
 
 
-           <section class="modal modal fade " id="modaleActu">
+           <section class="modal modal fade " id="modaleEvenmt">
 
             <div class="modal-dialog modal-lg modal-dialog">
                 <div class="modal-content">
                         <div class="modal-header">
                     <div id="ctnheadMod">            
-                        <img src="Images/imgActu.jpg"  id="imgModal" alt="Image de l'actualité">               
+                        <img src=""  id="imgModalEvenmt" alt="Image de l'actualité">               
                     </div>
                   </div>
             
                   <div class="modal-body">
-                    <h2 class="modal-title">Nouveau serveur</h2>
-                    <p><b>28 Janvier 2021</b>
+                    <h2 class="modal-title" id="titreModaleEvenmt"></h2>
+                    <p><b id="dateModaleEvenmt"></b>
                     </p>
-                    <p> Le département d'informatique viens d'acquérir un tout nouveau serveur
-                        super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</br>
-                        Et blababla blablabla blablabla blablabla.</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-                        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                        vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</br>
+                    <p id="texteModaleEvenmt"> 
                     </p>
                   </div>
             

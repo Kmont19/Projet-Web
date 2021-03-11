@@ -7,9 +7,9 @@ include("../ADMIN_PHP/FONCTIONS PHP/connexion.php");
 include("../ADMIN_PHP/FONCTIONS PHP/Regex.php");
 
 
-$titreActu = "";
-$dateActu = "";
-$texteActu = "";
+$titreEvenmt = "";
+$dateEvenmt = "";
+$texteEvenmt = "";
 
 $dossierTlcg = "";
 $dossier_cible = "";
@@ -19,69 +19,72 @@ $urlPhoto ="";
 
 
 
-if (($_SERVER["REQUEST_METHOD"] == "POST") 
-    &&!( $_POST["action"]=="listeActuTous") 
-        &&!( $_POST["action"]=="infoActualite") 
+
+if (($_SERVER["REQUEST_METHOD"] == "POST")
+    &&!( $_POST["action"]=="listeEvenmtTous") 
+        &&!( $_POST["action"]=="infoEvenement") 
             &&!( $_POST["action"]=="infoActif")){
 
     
 
     $RETOUR_ENTRE = array();
 
-    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["titreActu"]), $regex_StringTousCaracteres_OUI, "string");
-    $titreActu = $RETOUR_ENTRE["Valeur"];
+    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["titreEvenement"]), $regex_StringTousCaracteres_OUI, "string");
+    $titreEvenmt = $RETOUR_ENTRE["Valeur"];
 
-    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["dateActu"]), $regex_StringTousCaracteres_OUI, "string");
-    $dateActu = $RETOUR_ENTRE["Valeur"];
+    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["dateEvenement"]), $regex_StringTousCaracteres_OUI, "string");
+    $dateEvenmt = $RETOUR_ENTRE["Valeur"];
     
-    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["texteActu"]), $regex_StringTousCaracteres_OUI, "string");
-    $texteActu = $RETOUR_ENTRE["Valeur"];
+    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["texteEvenement"]), $regex_StringTousCaracteres_OUI, "string");
+    $texteEvenmt = $RETOUR_ENTRE["Valeur"];
 
 }
 
 
-/*echo var_dump($_POST);
-echo var_dump($_FILES);*/
 
-if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite") &&!( $_POST["action"]=="infoActif")){
 
-    if(!empty($imageActu)){
-    if($_FILES['imageActu']['tmp_name'] == "" || $_FILES['imageActu']['size'] == 0){
+
+
+//echo var_dump($_POST);
+
+if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement") &&!( $_POST["action"]=="infoActif")){
+
+
+    if($_FILES['imageEvenement']['tmp_name'] == "" || $_FILES['imageEvenement']['size'] == 0){
         $urlPhoto = "NULL";
     }
     else{
         $urlPhoto = TelechargerPhoto();
     }
-
-    }
+  
     if ( $_POST["action"]=="Ajouter"){
 
-       // echo "action Ajouter";
+        echo "action Ajouter";
         try{
             $PDO1 ="";
             $PDO1 = CONNEXION_BD();    
             $PDO1->beginTransaction();   
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $reqInsert = $PDO1->prepare("INSERT INTO `actualite`(titreActu,
-                                                                dateActu,
-                                                                texteActu,
-                                                                photoActu
+            $reqInsert = $PDO1->prepare("INSERT INTO `evenement`(titreEvenement,
+                                                                dateEvenement,
+                                                                texteEvenement,
+                                                                photoEvenement
                                                                 )
-                                                        VALUES (:titreActu,
-                                                                :dateActu,
-                                                                :texteActu,
-                                                                :photoActu
+                                                        VALUES (:titreEvenement,
+                                                                :dateEvenement,
+                                                                :texteEvenement,
+                                                                :photoEvenement
                                                                 );");
 
 
-            $reqInsert->bindParam(":titreActu", $titreActu);
-            $reqInsert->bindParam(":dateActu", $dateActu);
-            $reqInsert->bindParam(":texteActu", $texteActu);
-            $reqInsert->bindParam(":photoActu", $urlPhoto);
+            $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
+            $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
+            $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
+            $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
 
-
+             echo "ok, fin insert";                                                   
 
         }
         catch(PDOException $e){
@@ -98,7 +101,7 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
 
     if ( $_POST["action"]=="Modifier"){
 
-      // echo "action Modifier";
+      //  echo "action Modifier";
 
         try{
             $PDO1 ="";
@@ -106,17 +109,17 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
             $PDO1->beginTransaction();   
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $reqInsert = $PDO1->prepare("UPDATE `actualite` SET titreActu = :titreActu,
-                                                                    dateActu = :dateActu,
-                                                                    texteActu= :texteActu,
-                                                                    photoActu = :photoActu                                                      
-                                        WHERE idActualite = ". $_POST["idActu"] . ";"
+            $reqInsert = $PDO1->prepare("UPDATE `evenement` SET titreEvenement = :titreEvenement,
+                                                                    dateEvenement = :dateEvenement,
+                                                                    texteEvenement= :texteEvenement,
+                                                                    photoEvenement = :photoEvenement                                                      
+                                    WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
                                 );
 
-            $reqInsert->bindParam(":titreActu", $titreActu);
-            $reqInsert->bindParam(":dateActu", $dateActu);
-            $reqInsert->bindParam(":texteActu", $texteActu);
-            $reqInsert->bindParam(":photoActu", $urlPhoto);
+            $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
+            $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
+            $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
+            $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
 
 
@@ -136,24 +139,18 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
     if ( $_POST["action"]=="Supprimer"){
 
       //  echo "action Supprimmer";
-      echo var_dump($_POST);
+
         try{
             $PDO1 ="";
             $PDO1 = CONNEXION_BD();    
             $PDO1->beginTransaction();   
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $reqInsert = $PDO1->prepare("UPDATE `actualite` SET actif = :actif                                              
-                                     WHERE idActualite = ". $_POST["idActu"] . ";"
+            $reqInsert = $PDO1->prepare("UPDATE `evenement` SET actif = :actif                                              
+                                    WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
                                 );
 
-            if($_POST["actif"]=="sup"){                    
-                $supprimer = 0;
-                echo "supprimer";
-            }elseif ($_POST["actif"]=="react") {
-                $supprimer = 1;
-                echo "reactiver";
-            }
+            $supprimer = 0;
             $reqInsert->bindParam(":actif", $supprimer);
             $reqInsert->execute();
 
@@ -179,7 +176,7 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
     else{
 
 
-        if ( $_POST["action"]=="listeActuTous"){
+        if ( $_POST["action"]=="listeEvenmtTous"){
 
             // echo "action ReqListe";
          
@@ -191,11 +188,11 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
          
                  $resultReq = array();
          
-                 $reqActualite = "SELECT idActualite,
-                                         titreActu,
-                                         dateActu, 
+                 $reqActualite = "SELECT idEvenement,
+                                         titreEvenement,
+                                         dateEvenement, 
                                          actif
-                                 FROM `actualite`;";
+                                 FROM `evenement`;";
          
                  $execReq = $PDO1->query($reqActualite);
                  $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
@@ -218,7 +215,7 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
 
 
 
-         if ( $_POST["action"]=="listeActuTitre"){
+         if ( $_POST["action"]=="listeEvenmtTitre"){
 
             // echo "action ReqListe";
          
@@ -230,10 +227,10 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
          
                  $resultReq = array();
          
-                 $reqActualite = "SELECT idActualite,
-                                         titreActu,
-                                         dateActu
-                                 FROM `actualite`;";
+                 $reqActualite = "SELECT idEvenement,
+                                         titreEvenement,
+                                         dateEvenement
+                                 FROM `evenement`;";
          
                  $execReq = $PDO1->query($reqActualite);
                  $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
@@ -253,47 +250,45 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
                  $PDO1=null;
          }
 
+         if ( $_POST["action"]=="infoEvenement"){
+       
+             try{
+                 $PDO1 ="";
+                 $PDO1 = CONNEXION_BD();    
+                 $PDO1->beginTransaction();   
+                 $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         
+                 $resultReq = array();
+         
+                 $reqActualite = "SELECT idEvenement,
+                                        titreEvenement,
+                                        dateEvenement,
+                                        texteEvenement,
+                                        photoEvenement
+                                FROM `evenement`
+                                WHERE idEvenement = ". $_POST["idEvnmt"] . ";";
+         
+                 $execReq = $PDO1->query($reqActualite);
+                 $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
+                 
+                 $objResult = json_encode($resultReq);
+                 
+                 echo $objResult;
+         
+         
+             }
+             catch(Exception $e){
+                 echo '<br><br><b>ERREUR!!!<br>Échec lecture des données.<br></b>';
+                 echo $e->getMessage();
+                 echo '<br><br><br><br>';
+                 }
+                 $PDO1->commit();
+                 $PDO1=null;
+         }
 
-         if ( $_POST["action"]=="infoActualite"){
+         if ( $_POST["action"]=="infoActif"){
       
-            try{
-                $PDO1 ="";
-                $PDO1 = CONNEXION_BD();    
-                $PDO1->beginTransaction();   
-                $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-                $resultReq = array();
-        
-                $reqActualite = "SELECT idActualite,
-                                       titreActu,
-                                       dateActu,
-                                       texteActu,
-                                       photoActu, 
-                                       actif
-                               FROM `actualite`
-                               WHERE idActualite = ". $_POST["idActu"] . ";";
-        
-                $execReq = $PDO1->query($reqActualite);
-                $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
-                
-                $objResult = json_encode($resultReq);
-                
-                echo $objResult;
-        
-        
-            }
-            catch(Exception $e){
-                echo '<br><br><b>ERREUR!!!<br>Échec lecture des données.<br></b>';
-                echo $e->getMessage();
-                echo '<br><br><br><br>';
-                }
-                $PDO1->commit();
-                $PDO1=null;
-        }
-
-
-        if ( $_POST["action"]=="infoActif"){
-      
+          //  echo "infoActif";
             try{
                 $PDO1 ="";
                 $PDO1 = CONNEXION_BD();    
@@ -303,8 +298,8 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
                 $resultReq = array();
         
                 $reqActualite = "SELECT actif
-                               FROM `actualite`
-                               WHERE idActualite = ". $_POST["idActu"] . ";";
+                               FROM `evenement`
+                               WHERE idEvenement = ". $_POST["idEvnmt"] . ";";
         
                 $execReq = $PDO1->query($reqActualite);
                 $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
@@ -326,7 +321,6 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
 }
 
 
-
   
 
 
@@ -336,15 +330,15 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
 
         echo var_dump($_FILES);
 
-        $dossierTlcg = "C:/UwAmp/www/SERVEUR_YAN/Projet_Web/Images/Actualites/";
-        $dossier_cible = $dossierTlcg . basename($_FILES["imageActu"]["name"]);
+        $dossierTlcg = "C:/UwAmp/www/SERVEUR_YAN/Projet_Web/Images/Evenements/";
+        $dossier_cible = $dossierTlcg . basename($_FILES["imageEvenement"]["name"]);
         $TelOk = 1;
         $fichierImgType = strtolower(pathinfo($dossier_cible, PATHINFO_EXTENSION));
     
     
        
             if(isset($_POST["submit"])){
-                $verifier = getimagesize($_FILES["imageActu"]["tmp_name"]);      
+                $verifier = getimagesize($_FILES["imageEvenement"]["tmp_name"]);      
                 if($verifier !== false){
                     echo "Ce fichier est une image - " . $verifier["mime"] . ".";
                     $TelOk = 1;}
@@ -359,7 +353,7 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
                 $TelOk = 0;
             }
     
-            if($_FILES["imageActu"]["size"] > 5000000){
+            if($_FILES["imageEvenement"]["size"] > 5000000){
                 echo "Ce fichier image est trop volumineux.";
                 $TelOk = 0;
             }
@@ -374,8 +368,8 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
                 echo "Le fichier n'a pas été téléchargé";
             }
                 else{
-                    if(move_uploaded_file($_FILES["imageActu"]["tmp_name"], $dossier_cible)){
-                        echo " fichier " . basename($_FILES["imageActu"]["name"]) . "téléversé avec succès.";
+                    if(move_uploaded_file($_FILES["imageEvenement"]["tmp_name"], $dossier_cible)){
+                        echo " fichier " . basename($_FILES["imageEvenement"]["name"]) . "téléversé avec succès.";
                     }
                         else{
                             echo "Erreur, échec du téléversement.";
@@ -385,6 +379,6 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
             return $dossier_cible;
             
     }
-            
    
+
 ?>

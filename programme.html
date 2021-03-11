@@ -6,10 +6,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <title>Departement Informatique Cegep T-R</title>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">       
         <link rel="stylesheet" type="text/css" href="Menu/menu.css"/>
-        <link rel="stylesheet" type="text/css" href="programme2.css"/>
+        <link rel="stylesheet" type="text/css" href="Footer/footer.css"/>
+        <link rel="stylesheet" type="text/css" href="Programme/programme.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="Menu/menu.js"></script>
     </head>
     <body>
         <div id="menu"></div>
@@ -102,12 +105,14 @@
 
             <a href="https://athena-portail.cegeptr.qc.ca/Grille/Index?programmeP=420B0" target="_blank" class="o-button -red -bottom-right">Voir la grille complète</a>
         </div>
+        <div id="footer"></div>
     </body>
 </html>
 
 <script>
     $(document).ready(function() {
         $("#menu").load("menu.html")
+        $("#footer").load("footer.html")
     })
 
     var acc = document.getElementsByClassName("accordion");

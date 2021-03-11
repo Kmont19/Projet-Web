@@ -1,0 +1,37 @@
+.section-presentation {
+    margin: 0 200px;
+}
+
+.section-presentation h2 {
+    text-transform: uppercase;
+    color: #061f50;
+    font-family: 'ff-tisa-sans-web-pro', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+}
+
+.section-presentation h3 {
+    text-transform: uppercase;
+    color: #061f50;
+    font-family: 'ff-tisa-sans-web-pro', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.section-presentation .img-presentation {
+    height: 100%;
+}
+
+.section-presentation .img-presentation img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.section-presentation .text-presentation {
+    width: 75%;
+    text-align: left;
+    font-size: 18px;
+}
