@@ -2,13 +2,16 @@
 let idEvenmt = "";
 let EvenmtActif= "";
 $(document).ready(function () {
-
+    $("#menu").load("menu.html");
+    $("#footer").load("footer.html");
     AjoutCarrousel();
     
     AffichageEvenmt_Tous();
     RemplirFormEvnmt();
     ValidationChamps();
     Annuler();
+
+
   //  AffichageEvenmt_Titre();
    
    // PopoverLigne();
@@ -32,7 +35,7 @@ function AjoutCarrousel(){
 
        if(ValidationEvenemt()==true){
         $.ajax({
-            url: '../ADMIN_PHP/carrouselEvenmt_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -82,7 +85,7 @@ function ModifierCarrousel(){
        
        if(ValidationEvenemt()==true){
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -113,7 +116,7 @@ function AffichageEvenmt_Tous(){
     var reqEvenmt = new Array();
     var evenement;  
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             data: { action: "listeEvenmtTous" },
@@ -173,7 +176,7 @@ function RemplirFormEvnmt(){
     //    ModaleAjout();
 
         $.ajax({
-            url: '../ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             data: { action: "infoEvenement" ,
