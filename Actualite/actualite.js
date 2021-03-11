@@ -1,15 +1,9 @@
-
-
 let infoActu="";
 let actualite="";
 $(document).ready(function () {
-
     Remplirmodale();
     requeteFicheActu();
 });
-
-
-
 
 function Gen_CtnActualite(infoActu){
 
@@ -80,7 +74,8 @@ function requeteFicheActu(){
         data: { action: "infoActuTous" },
         dataType: 'text',        
         success: function(result, status, xhr) {
-            ReqActualite = JSON.parse(result);
+            console.log(result)
+            ReqActualite = result;
             for (x in ReqActualite) {
                 actualite = ReqActualite[x];
                 GenererCarteActu(actualite);

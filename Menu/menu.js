@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    checkPage();
+})
+
 function checkPage() {
     if (window.location.href.indexOf("index.html") > -1) {
         $("#accueil").addClass("active")

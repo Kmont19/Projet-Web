@@ -4,10 +4,6 @@ include("../ADMINISTRATION/ADMIN_PHP/FONCTIONS PHP/Fonctions_Gest_InputUser.php"
 include("../ADMINISTRATION/ADMIN_PHP/FONCTIONS PHP/connexion.php");
 include("../ADMINISTRATION/ADMIN_PHP/FONCTIONS PHP/Regex.php");
 
-
-
-
-
     if ( $_POST["action"]=="infoActuTous"){
       
     try{
@@ -32,7 +28,6 @@ include("../ADMINISTRATION/ADMIN_PHP/FONCTIONS PHP/Regex.php");
         $objResult = json_encode($resultReq);
         
         echo $objResult;
-
 
     }
     catch(Exception $e){

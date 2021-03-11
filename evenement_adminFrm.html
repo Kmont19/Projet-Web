@@ -8,66 +8,24 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">                   
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">     
-        <link rel="stylesheet" type="text/css" href="evenement_admin.css"/>
-        <link rel="stylesheet" type="text/css" href="/SERVEUR_YAN/Projet_Web/Menu/menu.css"/> 
-        <script src="evenement_admin.js"></script>
-        
-    </head>
-   
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
+        <link rel="stylesheet" type="text/css" href="ADMINISTRATION/Evenement_admin/evenement_admin.css"/>
+        <script src="ADMINISTRATION/Evenement_admin/evenement_admin.js"></script>
+    </head> 
 
     <body>
-        <div id="menu">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-auto">
-                        <div class="bloc-logo">
-                            <a href="../index.html">
-                                <img src="/SERVEUR_YAN/Projet_Web/Images/Logo-Cegep.jpg" alt="Logo" id="logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col" id="titre">
-                        <div class="row justify-content-center">
-                            <h1>Département d'informatique</h1>
-                        </div>
-                            <ul class="nav nav-pills nav-fill justify-content-center">
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Accueil" href="../index.html">Accueil</a>  
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="programme">Programme</a>
-                                    <div class="dropdown-menu" aria-labelledby="programme">
-                                        <a href="#" class="dropdown-item" id="cours">Cours</a>
-                                        <a href="#" class="dropdown-item" id="equipe">Équipe</a>
-                                    </div>   
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="actualite" href="Actualite/actualite.html">Actualité</a>    
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="liens-utiles">Liens Utiles</a> 
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="evenement"  href="../Evenement/evenement.html">Évènements</a> 
-                                </li>
-                            </ul>            
-                    </div>                
-                </div>
-            </div>   
-        </div>
-
-        
-
+        <div id="menu"></div>
         <div class="bloc-corps">
             <h1>Administration des événements</h1>
             <section id="ctnAdminEvenement">
 
-
                 <section id="adminRechEvenement">
 
                     <div id="ctnRechEvenement" class="input-group">
-
                         <div class="input-group-prepend ddwEvenement" id="ddwRechEvenement">
                            <select  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dpdTypeRequete">                         
                                 <div class="dropdown-menu">
@@ -102,29 +60,19 @@
                             
                                 </tbody>
                             </table>
-                    </div>
+                    </div>                 
+                </section> 
 
-
-                  
-                </section>
-                
                 <div id="ctnBtnModalAjoutEvnmt">
                     <div class="input-group-append btnFormAdminEvenement">
                         <button class="btn btn-primary" id="BtnModalAjoutEvnmt" type="button" data-toggle="modal" data-target= "#adminFormEvenement" onclick="ModaleAjout()">Ajouter un événement</button>
-                    </div>
-                    
-                </div> 
-               
+                    </div>                    
+                </div>                
             </section>
 
-
-
-
             <section class="modal modal fade " id="adminFormEvenement">
-
                 <div class="modal-dialog modal-lg modal-dialog">
                     <div class="modal-content">
-
                         <div class="modal-header">
                             <h4 class="modal-title">Formulaire Événement</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -179,20 +127,15 @@
                 </div>
             </section>
 
-
         </div>
-
+        <div id="footer"></div>
     </body>
 
     <script>
-
         $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
-
-     
-		
     </script>
 </html>
 
