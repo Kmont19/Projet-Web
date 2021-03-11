@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <title>Departement Informatique Cegep T-R</title>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">        
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">     
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
         <link rel="stylesheet" type="text/css" href="Actualite/actualite.css"/>
-        <link rel="stylesheet" type="text/css" href="Menu/menu.css"/>
-        <link rel="stylesheet" type="text/css" href="Footer/footer.css"/> 
         <script src="Actualite/actualite.js" ></script>
-        <script src="Menu/menu.js"></script>
     </head>
     <body>
         <div id="menu">
@@ -24,12 +25,14 @@
 
         <div class="bloc-actualites pt-5">
             <div class="header row justify-content-center no-gutters">
-                <h2 class="col-sm-5 pl-5">ACTUALITÉS</h2>
-                <div class=" col-sm-7 pr-5">
-                    <section class="search-bar mt-5">
+                <div class="row no-gutters w-100 justify-content-center pt-3">
+                    <h2 >ACTUALITÉS</h2>
+                </div>
+                <div class="row no-gutters justify-content-center w-100">
+                    <section class="search-bar mt-1 pb-4 w-50">
                         <form>
                             <div class="input-group col-md-12">
-                                <input type="search" class="form-control" placeholder="Rechercher">
+                                <input type="search" class="form-control" placeholder="Rechercher une actualité">
                                 <div class="input-group-append">
                                     <button class="btn btn-search btn-link" type="submit">
                                         <i class="material-icons">search</i>
@@ -38,7 +41,7 @@
                             </div>
                         </form>
                     </section>
-                </div>                
+                </div>                     
             </div>           
             <section class="filtre-bar">
                 <ul class="filtre-actualites  mx-auto">
@@ -51,17 +54,19 @@
                     </li>
                 </ul>
             </section>
-            <section class="d-flex flex-wrap mx-auto pt-1 pl-5" id="cntActu">
+            <section class="container-fluid no-gutters d-flex flex-wrap justify-content-around pt-3 w-100 px-5" id="cntActu">
 
-              <!--  <div class="card">
-                    <img class="card-img-top imgCarte" src="../Images/imgActu.jpg" alt="Image de l'actualité">
-                    <div class="card-body corpCarteActu">
-                        <h4 class="card-title">Nouveau serveur</h4>
-                        <p class="card-text texteCarte"><b>28 Janvier 2021</b> - Le département d'informatique viens d'acquérir un tout nouveau serveur
-                            super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</p>
-                        <a href="#" class="btn btn-primary stretched-link">Plus</a>
+              <!--  <div class="widget single-news" id="cardActu">
+                        <div class="image">
+                            <img src="Images/Actualites/Stages_Desjardins.jpg" class="img-responsive">
+                            <span class="gradient"></span>
+                        </div>
+                        <div class="details">
+                            <div class="category"><a href="">Actualités</a></div>
+                            <h3>Some quick example text to build on the card title and make up the bulk of the card's content.</h3>
+                            <time>Today, 18 August</time>
+                        </div>
                     </div>
-                </div>
             -->
            </section>
 

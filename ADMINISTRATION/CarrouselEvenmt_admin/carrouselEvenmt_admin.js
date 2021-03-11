@@ -2,15 +2,16 @@
 let idEvenmt = "";
 let EvenmtActif= "";
 $(document).ready(function () {
-    $("#menu").load("menu.html")
-    $("#footer").load("footer.html")
-    AjoutEvenememt();
-    ModifierEvenememt();
-    SupprimerEvenememt();
+    $("#menu").load("menu.html");
+    $("#footer").load("footer.html");
+    AjoutCarrousel();
+    
     AffichageEvenmt_Tous();
     RemplirFormEvnmt();
     ValidationChamps();
     Annuler();
+
+
   //  AffichageEvenmt_Titre();
    
    // PopoverLigne();
@@ -20,27 +21,21 @@ $(document).ready(function () {
 
 
 //TODO: VALIDATIONS DES ENTRÉES
-function AjoutEvenememt(){
+function AjoutCarrousel(){
 
-    $("#btnAjoutEvenement").unbind().click(function (e) {    
+    $("#btnAjoutECarslEvnt").unbind().click(function (e) {    
        e.preventDefault();
 
        let form_data = new FormData();
-       let fichierImage = $('#imageEvenement').prop('files')[0];
-       form_data.append('imageEvenement', fichierImage);
-
 
        form_data.append('action', 'Ajouter');
-       form_data.append('titreEvenement', $("#titreEvenement").val());
-       form_data.append('lieuEvenmt', $("#LieuEvenement").val());
-       form_data.append('dateEvenement', $("#dateEvenement").val());
-       form_data.append('hrDebutEvenmt', $("#hrDebutEvenement").val());
-       form_data.append('hrFinEvenmt', $("#hrFinEvenement").val());
-       form_data.append('texteEvenement', $("#texteEvenement").val());
+       form_data.append('evenememt', $("#evenememt").val());
+       form_data.append('premier', $("#premier").val());
+    
 
        if(ValidationEvenemt()==true){
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -48,8 +43,8 @@ function AjoutEvenememt(){
             processData: false,
             data: form_data,               
             success: function (result, statusTxt, xhr) {
-      
-      
+
+                
                 ViderChampsFrm();
             },
             error: function(xhr, status, error) {
@@ -66,7 +61,8 @@ function AjoutEvenememt(){
 }
 
 
-function ModifierEvenememt(){
+
+function ModifierCarrousel(){
 
     $("#btnModifEvenement").unbind().click(function (e) {    
        e.preventDefault();
@@ -89,7 +85,7 @@ function ModifierEvenememt(){
        
        if(ValidationEvenemt()==true){
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -112,59 +108,6 @@ function ModifierEvenememt(){
 
 }
 
-function SupprimerEvenememt(){
-
-   
-    let objActif= "";
-    $("#btnSupprimerEvenement").unbind().click(function (e) {    
-       e.preventDefault();
-
-       $.ajax({
-        url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
-        method: 'POST',
-        async: true,
-        data: { action: "infoActif",
-                idEvnmt: idEvenmt},
-        dataType: 'text',        
-        success: function(result, status, xhr) {
-            reqEvenmt = JSON.parse(result);   
-            if(reqEvenmt[0].actif==0){
-                objActif = "react";
-            }else if(reqEvenmt[0].actif==1){
-                objActif = "sup";        
-            }
-
-            let form_data = new FormData();
-            form_data.append('action', 'Supprimer');
-            form_data.append('idEvnmt', idEvenmt);
-            form_data.append('actif', objActif);
-    
-            $.ajax({
-                url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
-                method: 'POST',
-                async: true,
-                dataType: "json", 
-                contentType: false,
-                processData: false,
-                data: form_data,               
-                success: function (result, statusTxt, xhr) {
-                    AffichageEvenmt_Tous();
-                },
-                error: function(xhr, status, error) {         
-                },
-                complete: function(xhr, status) {           
-                }
-            });     
-        },
-        error: function(xhr, status, error) {
-        },
-        complete: function(xhr, status) {       
-        }     
-    });
-             
-    });
-
-}
 
 
 function AffichageEvenmt_Tous(){
@@ -173,7 +116,7 @@ function AffichageEvenmt_Tous(){
     var reqEvenmt = new Array();
     var evenement;  
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             data: { action: "listeEvenmtTous" },
@@ -218,55 +161,7 @@ function AffichageEvenmt_Tous(){
 
 
 //TODO: FONCTIONS DE RECHERCHES
-function AffichageEvenmt_Titre(){
 
-    EffacerTableau();
-    var reqEvenmt = new Array();
-    var evenement;  
-        $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
-            method: 'POST',
-            async: true,
-            data: { action: "listeEvenmtTitre" },
-            dataType: 'text',        
-            success: function(result, status, xhr) {
-                reqEvenmt = JSON.parse(result);                               
-                let tableEvenmt = document.getElementById("corpsTabEvenement");
-
-                for (x in reqEvenmt) {
-                    evenement = reqEvenmt[x];
-                    let lgnTab = document.createElement("tr");
-                    let colTitre = document.createElement("td");
-                    let colDate = document.createElement("td");
-                    let colAutre = document.createElement("td");
-                    let idLgn = "idEvenmt_" + evenement.idEvenement;
-                    lgnTab.setAttribute("id", idLgn);
-                    lgnTab.setAttribute("class", "lgnTblEvenmt");
-                    lgnTab.setAttribute("data-toggle", "modal");
-                    lgnTab.setAttribute("data-target", "#adminFormEvenement"); 
-                    colTitre.innerHTML = evenement.titreEvenement;
-                    colDate.innerHTML = evenement.dateActu;
-                    colAutre.innerHTML = "Autre";                  
-                    lgnTab.appendChild(colTitre);
-                    lgnTab.appendChild(colDate);
-                    lgnTab.appendChild(colAutre);
-                    if(evenement.actif==0){
-                        lgnTab.setAttribute("style", "background-color:  #d9534f ;");
-                    }
-                    tableEvenmt.appendChild(lgnTab);
-                }             
-            },
-            error: function(xhr, status, error) {
-                alert("Erreur");
-            },
-            complete: function(xhr, status) {
-            
-            }
-                    
-        });
-
-
-}
 
 function EffacerTableau(){
     $("#corpsTabEvenement").empty();
@@ -281,7 +176,7 @@ function RemplirFormEvnmt(){
     //    ModaleAjout();
 
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
             async: true,
             data: { action: "infoEvenement" ,

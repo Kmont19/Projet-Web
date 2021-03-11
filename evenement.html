@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <title>Departement Informatique Cegep T-R</title>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">     
-        <link rel="stylesheet" type="text/css" href="Footer/footer.css"/>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
         <link rel="stylesheet" type="text/css" href="Evenement/evenement.css"/>
-        <link rel="stylesheet" type="text/css" href="Menu/menu.css"/> 
         <script src="Evenement/evenement.js" ></script>
-        <script src="Menu/menu.js"></script>
     </head>
     <body>
         <div id="menu"></div>
 
         <div class="bloc-events pt-5">
             <div class="header row justify-content-center no-gutters">
-                <h2 class="col-sm-5 pl-5">Évènements</h2>
-                <div class=" col-sm-7 pr-5">
-                    <section class="search-bar mt-5">
-                        <form method="POST">
+                <div class="row no-gutters w-100 justify-content-center pt-3">
+                    <h2 >Événements</h2>
+                </div>
+                <div class="row no-gutters justify-content-center w-100">
+                    <section class="search-bar mt-1 pb-4 w-50">
+                        <form>
                             <div class="input-group col-md-12">
-                                <input type="search" class="form-control" 
-                                name="recherche",
-                                placeholder="Rechercher">
+                                <input type="search" class="form-control" placeholder="Rechercher une actualité">
                                 <div class="input-group-append">
                                     <button class="btn btn-search btn-link" type="submit">
                                         <i class="material-icons">search</i>
@@ -36,8 +37,8 @@
                             </div>
                         </form>
                     </section>
-                </div>                
-            </div>           
+                </div>                     
+            </div>     
             <section class="filtre-bar">
                 <ul class="filtre-events mx-auto">
                     <label>Filtrer par: </label>
@@ -48,30 +49,14 @@
                         <a id="filtre-nom">Par order alphabetique</a>
                     </li>
                 </ul>
-            </section>
-            
+            </section>            
 
-            <section class="d-flex flex-wrap" id="cntEvenmt">
-            <!--  <div class="card">
-                    <img class="card-img" src="../Images/imgActu.jpg" alt="Image de l'Évènement">
-                    <div class="card-body">
-                        <h4 class="card-title">Nouveau serveur</h4>
-                        <p class="card-text "><b>28 Janvier 2021</b> - Le département d'informatique viens d'acquérir un tout nouveau serveur
-                            super puissant qui va permettre au cégep de devenir le principal hébergeur web de la région, on est big maintenant.</p>
-                        <div>
-                            <a href="#" class="btn btn-primary stretched-link">Plus</a>
-                        </div>  
-                    </div>
-                </div>
-            -->
-           </section>
-
-
+            <div class="event-container mx-auto d-flex flex-wrap my-5" id="eventContainer"></div>
 
            <section class="modal modal fade " id="modaleEvenmt">
 
-            <div class="modal-dialog modal-lg modal-dialog">
-                <div class="modal-content">
+                <div class="modal-dialog modal-lg modal-dialog">
+                    <div class="modal-content">
                         <div class="modal-header">
                     <div id="ctnheadMod">            
                         <img src=""  id="imgModalEvenmt" alt="Image de l'actualité">               
