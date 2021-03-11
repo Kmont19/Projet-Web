@@ -130,6 +130,44 @@ function Remplirmodale(){
   
 }
 
+function RechercheEvenements(recherche){
 
+    $(document).on("click", ".btnEvenmtModale", function() {
+        idEvenmtMdl =  $(this).attr("id");
+        idEvenmtMdl = idEvenmtMdl.slice(idEvenmtMdl.indexOf("_") + 1, idEvenmtMdl.length);
+        
+        $.ajax({
+            url: 'Evenement/evenement.php',
+            method: 'POST',
+            async: true,
+            data: { action: "rechercheModale",
+                    recherche: recherche,
+                    idEvenmtMdl:  idEvenmtMdl},
+            dataType: 'text',        
+            success: function(result, status, xhr) {
+                ReqEvenement = JSON.parse(result);
+
+                $("#imgModalEvenmt").attr("src", ReqEvenement[0].photoEvenement);
+                $("#titreModaleEvenmt").text(ReqEvenement[0].titreEvenement);
+                var dateEvnmt = new Date(ReqEvenement[0].dateEvenement);
+                dateEvnmt = dateEvnmt.toLocaleString("fr-CA", { dateStyle: 'long' });
+                $("#dateModaleEvenmt").text(dateEvnmt);
+                $("#texteModaleEvenmt").text(ReqEvenement[0].texteEvenement);
+            },
+            error: function(xhr, status, error) {
+            },
+            complete: function(xhr, status) {       
+            }     
+        });
+
+      
+       
+    });
+  
+}
+
+function montest(){
+    alert("OK");
+}
 
 
