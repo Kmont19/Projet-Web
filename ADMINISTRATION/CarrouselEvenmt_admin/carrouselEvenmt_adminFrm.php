@@ -8,12 +8,12 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">                   
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">     
-        <link rel="stylesheet" type="text/css" href="evenement_admin.css"/>
+        <link rel="stylesheet" type="text/css" href="carrouselEvenmt_admin.css"/>
         <link rel="stylesheet" type="text/css" href="/SERVEUR_YAN/Projet_Web/Menu/menu.css"/> 
-        <script src="evenement_admin.js"></script>
+        <script src="carrouselEvenmt_admin.js"></script>
         
     </head>
-   
+
 
 
     <body>
@@ -60,7 +60,7 @@
         
 
         <div class="bloc-corps">
-            <h1>Administration des événements</h1>
+            <h1>Administration du carrousel</h1>
             <section id="ctnAdminEvenement">
 
 
@@ -110,7 +110,7 @@
                 
                 <div id="ctnBtnModalAjoutEvnmt">
                     <div class="input-group-append btnFormAdminEvenement">
-                        <button class="btn btn-primary" id="BtnModalAjoutEvnmt" type="button" data-toggle="modal" data-target= "#adminFormEvenement" onclick="ModaleAjout()">Ajouter un événement</button>
+                        <button class="btn btn-primary" id="BtnModalAjoutCarslEvnt" type="button" data-toggle="modal" data-target= "#adminFormCarslEvnt" onclick="ModaleAjout()">Inclure dans le carrousel</button>
                     </div>
                     
                 </div> 
@@ -120,7 +120,7 @@
 
 
 
-            <section class="modal modal fade " id="adminFormEvenement">
+            <section class="modal modal fade " id="adminFormCarslEvnt">
 
                 <div class="modal-dialog modal-lg modal-dialog">
                     <div class="modal-content">
@@ -129,60 +129,14 @@
                             <h4 class="modal-title">Formulaire Événement</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <form  class="modal-body" id="frmAdminEvenement" method="post" enctype="multipart/form-data">
-                                    <div class="input-group mb-3" ctnInput" id="divTitreEvent">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-info" style="color: white;">Titre</span>
-                                        </div>                     
-                                        <input type="text" class="form-control" placeholder="Titre de l'événememt" id="titreEvenement">
-                                    </div>
-                                    <div class="input-group mb-3" ctnInput" id="divLieuEvent">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-info" style="color: white;">Lieu</span>
-                                        </div>                     
-                                        <input type="text" class="form-control" placeholder="Lieu de l'événememt" id="LieuEvenement">
-                                    </div>
-                                    <div class="input-group mb-3" ctnInput" id="divDateEvent">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-info" style="color: white;">Date</span>
-                                        </div>    
-                                        <input type="date" class="form-control" placeholder="Date de l'événememt" id="dateEvenement">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-info" style="color: white;">Heure Début</span>
-                                        </div>    
-                                        <input type="time" class="form-control" placeholder="Heure de début" id="hrDebutEvenement">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-info" style="color: white;">Heure Fin</span>
-                                        </div>    
-                                        <input type="time" class="form-control" placeholder="Heure de fin" id="hrFinEvenement">
-                                    </div>                           
-                                    <div class="input-group mb-3" ctnInput" id="divTexteEvent">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-info" style="color: white;">Texte</span>
-                                        </div>    
-                                        <textarea class="form-control" rows="5"  placeholder="Texte de l'événememt" id="texteEvenement"></textarea>
-                                    </div>                           
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text bg-info" id="btnTelchrgEvenmt" style="color: white;">Télécharger</span>
-                                        </div>
-                                        <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="imageEvenement">
-                                            <label class="custom-file-label" for="imageEvenement" id="lblImgEvent">Image de l'événememt:</label>                             
-                                        </div>
-                                    </div>    
+                        <form  class="modal-body" id="frmAdminCarrouselEvenmt" method="post" enctype="multipart/form-data">
+                                   
                                     <div id="ctnBtnEvenement">
-                                        <div class="input-group-append btnFormAdminEvenement">
-                                            <button class="btn btn-primary" id="btnAjoutEvenement" type="button">Ajouter</button>
+                                        <div class="input-group-append btnFormAdminCarslEvnt">
+                                            <button class="btn btn-primary" id="btnAjoutECarslEvnt" type="button">Confirmer</button>
                                         </div>
-                                        <div class="input-group-append btnFormAdminEvenement">
-                                            <button class="btn btn-primary" id="btnModifEvenement" type="button">Modifier</button>
-                                        </div>
-                                        <div class="input-group-append btnFormAdminEvenement">
-                                            <button class="btn btn-danger" id="btnSupprimerEvenement" type="button">Supprimer</button>
-                                        </div>
-                                        <div class="input-group-append btnFormAdminEvenement">
-                                            <button class="btn btn-primary" id="btnAnnulerEvenement" type="button">Annuler</button>
+                                        <div class="input-group-append btnFormAdminCarslEvnt">
+                                            <button class="btn btn-primary" id="btnAnnulerCarslEvnt" type="button">Annuler</button>
                                         </div>
                                     </div> 
                         </form>
