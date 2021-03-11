@@ -1,19 +1,16 @@
-$(document).ready(function () {
-    getListeActu();
-});
 
 
 //Creation des cards
 function createCardActu(id, titre, date, texte, img) {
-    var cardActu = `<div class="widget single-news my-5 " id="cardActu" onclick="showActuText('textActu${id}', 'details${id}')">
+    var cardActu = `<div class="widget single-news my-5 " id="cardActu${id}" onclick="showActuText('cardActu${id}')">
                         <div class="image">
                             <img src="Images/Actualites/${img}">
                             <span class="gradient"></span>
                         </div>
                         <div>
-                            <p id="textActu${id}" class="text-actualite">${texte}</p>
+                            <p class="text-actualite">${texte}</p>
                         </div>
-                        <div id="details${id}" class="details">
+                        <div class="details">
                             <h3><a </a>${titre}</h3>
                             <time>${date}</time>
                         </div>
@@ -38,14 +35,16 @@ function getListeActu() {
 }
 
 //Montrer la description de l'actualité dans la card
-function showActuText(text, details) {
-    if($(`#${text}`).css("display") == "none") {
-        $(`#${text}`).css("display","block")
-        $(`#${details}`).css("display","none")
-
+function showActuText(cardId) {
+    if($(`#${cardId} p`).css("display") == "none") {
+        $(`#${cardId} p`).css("display","block")
+        $(`#${cardId} .details`).css("display","none")
+        $(`#${cardId} .gradient`).css("background-color", "rgb(0, 0, 0, 0.7)")
+        
     } else {
-        $(`#${text}`).css("display","none")
-        $(`#${details}`).css("display","block")
+        $(`#${cardId} p`).css("display","none")
+        $(`#${cardId} .details`).css("display","block")
+        $(`#${cardId} .gradient`).css("background-color", "transparent")
     }
 
 }
