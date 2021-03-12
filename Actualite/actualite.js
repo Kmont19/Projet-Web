@@ -1,6 +1,7 @@
 let tableauActu = [];
 
 $(document).ready(function () {
+    clearActu();
     getListeActu();
 });
 
