@@ -164,6 +164,7 @@ function AffichageListeCarrousel(){
             data: { action: "listeCarrousel" },
             dataType: 'text',        
             success: function(result, status, xhr) {
+                console.log(result)
                 requete = JSON.parse(result);                               
                 let tableCarsl = document.getElementById("corpsTabEvenement");
 
@@ -191,7 +192,7 @@ function AffichageListeCarrousel(){
                 }              
             },
             error: function(xhr, status, error) {
-                alert("Erreur");
+                alert(error);
             },         
         });
 
