@@ -211,7 +211,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                 $reqActualite = "SELECT idEvenement,
                                         titreEvenement,
                                         dateEvenement,
-                                        heureEvenement, 
+                                        DATE_FORMAT(heureEvenement, '%Hh%i') as heureEvenement, 
                                         actif
                                 FROM evenement";
         
