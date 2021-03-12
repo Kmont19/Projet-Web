@@ -20,11 +20,13 @@
     letter-spacing: 2px;
 }
 
-.menu a:hover {
+.menu .nav-item:hover > a{
     cursor: pointer;
+    color: #da1a32 !important;
+    background-color: white;
 }
 
-.menu a {
+.menu .nav-item > a {
     height: 100%;
     font-family: inherit;
     color: white;
@@ -39,10 +41,6 @@
     color: white;
 }
 
-menu a:hover {
-    color:#da1a32 !important;
-}
-
 .nav-pills .nav-link.active, 
 .nav-pills .show>.nav-link{
     background-color:white   !important;
@@ -50,21 +48,9 @@ menu a:hover {
     transition: 0.1s;
 }
 
-.dropdown-menu {
-    width: 100%;
-    background-color: rgb(255, 255, 255) !important ;
-}
-
-.dropdown-item {
-    color:  #da1a32 !important;
-}
-
-.dropdown-item:active {
-    background-color:  whitesmoke!important;
-}
-
 @media (max-width: 1289px){
     .navbar-brand h5{
         display: none;
     }
 }
+

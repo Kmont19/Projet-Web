@@ -2,6 +2,8 @@
 <html lang="fr">
     <head>
         <link rel="stylesheet" type="text/css" href="Menu/menu.css"/>
+        <link rel="stylesheet" type="text/css" href="Connexion/connexion.css"/>
+
         <script src="Menu/menu.js"></script>
     </head>
     <body>
@@ -37,11 +39,90 @@
                     <li class="nav-item">
                         <a class="nav-link" id="liens-utiles" href="liens-utiles.html">Liens Utiles</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="compte" href="compte.html"><i class="material-icons">account_circle</i></a>
+                    <li class="nav-item dropdown  menu-admin">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropleft">
+                                <a class="dropdown-item dropdown-toggle" href="#">Accueil</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="carrouselEvenmt_adminFrm.html">Carrousel</a></li>
+                                    <li><a class="dropdown-item" href="#">Actualités</a></li>            
+                                    <li><a class="dropdown-item" href="#">Évenements</a></li> 
+                                </ul>                                
+                            </li>
+                            <li class="dropleft">
+                                <a class="dropdown-item dropdown-toggle" href="#">Gestion</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="evenement_adminFrm.html">Évenements</a></li>
+                                    <li><a class="dropdown-item" href="actualite_adminFrm.html">Actualités</a></li>
+                                    <li><a class="dropdown-item" href="#">Liens Utiles</a></li> 
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
-                </ul>            
-            </div> 
+                    <li class="nav-item dropdown menu-connexion">
+                        <a class="nav-link" id="compte" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">account_circle</i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-item form-connexion">
+                                <div class="form-box">                  
+                                    <form id="login-form" class="data-group">
+                                        <div class="inputs">
+                                            <div class="row no-gutters">
+                                                <input type="input" name="userName" id="userName" class="user-data" placeholder="Nom d'utilisateur">
+                                            </div>
+                                            <div class="row no-gutters">
+                                                <input type="password" name="password" id="password" class="user-data" placeholder="Mot de passe"><span id="errorLogin"></span>
+                                            </div>                                            
+                                        </div>                            
+                                        <button type="submit" name="login-submit" id="login-submit" class="submit-btn">Se connecter</button>
+                                    </form>
+                                </div>
+                            </div>                            
+                        </div>
+                    </li>
+                    <li class="nav-item logout">
+                        <a class="nav-link" id="logout"><i class="material-icons">logout</i></a>
+                    </li>                    
+                </ul>
+            </nav>           
+        </div>
     </body>
 </html>
+
+<script>
+
+    $("#login-submit").click(function(e) {
+        e.preventDefault();
+        var user = {userName: $("#userName").val().trim().replace(/["']/g, ""),
+                        pwd: $("#password").val().trim().replace(/["']/g, "")}
+
+        if (checkInputLogin(user.userName, user.pwd) != false) {
+            errorLogin.innerHTML = ""
+            errorLogin.innerHTML = "Vous devez remplir tous les champs"
+            errorLogin.style.color = "#da1a32"
+        } else {
+            loginUser(user);
+        }
+    });
+
+    $('.dropdown-menu a.dropdown-toggle').click(function(e) {
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+        }
+        var $subMenu = $(this).next('.dropdown-menu');
+        $subMenu.toggleClass('show');
+
+
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+            $('.dropdown-left .show').removeClass('show');
+        });
+        return false;
+    });
+
+    $("#logout").click(function() {
+        logout();
+    })
+</script>
 

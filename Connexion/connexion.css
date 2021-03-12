@@ -1,65 +1,67 @@
+.menu-admin {
+    display: none;
+}
+
+.menu-connexion .dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    margin-top: 8px;
+    background: rgb(243, 243, 243);
+}
+
+.menu-admin .dropdown-menu{
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.menu-admin a {
+    height: 100%;
+    font-family: inherit;
+    color: #da1a32;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.menu-admin a:hover {
+    background-color: rgb(216, 216, 216);
+    color: #061f50;
+}
+
+.form-connexion:hover, .form-connexion:focus{
+    outline: none;
+}
+
+.form-connexion:active{
+    background-color: rgb(243, 243, 243);
+    color:#000;
+}
+
 .form-box {
     width: 380px;
-    height: 400px;
-    position: absolute;
-    left: 79.5%;
-    margin: 4.25rem auto;
-    background: rgba(180, 180, 180, 0.9);
-    padding: 5px;
-    overflow: hidden;
     transition: 0.1s;
     border-radius: 10px;
 }
 
 @media (max-width: 991px) {
     .form-box {
-
         max-width: 991px;
-
     }
 }
 
 @media (max-width: 380px) {
-    .form-box {
-        left: 0;
-    }
-}
-
-.form-box:hover {
-    box-shadow: 0 0 20px 9px #0000008c;
-}
-
-
-.button-box{
-    width: 276px;
-    margin: 35px auto;
-    position: relative;
-    box-shadow: 0 0 20px 9px #0c0c0c71;
-    border-radius: 30px;
-}
-
-#btn {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, #092d74, #061f50);
-    border-radius: 30px;
-    transition: .5s;
-}
-
-#connecter {
-    color: black;
+    
 }
 
 .data-group {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 10%;
+    margin-left: 10%;
     width: 280px;
     transition: .5s;
+
 }
 
 .user-data {
@@ -89,6 +91,10 @@
     font-weight: 700;
 }
 
+.submit-btn:focus {
+    outline: none;
+}
+
 #errorLogin {
     display: block;
     color: #000;
@@ -96,4 +102,8 @@
     font-weight: 700;
     font-style: italic;
     padding: 5px;
+}
+
+.logout {
+    display: none;
 }

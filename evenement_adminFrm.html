@@ -15,6 +15,13 @@
         
         <link rel="stylesheet" type="text/css" href="ADMINISTRATION/Evenement_admin/evenement_admin.css"/>
         <script src="ADMINISTRATION/Evenement_admin/evenement_admin.js"></script>
+        <script src="Menu/menu.js"></script>
+        <script>
+            var userIsConnected = userConnect()
+            if(userIsConnected === false) {
+                location.replace("index.html")
+            }            
+        </script>
     </head> 
 
     <body>

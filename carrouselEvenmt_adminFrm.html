@@ -11,7 +11,13 @@
         <link rel="stylesheet" type="text/css" href="ADMINISTRATION/CarrouselEvenmt_admin/carrouselEvenmt_admin.css"/>
         <link rel="stylesheet" type="text/css" href="Menu/menu.css"/> 
         <script src="ADMINISTRATION/CarrouselEvenmt_admin/carrouselEvenmt_admin.js"></script>
-        
+        <script src="Menu/menu.js"></script>
+        <script>
+            var userIsConnected = userConnect()
+            if(userIsConnected === false) {
+                location.replace("index.html")
+            }            
+        </script>
     </head>
 
 

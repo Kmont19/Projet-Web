@@ -29,7 +29,6 @@ function getActualitesAccueil() {
         dataType: "json",
         data: "getActualitesAccueil",
         success: function(result) {
-            console.log("hello")
             result.forEach(function(actualite) {
                 var cardActu = createCardActu(actualite.idActualite, actualite.titreActu, actualite.dateActu, actualite.photoActu);
                 $('#cntActu').prepend(cardActu);
