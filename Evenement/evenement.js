@@ -3,6 +3,12 @@ $(document).ready(function () {
     getListeEvents();
 });
 
+$("#boutonRecherche").click(function () {
+    //appel à ma fonction
+    let recherche = $('#searchtext').val();
+    recherche(recherche);
+})
+
 //Creation des cards avec la photo à gauche
 function createCardEventGauche(id, titre, date, heure, lieu, description, img) {
     var cardActu = `<div class="row align-items-center event-card no-gutters mb-5 w-100">
@@ -82,3 +88,41 @@ function getListeEvents() {
     })
 }
 
+let tableauEvenemnets = [];
+
+
+function clearEvenements() {
+    $("#eventContainer").empty();
+}
+
+function recherche(recherche) {
+    //clear list
+    clearEvenements();
+    //ma fonction
+    tableauEvenemnets = [];
+    var flag = true;
+    var cardEvent;
+    $.ajax({
+        url: "PHP/Evenement/getEvenements.php",
+        method: "GET",
+        dataType: "json",
+        data: {
+            recherche: recherche
+        },
+        success: function(result) {
+            result.forEach(function(event) {
+                tableauEvenemnets.push(event);
+                if(flag === true) {
+                    cardEvent = createCardEventGauche(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                    $('#eventContainer').append(cardEvent);
+                    flag = false;
+                } else {
+                    cardEvent = createCardEventDroite(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                    $('#eventContainer').append(cardEvent);
+                    flag = true;
+                }
+            })
+            
+        }
+    })
+}

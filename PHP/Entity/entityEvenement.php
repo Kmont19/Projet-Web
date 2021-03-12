@@ -26,4 +26,16 @@
                 echo "Échec lors de la connexion à la base de données: " . $e->getMessage();
             }
         }
+
+        public function getEvenements($recherche)
+        {
+            try {
+                $stmt = $this->connexion->prepare("SELECT idEvenement, titreEvenement, DATE_FORMAT(dateEvenement, '%d %b %Y') as dateEvenement , DATE_FORMAT(heureEvenement, '%Hh%i') as heure, lieuEvenement, texteEvenement, photoEvenement  FROM evenement WHERE titreEvenement LIKE %:recherche%");
+                $stmt->execute(['recherche' => $recherche]);
+                $evenements = $stmt->fetchAll();
+                return $evenements;
+            } catch (PDOException $e) {
+                echo "Échec lors de la connexion à la base de données: " . $e->getMessage();
+            }
+        }
     }
