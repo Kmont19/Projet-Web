@@ -48,9 +48,11 @@
     transition: 0.1s;
 }
 
-@media (max-width: 1289px){
+@media (max-width: 1487px){
     .navbar-brand h5{
         display: none;
     }
 }
+
+
 
