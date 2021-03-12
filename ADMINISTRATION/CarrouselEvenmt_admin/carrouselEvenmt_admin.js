@@ -164,7 +164,6 @@ function AffichageListeCarrousel(){
             data: { action: "listeCarrousel" },
             dataType: 'text',        
             success: function(result, status, xhr) {
-                console.log(result)
                 requete = JSON.parse(result);                               
                 let tableCarsl = document.getElementById("corpsTabEvenement");
 

@@ -43,7 +43,6 @@ function loginUser(user) {
             user: user
         },
         success: function(reponse) {
-            console.log(reponse);
             if(reponse === "true") {                
                 sessionStorage.setItem("utilisateur", "connected")
                 userConnect()
