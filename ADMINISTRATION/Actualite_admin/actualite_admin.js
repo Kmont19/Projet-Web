@@ -178,7 +178,6 @@ function AffichageActu_Tous(){
                     let lgnTab = document.createElement("tr");
                     let colTitre = document.createElement("td");
                     let colDate = document.createElement("td");
-                    let colAutre = document.createElement("td");
                     let idLgn = "idActu_" + actualite.idActualite;
                     lgnTab.setAttribute("id", idLgn);
                     lgnTab.setAttribute("class", "lgnTblActu");
@@ -186,11 +185,9 @@ function AffichageActu_Tous(){
                     lgnTab.setAttribute("data-target", "#adminFormActu");
                     lgnTab.setAttribute("onclick", "Annuler()");
                     colTitre.innerHTML = actualite.titreActu;
-                    colDate.innerHTML = actualite.dateActu;
-                    colAutre.innerHTML = "Autre";                  
+                    colDate.innerHTML = actualite.dateActu;                
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
-                    lgnTab.appendChild(colAutre);
                     if(actualite.actif==0){
                         lgnTab.setAttribute("style", "background-color:  #d9534f ;");
                     }
@@ -227,18 +224,15 @@ function AffichageActu_Titre(){
                     let lgnTab = document.createElement("tr");
                     let colTitre = document.createElement("td");
                     let colDate = document.createElement("td");
-                    let colAutre = document.createElement("td");
                     let idLgn = "idActu_" + actualite.idActualite;
                     lgnTab.setAttribute("id", idLgn);
                     lgnTab.setAttribute("class", "lgnTblActu");
                     lgnTab.setAttribute("data-toggle", "modal");
                     lgnTab.setAttribute("data-target", "#adminFormActu");
                     colTitre.innerHTML = actualite.titreActu;
-                    colDate.innerHTML = actualite.dateActu;
-                    colAutre.innerHTML = "Autre";                  
+                    colDate.innerHTML = actualite.dateActu;                
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
-                    lgnTab.appendChild(colAutre);
                     tableActu.appendChild(lgnTab);                   
                 }              
             },

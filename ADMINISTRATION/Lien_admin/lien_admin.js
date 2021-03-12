@@ -217,18 +217,15 @@ function AffichageActu_Titre(){
                     let lgnTab = document.createElement("tr");
                     let colTitre = document.createElement("td");
                     let colDate = document.createElement("td");
-                    let colAutre = document.createElement("td");
                     let idLgn = "idActu_" + actualite.idActualite;
                     lgnTab.setAttribute("id", idLgn);
                     lgnTab.setAttribute("class", "lgnTbl");
                     lgnTab.setAttribute("data-toggle", "modal");
                     lgnTab.setAttribute("data-target", "#adminFormLiens");
                     colTitre.innerHTML = actualite.titreActu;
-                    colDate.innerHTML = actualite.dateActu;
-                    colAutre.innerHTML = "Autre";                  
+                    colDate.innerHTML = actualite.dateActu;            
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
-                    lgnTab.appendChild(colAutre);
                     tableActu.appendChild(lgnTab);                   
                 }              
             },

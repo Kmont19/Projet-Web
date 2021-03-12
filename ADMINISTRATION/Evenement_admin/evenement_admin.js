@@ -193,7 +193,7 @@ function AffichageEvenmt_Tous(){
                     lgnTab.setAttribute("data-target", "#adminFormEvenement"); 
                     colTitre.innerHTML = evenement.titreEvenement;
                     colDate.innerHTML = evenement.dateEvenement;
-                    colAutre.innerHTML = "Autre";                  
+                    colAutre.innerHTML = evenement.heureEvenement;                  
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
                     lgnTab.appendChild(colAutre);
@@ -245,7 +245,7 @@ function AffichageEvenmt_Titre(){
                     lgnTab.setAttribute("data-target", "#adminFormEvenement"); 
                     colTitre.innerHTML = evenement.titreEvenement;
                     colDate.innerHTML = evenement.dateEvenement;
-                    colAutre.innerHTML = "Autre";                  
+                    colAutre.innerHTML = evenement.heureEvenement;                  
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
                     lgnTab.appendChild(colAutre);
