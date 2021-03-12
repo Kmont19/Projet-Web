@@ -2,6 +2,11 @@ $(document).ready(function () {
     getListeActu();
 });
 
+$("#boutonrechercher").click(function () {
+    //appel à ma fonction
+    let recherche = $('#textsearch').val();
+    rechercheActu(recherche);
+})
 
 //Creation des cards
 function createCardActu(id, titre, date, texte, img) {
@@ -50,6 +55,33 @@ function showActuText(text, details) {
 
 }
 
+let tableauActu = [];
 
 
+function clearActu() {
+    $("#cntActu").empty();
+}
 
+function rechercheActu(recherche) {
+    //clear list
+    clearActu();
+    //ma fonction
+    tableauActu = [];
+    var flag = true;
+    var cardEvent;
+    $.ajax({
+        url: "PHP/Actualite/getActualitesRech.php",
+        method: "GET",
+        dataType: "json",
+        data: {
+            recherche: recherche
+        },
+        success: function(result) {
+            result.forEach(function(actualite) {
+                tableauActu.push(actualite);
+                var cardActu = createCardActu(actualite.idActualite, actualite.titreActu, actualite.dateActu, actualite.texteActu, actualite.photoActu);
+                $('#cntActu').append(cardActu);
+            })
+        }
+    })
+}

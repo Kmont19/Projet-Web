@@ -103,7 +103,7 @@ function recherche(recherche) {
     var flag = true;
     var cardEvent;
     $.ajax({
-        url: "PHP/Evenement/getEvenements.php",
+        url: "PHP/Evenement/getEvenementsRech.php",
         method: "GET",
         dataType: "json",
         data: {
