@@ -1,37 +1,35 @@
 
 
-let idCarsl = "";
-let CarslActif= "";
+let idLiens = "";
+let liensActif= "";
 $(document).ready(function () {
     $("#menu").load("menu.html")
     $("#footer").load("footer.html")
-    AjoutCarrousel();
-    ModifierCarrousel();
-    SupprimerCarrousel();
-    AffichageListeCarrousel();
+    AjoutLiens();
+    ModifierLiens();
+    SupprimerLiens();
+    AffichageListeLiens();
     //IdActuTableau();
-    RemplirFormCarrousel();
+    RemplirFormLiens();
     ValidationChamps();
     Annuler();
 });
 
 //TODO: VALIDATIONS DES ENTRÉES
-function AjoutCarrousel(){
+function AjoutLiens(){
 
-    $("#btnAjoutCarslEvnt").unbind().click(function (e) {    
+    $("#btnAjoutLiens").unbind().click(function (e) {    
        e.preventDefault();
 
       
         let form_data = new FormData();
-        let fichierImage = $('#imageCarslEvnt').prop('files')[0];
-        form_data.append('imageCarslEvnt', fichierImage);
         form_data.append('action', 'Ajouter');
-        form_data.append('titreCarrousel', $("#titreCarslEvnt").val());
-        form_data.append('texteCarrousel', $("#texteCarslEvnt").val());
+        form_data.append('texteLiens', $("#texteLiens").val());
+        form_data.append('urlLiens', $("#urlLiens").val());
 
        // if(ValidationActu()==true){
             $.ajax({
-                url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
+                url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
                 method: 'POST',
                 async: true,
                 dataType: "json", 
@@ -48,32 +46,31 @@ function AjoutCarrousel(){
                 
                 }
             });
-            AffichageListeCarrousel();
+            AffichageListeLiens();
        // }
     });
     
 }
 
+
+
 //TODO: VALIDATIONS DES ENTRÉES
-function ModifierCarrousel(){
+function ModifierLiens(){
     
-    $("#btnModifCarslEvnt").unbind().click(function (e) {    
+    $("#btnModifLiens").unbind().click(function (e) {    
        e.preventDefault();
 
-       let form_data = new FormData();
-       let fichierImage = $('#imageCarslEvnt').prop('files')[0];
-       form_data.append('imageCarslEvnt', fichierImage);
-
-       form_data.append('action', 'Modifier');
-       form_data.append('idCarsl', idCarsl);
-       form_data.append('titreCarrousel', $("#titreCarslEvnt").val());
-       form_data.append('texteCarrousel', $("#texteCarslEvnt").val());
+        let form_data = new FormData();
+        form_data.append('action', 'Modifier');
+        form_data.append('idLiens', idLiens);
+        form_data.append('texteLiens', $("#texteLiens").val());
+        form_data.append('urlLiens', $("#urlLiens").val());
 
         //BUG: PROBLÈME AVEC LA MODIFICATION DES IMAGES.
 
     //    if(ValidationActu()==true){
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
             method: 'POST',
             async: true,
             dataType: "json", 
@@ -90,25 +87,25 @@ function ModifierCarrousel(){
             
             }
         });
-        AffichageListeCarrousel();
+        AffichageListeLiens();
    // }
        
     });
     
 }
 
-function SupprimerCarrousel(){
+function SupprimerLiens(){
 
     let objActif= "";
-    $("#btnSupprimerCarslEvnt").unbind().click(function (e) {    
+    $("#btnSupprimerLiens").unbind().click(function (e) {    
        e.preventDefault();
     
     $.ajax({
-        url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
+        url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
         method: 'POST',
         async: true,
         data: { action: "infoActif",
-                idCarsl: idCarsl},
+                idLiens: idLiens},
         dataType: 'text',        
         success: function(result, status, xhr) {
             requete = JSON.parse(result);    
@@ -120,11 +117,11 @@ function SupprimerCarrousel(){
 
             let form_data = new FormData();
             form_data.append('action', 'Supprimer');
-            form_data.append('idCarsl', idCarsl);
+            form_data.append('idLiens', idLiens);
             form_data.append('actif', objActif);
     
             $.ajax({
-                url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
+                url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
                 method: 'POST',
                 async: true,
                 dataType: "json", 
@@ -132,7 +129,7 @@ function SupprimerCarrousel(){
                 processData: false,
                 data: form_data,               
                 success: function (result, statusTxt, xhr) {
-                    AffichageListeCarrousel();
+                    AffichageListeLiens();
                 },
                 error: function(xhr, status, error) {            
                 },
@@ -153,41 +150,41 @@ function SupprimerCarrousel(){
 
 
 
-function AffichageListeCarrousel(){
+function AffichageListeLiens(){
     EffacerTableau();
     var requete = new Array();
-    var elmntCarsl;  
+    var elmntLiens;  
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
             method: 'POST',
             async: true,
-            data: { action: "listeCarrousel" },
+            data: { action: "listeLiens" },
             dataType: 'text',        
             success: function(result, status, xhr) {
                 requete = JSON.parse(result);                               
-                let tableCarsl = document.getElementById("corpsTabEvenement");
+                let tableLiens = document.getElementById("corpsTabEvenement");
 
                 for (x in requete) {
-                    elmntCarsl = requete[x];
+                    elmntLiens = requete[x];
                     let lgnTab = document.createElement("tr");
                     let colTitre = document.createElement("td");
                     let colTexte = document.createElement("td");
                   
-                    let idLgn = "idCarsl_" + elmntCarsl.id_Evenmt_carrousel;
+                    let idLgn = "idLiens_" + elmntLiens.id_lien;
                     lgnTab.setAttribute("id", idLgn);
-                    lgnTab.setAttribute("class", "lgnTblCarsl");
+                    lgnTab.setAttribute("class", "lgnTblLiens");
                     lgnTab.setAttribute("data-toggle", "modal");
-                    lgnTab.setAttribute("data-target", "#adminFormCarslEvnt");
-                    colTitre.innerHTML = elmntCarsl.titre_carrousel;
-                    colTexte.innerHTML = elmntCarsl.texte_carrousel;
+                    lgnTab.setAttribute("data-target", "#adminFormLiens");
+                    colTitre.innerHTML = elmntLiens.texte_lien;
+                    colTexte.innerHTML = elmntLiens.url_lien;
                                   
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colTexte);
                     
-                    if(elmntCarsl.actif==0){
+                    if(elmntLiens.actif==0){
                         lgnTab.setAttribute("style", "background-color:  #d9534f ;");
                     }
-                    tableCarsl.appendChild(lgnTab);                   
+                    tableLiens.appendChild(lgnTab);                   
                 }              
             },
             error: function(xhr, status, error) {
@@ -206,7 +203,7 @@ function AffichageActu_Titre(){
     var reqActu = new Array();
     var actualite;  
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
             method: 'POST',
             async: true,
             data: { action: "listeActuTitre" },
@@ -223,9 +220,9 @@ function AffichageActu_Titre(){
                     let colAutre = document.createElement("td");
                     let idLgn = "idActu_" + actualite.idActualite;
                     lgnTab.setAttribute("id", idLgn);
-                    lgnTab.setAttribute("class", "lgnTblActu");
+                    lgnTab.setAttribute("class", "lgnTbl");
                     lgnTab.setAttribute("data-toggle", "modal");
-                    lgnTab.setAttribute("data-target", "#adminFormActu");
+                    lgnTab.setAttribute("data-target", "#adminFormLiens");
                     colTitre.innerHTML = actualite.titreActu;
                     colDate.innerHTML = actualite.dateActu;
                     colAutre.innerHTML = "Autre";                  
@@ -249,38 +246,35 @@ function EffacerTableau(){
     
 }
 
-function RemplirFormCarrousel(){
+function RemplirFormLiens(){
 
-    $(document).on("click", ".lgnTblCarsl", function() {
-        idCarsl =  $(this).attr("id");
-        idCarsl = idCarsl.slice(idCarsl.indexOf("_") + 1, idCarsl.length);
+    $(document).on("click", ".lgnTblLiens", function() {
+        idLiens =  $(this).attr("id");
+        idLiens = idLiens.slice(idLiens.indexOf("_") + 1, idLiens.length);
         
 
         $.ajax({
-            url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
+            url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
             method: 'POST',
             async: true,
-            data: { action: "infoCarrousel" ,
-                    idCarsl: idCarsl},
+            data: { action: "infoLien" ,
+                    idLiens: idLiens},
             dataType: 'text',        
             success: function(result, status, xhr) {
                 requete = JSON.parse(result);
 
-                $("#titreActu").val(requete[0].titreCarrousel);
-                $("#dateActu").val(requete[0].texteCarrousel);
-             /*   var strUrl = reqActu[0].photoActu;
-                    strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                 
-                $("#lgnTblActu").text(strUrl.slice(strUrl.lastIndexOf("/") + 1, strUrl.length));*/
+                $("#texteLiens").val(requete[0].texte_lien);
+                $("#urlLiens").val(requete[0].url_lien);
                 if(requete[0].actif==0){
-                    $("#btnSupprimerCarslEvnt").css("background-color", " #f0ad4e ");
-                    $("#btnSupprimerCarslEvnt").css("color", "black ");
-                    $("#btnSupprimerCarslEvnt").text("Réactiver");
-                    CarslActif = false;
+                    $("#btnSupprimerLiens").css("background-color", " #f0ad4e ");
+                    $("#btnSupprimerLiens").css("color", "black ");
+                    $("#btnSupprimerLiens").text("Réactiver");
+                    liensActif = false;
                 }else{
-                    $("#btnSupprimerCarslEvnt").css("background-color", " #d9534f  ");
-                    $("#btnSupprimerCarslEvnt").css("color", "white ");
-                    $("#btnSupprimerCarslEvnt").text("Supprimer");
-                    CarslActif = true;
+                    $("#btnSupprimerLiens").css("background-color", " #d9534f  ");
+                    $("#btnSupprimerLiens").css("color", "white ");
+                    $("#btnSupprimerLiens").text("Supprimer");
+                    liensActif = true;
                 }
             },
             error: function(xhr, status, error) {
@@ -290,9 +284,9 @@ function RemplirFormCarrousel(){
             
             }     
         });
-        $("#btnAjoutCarslEvnt").hide();
-        $("#btnModifCarslEvnt").show();
-        $("#btnSupprimerCarslEvnt").show();
+        $("#btnAjoutLiens").hide();
+        $("#btnModifLiens").show();
+        $("#btnSupprimerLiens").show();
        
     });
 }
@@ -300,22 +294,22 @@ function RemplirFormCarrousel(){
 
 function ModaleAjout(){
     
-    $("#btnModifCarslEvnt").hide();
-    $("#btnSupprimerCarslEvnt").hide();
-    $("#btnAjoutCarslEvnt").show();
+    $("#btnAjoutLiens").hide();
+    $("#btnSupprimerLiens").hide();
+    $("#btnAjoutLiens").show();
     ViderChampsFrm();
 
 }
 
 function ViderChampsFrm(){
-    $("#titreCarslEvnt").val("");
-    $("#texteCarslEvnt").val("");             
-    $("#lgnTblCarsl").text("");
+    $("#texteLiens").val("");
+    $("#urlLiens").val("");             
+    $("#lgnTblLiens").text("");
 }
 
 function Annuler(){
    
-    $("#btnAnnulerCarslEvnt").click(function (e) { 
+    $("#btnAnnulerLiens").click(function (e) { 
         e.preventDefault();
         ViderChampsFrm();
 
@@ -323,8 +317,8 @@ function Annuler(){
         $("#lblTexte").remove();
         $("#lblDate").remove();
 
-        $("#titreCarslEvnt").css("border-color", "initial");
-        $("#texteCarslEvnt").css("border-color", "initial");
+        $("#texteLiens").css("border-color", "initial");
+        $("#urlLiens").css("border-color", "initial");
        
     
     });
@@ -347,12 +341,11 @@ function IdActuTableau(){
 
 
 
-function ValidationCarsl(){
+function ValidationLiens(){
 
-    let titreValide = false;
     let texteValide = false;
-    let entreeValide = false;
-    
+    let urlValide = false;
+
 
     var regex_Vide_OUI = /((^([\s\t\0]?)$){1})/;
     var regex_String_Unique_OUI = /((^[A-Z a-z - ' \ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
@@ -366,59 +359,58 @@ function ValidationCarsl(){
     var regex_StringTousCaracteres_OUI = /((^[A-Z a-z 0-9 |(){}\[\]±@£¢­<>#!%?$&*-+\/=,.;:´`'\"«»°_\ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
 
 
-    var titreCarsl =   $("#titreCarslEvnt").val();
-       var lblvalidTitre = document.createElement("p");
+    var texteLien =   $("#texteLiens").val();
+       var lblvalidTexte = document.createElement("p");
        lblvalidTitre.setAttribute("id", "lblTitre");
-        if(regex_Vide_OUI.test(titreCarsl)==true){
-            lblvalidTitre.setAttribute("class", "lblNonValid");
-            lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-            $("#titreActu").css("border-color", "red");
-            titreValide = false;
+        if(regex_Vide_OUI.test(texteLien)==true){
+            lblvalidTexte.setAttribute("class", "lblNonValid");
+            lblvalidTexte.innerHTML = "Vous devez entrer un texte de lien";
+            $("#texteLiens").css("border-color", "red");
+            texteValide = false;
         }else{
-            if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
-                lblvalidTitre.setAttribute("class", "lblNonValid");
-                lblvalidTitre.innerHTML = "Titre non-valide ";
-                $("#titreActu").css("border-color", "red");
-                titreValide = false;
+            if(regex_StringTousCaracteres_OUI.test(texteLien)==false){       
+                lblvalidTexte.setAttribute("class", "lblNonValid");
+                lblvalidTexte.innerHTML = "Titre non-valide ";
+                $("#texteLiens").css("border-color", "red");
+                texteValide = false;
             }else{           
-                lblvalidTitre.setAttribute("class", "lblValid");
-                lblvalidTitre.innerHTML = "Titre valide";
-                $("#titreActu").css("border-color", "green");
-                titreValide = true;
+                lblvalidTexte.setAttribute("class", "lblValid");
+                lblvalidTexte.innerHTML = "Titre valide";
+                $("#texteLiens").css("border-color", "green");
+                texteValide = true;
             }
         }
-            $(lblvalidTitre).insertAfter("#divTitreActu");
+            $(lblvalidTexte).insertAfter("#divTitreActu");
 
 
 
-            var texteCarsl =   $("#texteCarslEvnt").val();      
-            var lblvalidTexte = document.createElement("p");
+            var urlLien =   $("#urlLiens").val();      
+            var lblvalidUrl = document.createElement("p");
             lblvalidTexte.setAttribute("id", "lblTexte");
-             if(regex_Vide_OUI.test(texteCarsl)==true){
-                lblvalidTexte.setAttribute("class", "lblNonValid");
-                lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-                $("#texteActu").css("border-color", "red");
-                texteValide = false;
+             if(regex_Vide_OUI.test(urlLien)==true){
+                lblvalidUrl.setAttribute("class", "lblNonValid");
+                lblvalidUrl.innerHTML = "Vous devez entrer un texte";
+                $("#urlLiens").css("border-color", "red");
+                urlValide = false;
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
-                    lblvalidTexte.setAttribute("class", "lblNonValid");
-                    lblvalidTexte.innerHTML = "Texte non-valide ";
-                    $("#texteActu").css("border-color", "red");
-                    texteValide = false;
+                 if(regex_StringTousCaracteres_OUI.test(urlLien)==false){       
+                    lblvalidUrl.setAttribute("class", "lblNonValid");
+                    lblvalidUrl.innerHTML = "Texte non-valide ";
+                    $("#urlLiens").css("border-color", "red");
+                    urlValide = false;
                  }else{           
-                    lblvalidTexte.setAttribute("class", "lblValid");
-                    lblvalidTexte.innerHTML = "Texte valide";
-                    $("#texteActu").css("border-color", "green");
-                    texteValide = true;
+                    lblvalidUrl.setAttribute("class", "lblValid");
+                    lblvalidUrl.innerHTML = "Texte valide";
+                    $("#urlLiens").css("border-color", "green");
+                    urlValide = true;
                  }
              }
-                 $(lblvalidTexte).insertAfter("#divTexteActu");
+                 $(lblvalidUrl).insertAfter("#divTexteActu");
 
-
-        if((titreValide==true)&&(texteValide==true)){
+        if((texteValide==true)&&(urlValide==true)){
             entreeValide = true;
         }
- 
+     
         return entreeValide;
 }
 
@@ -435,74 +427,72 @@ function ValidationChamps(){
     var regex_MotDePasse_OUI = /((^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#!\"$%?&*()_+|=\/*]).{8,}$))/;
     var regex_StringTousCaracteres_OUI = /((^[A-Z a-z 0-9 |(){}\[\]±@£¢­<>#!%?$&*-+\/=,.;:´`'\"«»°_\ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
 
-    $("#titreCarslEvnt").focus(function (e) { 
-        e.preventDefault();
-        $("#lblTitre").remove();
-        $("#titreCarslEvnt").css("border-color", "initial")
-    });
-    $("#texteCarslEvnt").focus(function (e) { 
+    $("#texteLiens").focus(function (e) { 
         e.preventDefault();
         $("#lblTexte").remove();
-        $("#texteCarslEvnt").css("border-color", "initial")
+        $("#texteLiens").css("border-color", "initial");
     });
-    
-
-   $("#titreCarslEvnt").blur(function (e) { 
+    $("#urlLiens").focus(function (e) { 
+        e.preventDefault();
+        $("#lblUrl").remove();
+        $("#urlLiens").css("border-color", "initial")
+    });
+   
+   $("#texteLiens").blur(function (e) { 
        e.preventDefault();
-       var titreCarsl =   $("#titreCarslEvnt").val();
-       var lblvalidTitre = document.createElement("p");
-       lblvalidTitre.setAttribute("id", "lblTitre");
-        if(regex_Vide_OUI.test(titreCarsl)==true){
-            lblvalidTitre.setAttribute("class", "lblNonValid");
-            lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-            $("#titreActu").css("border-color", "red");
-            titreValide = false;
+       var texteLien =   $("#texteLiens").val();
+       var lblvalidTexte = document.createElement("p");
+       lblvalidTitre.setAttribute("id", "lblTexte");
+        if(regex_Vide_OUI.test(texteLien)==true){
+            lblvalidTexte.setAttribute("class", "lblNonValid");
+            lblvalidTexte.innerHTML = "Vous devez entrer un texte de lien";
+            $("#texteLiens").css("border-color", "red");
+            texteValide = false;
         }else{
-            if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
-                lblvalidTitre.setAttribute("class", "lblNonValid");
-                lblvalidTitre.innerHTML = "Titre non-valide ";
-                $("#titreActu").css("border-color", "red");
-                titreValide = false;
+            if(regex_StringTousCaracteres_OUI.test(texteLien)==false){       
+                lblvalidTexte.setAttribute("class", "lblNonValid");
+                lblvalidTexte.innerHTML = "Titre non-valide ";
+                $("#texteLiens").css("border-color", "red");
+                texteValide = false;
             }else{           
-                lblvalidTitre.setAttribute("class", "lblValid");
-                lblvalidTitre.innerHTML = "Titre valide";
-                $("#titreActu").css("border-color", "green");
-                titreValide = true;
+                lblvalidTexte.setAttribute("class", "lblValid");
+                lblvalidTexte.innerHTML = "Titre valide";
+                $("#texteLiens").css("border-color", "green");
+                texteValide = true;
             }
         }
-            $(lblvalidTitre).insertAfter("#divTitreActu");
+            $(lblvalidTexte).insertAfter("#divTitreActu");
    });
        
 
-   $("#texteCarslEvnt").blur(function (e) { 
+   $("#urlLiens").blur(function (e) { 
     e.preventDefault();
-    var texteCarsl =   $("#texteCarslEvnt").val();      
-            var lblvalidTexte = document.createElement("p");
-            lblvalidTexte.setAttribute("id", "lblTexte");
-             if(regex_Vide_OUI.test(texteCarsl)==true){
-                lblvalidTexte.setAttribute("class", "lblNonValid");
-                lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-                $("#texteActu").css("border-color", "red");
-                texteValide = false;
+    var urlLien =   $("#urlLiens").val();      
+            var lblvalidUrl = document.createElement("p");
+            lblvalidTexte.setAttribute("id", "lblUrl");
+             if(regex_Vide_OUI.test(urlLien)==true){
+                lblvalidUrl.setAttribute("class", "lblNonValid");
+                lblvalidUrl.innerHTML = "Vous devez entrer un texte";
+                $("#urlLiens").css("border-color", "red");
+                urlValide = false;
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
-                    lblvalidTexte.setAttribute("class", "lblNonValid");
-                    lblvalidTexte.innerHTML = "Texte non-valide ";
-                    $("#texteActu").css("border-color", "red");
-                    texteValide = false;
+                 if(regex_StringTousCaracteres_OUI.test(urlLien)==false){       
+                    lblvalidUrl.setAttribute("class", "lblNonValid");
+                    lblvalidUrl.innerHTML = "Texte non-valide ";
+                    $("#urlLiens").css("border-color", "red");
+                    urlValide = false;
                  }else{           
-                    lblvalidTexte.setAttribute("class", "lblValid");
-                    lblvalidTexte.innerHTML = "Texte valide";
-                    $("#texteActu").css("border-color", "green");
-                    texteValide = true;
+                    lblvalidUrl.setAttribute("class", "lblValid");
+                    lblvalidUrl.innerHTML = "Texte valide";
+                    $("#urlLiens").css("border-color", "green");
+                    urlValide = true;
                  }
              }
-                 $(lblvalidTexte).insertAfter("#divTexteActu");
+                 $(lblvalidUrl).insertAfter("#divTexteActu");
     });
 
 
-   
-
+    
 }
 
 

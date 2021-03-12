@@ -136,7 +136,7 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
     if ( $_POST["action"]=="Supprimer"){
 
       //  echo "action Supprimmer";
-      echo var_dump($_POST);
+      
         try{
             $PDO1 ="";
             $PDO1 = CONNEXION_BD();    
@@ -148,11 +148,9 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
                                 );
 
             if($_POST["actif"]=="sup"){                    
-                $supprimer = 0;
-                echo "supprimer";
+                $supprimer = 0;            
             }elseif ($_POST["actif"]=="react") {
-                $supprimer = 1;
-                echo "reactiver";
+                $supprimer = 1;              
             }
             $reqInsert->bindParam(":actif", $supprimer);
             $reqInsert->execute();

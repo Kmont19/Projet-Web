@@ -1,0 +1,134 @@
+
+.bloc-corps {
+    height: 700px;
+    padding: 2% 3%;
+}
+
+h1{
+    text-align: center;
+}
+
+#ctnAdminEvenement{
+    height:81%;
+    width: 81%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2%;
+    padding: 1%;
+    background: rgb(248, 248, 248);
+    box-shadow: 1px 1px 2px 0 grey, 1px 1px 2px 0 grey;
+    border: 1px solid rgb(185, 184, 184);
+    border-radius: 25px;
+}
+
+#adminRechEvenement{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#adminFormEvenement h4{
+    text-align: center;
+   
+
+}
+#adminFormEvenement form{
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#ctnRechEvenement{
+    width: 100%;
+    height: 10%;
+}
+
+#ctntblEvenement{
+    width: 100%;
+    max-height: 80%;
+}
+
+
+
+
+#corpsTabEvenement{
+    position: absolute;
+    overflow-y: scroll;
+    height: 80%;
+}
+
+#tblEvenement thead th{
+    width: 33%;
+    text-align: center;
+    color: white;
+}
+
+#tblEvenement tr{
+    width: 100%;
+    table-layout: fixed;
+    display: inline-table;
+}
+
+#tblEvenement thead > tr > th {
+    border: none;
+}
+
+#tblEvenement tbody > tr > td {
+    text-align: center;
+}
+
+
+
+  #texteEvenement{
+    resize: none;
+  }
+
+#ctnBtnEvenement, #ctnBtnModalAjoutEvnmt{
+    width: 100%;
+    height: 10%;
+    margin-top: 50px;  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-between;
+}
+
+.btnFormAdminEvenement{
+    width:30%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.btnFormAdminEvenement button{
+    width:100%;
+}
+
+#ddwRechEvenement{
+    width: 30%;
+    height: 78%;
+}
+
+#dpdTypeRequete option{
+    color: blue !important;
+    background-color: white !important;
+}
+#dpdTypeRequete option:first-child{
+    color: rgb(167, 167, 207) !important;
+    
+}
+
+
+#barreRechEvenement{
+    width: 70%;
+}
+
+#btnTelchrgEvenmt{
+    height: 72%!important;
+}
+

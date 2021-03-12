@@ -35,7 +35,6 @@ function AjoutEvenememt(){
        form_data.append('lieuEvenmt', $("#LieuEvenement").val());
        form_data.append('dateEvenement', $("#dateEvenement").val());
        form_data.append('hrDebutEvenmt', $("#hrDebutEvenement").val());
-       form_data.append('hrFinEvenmt', $("#hrFinEvenement").val());
        form_data.append('texteEvenement', $("#texteEvenement").val());
 
        if(ValidationEvenemt()==true){
@@ -83,7 +82,6 @@ function ModifierEvenememt(){
        form_data.append('lieuEvenmt', $("#LieuEvenement").val());
        form_data.append('dateEvenement', $("#dateEvenement").val());
        form_data.append('hrDebutEvenmt', $("#hrDebutEvenement").val());
-       form_data.append('hrFinEvenmt', $("#hrFinEvenement").val());
        form_data.append('texteEvenement', $("#texteEvenement").val());
 
        
@@ -168,7 +166,7 @@ function SupprimerEvenememt(){
 
 
 function AffichageEvenmt_Tous(){
-
+   
     EffacerTableau();
     var reqEvenmt = new Array();
     var evenement;  
@@ -179,9 +177,9 @@ function AffichageEvenmt_Tous(){
             data: { action: "listeEvenmtTous" },
             dataType: 'text',        
             success: function(result, status, xhr) {
-                reqEvenmt = JSON.parse(result);                               
+                 reqEvenmt = JSON.parse(result);                               
                 let tableEvenmt = document.getElementById("corpsTabEvenement");
-
+               
                 for (x in reqEvenmt) {
                     evenement = reqEvenmt[x];
                     let lgnTab = document.createElement("tr");
@@ -203,14 +201,15 @@ function AffichageEvenmt_Tous(){
                         lgnTab.setAttribute("style", "background-color:  #d9534f ;");
                     }
                     tableEvenmt.appendChild(lgnTab);                   
-                }              
+                }             
             },
             error: function(xhr, status, error) {
-
+               
             },
             complete: function(xhr, status) {
-            
+               
             }         
+            
         });
 
 }
@@ -294,7 +293,6 @@ function RemplirFormEvnmt(){
                 $("#LieuEvenement").val(reqEvenmt[0].lieuEvenement);
                 $("#dateEvenement").val(reqEvenmt[0].dateEvenement);
                 $("#hrDebutEvenement").val(reqEvenmt[0].heureDebutEvenmt);
-                $("#hrFinEvenement").val(reqEvenmt[0].heureFinEvenmt);
                 $("#texteEvenement").val(reqEvenmt[0].texteEvenement);
                /* var strUrl = reqEvenmt[0].photoEvenement;
                     strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                   
@@ -342,7 +340,6 @@ function ViderChampsFrm(){
     $("#lblImgEvent").text("");
     $("#LieuEvenement").val("");
     $("#hrDebutEvenement").val("");                 
-    $("#hrFinEvenement").text("");
 
 }
 
@@ -356,7 +353,6 @@ function Annuler(){
         $("#lblLieu").remove();
         $("#lblTexte").remove();
         $("#lblDate").remove();
-        $("#lblhrDebut").remove();
         $("#lblhrFin").remove();
 
         $("#titreEvenement").css("border-color", "initial");
@@ -364,8 +360,6 @@ function Annuler(){
         $("#dateEvenement").css("border-color", "initial");
         $("#texteEvenement").css("border-color", "initial");
         $("#hrDebutEvenement").css("border-color", "initial");
-        $("#hrFinEvenement").css("border-color", "initial");
-
     
     });
 }
@@ -561,36 +555,13 @@ function ValidationEvenemt(){
 
 
 
-            var hrFinEvenmt =   $("#hrFinEvenement").val();
-            var lblvalidhrFin = document.createElement("p");
-            lblvalidhrFin.setAttribute("id", "lblhrFin");
-            if(regex_Vide_OUI.test(hrFinEvenmt)==true){
-                lblvalidhrFin.setAttribute("class", "lblNonValid");
-                lblvalidhrFin.innerHTML = "Vous devez entrer une heure de fin";
-                $("#hrFinEvenement").css("border-color", "red");
-                hrFinValide = false;
-            }else{
-                if(regex_StringTousCaracteres_OUI.test(hrFinEvenmt)==false){       
-                    lblvalidhrFin.setAttribute("class", "lblNonValid");
-                    lblvalidhrFin.innerHTML = "Titre non-valide ";
-                    $("#hrFinEvenement").css("border-color", "red");
-                    hrFinValide = false;
-                }else{           
-                    lblvalidhrFin.setAttribute("class", "lblValid");
-                    lblvalidhrFin.innerHTML = "Titre valide";
-                    $("#hrFinEvenement").css("border-color", "green");
-                    hrFinValide = true;
-                }
-            }
-                $(lblvalidhrFin).insertAfter("#divDateEvent");
-
+           
 
         if((titreValide==true)
             &&(lieuValide==true)
                 &&(texteValide==true)
                     &&(dateValide==true)
-                        &&(hrDebutValide==true)
-                            &&(hrFinValide==true)){
+                        &&(hrDebutValide==true)){
             entreeValide = true;
         }
         return entreeValide;
@@ -631,10 +602,7 @@ function ValidationChamps(){
         e.preventDefault();
         $("#lblhrDebut").remove();
     });
-    $("#hrFinEvenement").focus(function (e) { 
-        e.preventDefault();
-        $("#lblhrFin").remove();
-    });
+   
 
 
    $("#titreEvenement").blur(function (e) { 
@@ -783,34 +751,7 @@ function ValidationChamps(){
 });
 
 
-    $("#hrFinEvenement").blur(function (e) { 
-    e.preventDefault();
-    var hrFinEvenmt =   $("#hrFinEvenement").val();
-    var lblvalidhrFin = document.createElement("p");
-    lblvalidhrFin.setAttribute("id", "lblhrFin");
-    if(regex_Vide_OUI.test(hrFinEvenmt)==true){
-        lblvalidhrFin.setAttribute("class", "lblNonValid");
-        lblvalidhrFin.innerHTML = "Vous devez entrer un lieu";
-        $("#hrFinEvenement").css("border-color", "red");
-        hrFinValide = false;
-    }else{
-        if(regex_StringTousCaracteres_OUI.test(hrFinEvenmt)==false){       
-            lblvalidhrFin.setAttribute("class", "lblNonValid");
-            lblvalidhrFin.innerHTML = "Titre non-valide ";
-            $("#hrFinEvenement").css("border-color", "red");
-            hrFinValide = false;
-        }else{           
-            lblvalidhrFin.setAttribute("class", "lblValid");
-            lblvalidhrFin.innerHTML = "Titre valide";
-            $("#hrFinEvenement").css("border-color", "green");
-            hrFinValide = true;
-        }
-    }
-        $(lblvalidhrFin).insertAfter("#divDateEvent");
-
-
-    });
-
+   
 
 
 

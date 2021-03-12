@@ -11,7 +11,6 @@ $titreEvenmt = "";
 $lieuEvenmt = "";
 $dateEvenmt = "";
 $hrDebutEvenmt = "";
-$hrFinEvenmt = "";
 $texteEvenmt = "";
 
 $dossierTlcg = "";
@@ -43,9 +42,6 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")
     
     $RETOUR_ENTRE = GestionErreursSanitization(($_POST["hrDebutEvenmt"]), $regex_StringTousCaracteres_OUI, "string");
     $hrDebutEvenmt = $RETOUR_ENTRE["Valeur"];
-    
-    $RETOUR_ENTRE = GestionErreursSanitization(($_POST["hrFinEvenmt"]), $regex_StringTousCaracteres_OUI, "string");
-    $hrFinEvenmt = $RETOUR_ENTRE["Valeur"];
     
     $RETOUR_ENTRE = GestionErreursSanitization(($_POST["texteEvenement"]), $regex_StringTousCaracteres_OUI, "string");
     $texteEvenmt = $RETOUR_ENTRE["Valeur"];
@@ -82,7 +78,6 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                                                 lieuEvenement,
                                                                 dateEvenement,                                                              
                                                                 heureDebutEvenmt,
-                                                                heureFinEvenmt,                                                              
                                                                 texteEvenement,
                                                                 photoEvenement
                                                                 )
@@ -90,7 +85,6 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                                                 :lieuEvenement,
                                                                 :dateEvenement,
                                                                 :heureDebutEvenmt,
-                                                                :heureFinEvenmt,
                                                                 :texteEvenement,
                                                                 :photoEvenement
                                                                 );");
@@ -100,7 +94,6 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $reqInsert->bindParam(":lieuEvenement", $lieuEvenmt);
             $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
             $reqInsert->bindParam(":heureDebutEvenmt", $hrDebutEvenmt);
-            $reqInsert->bindParam(":heureFinEvenmt", $hrFinEvenmt);
             $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
             $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
@@ -134,7 +127,6 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                                                     lieuEvenement = :lieuEvenement,
                                                                     dateEvenement = :dateEvenement,
                                                                     heureDebutEvenmt = :heureDebutEvenmt,
-                                                                    heureFinEvenmt = :heureFinEvenmt,
                                                                     texteEvenement= :texteEvenement,
                                                                     photoEvenement = :photoEvenement                                                      
                                     WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
@@ -144,7 +136,6 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $reqInsert->bindParam(":lieuEvenement", $lieuEvenmt);
             $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
             $reqInsert->bindParam(":heureDebutEvenmt", $hrDebutEvenmt);
-            $reqInsert->bindParam(":heureFinEvenmt", $hrFinEvenmt);
             $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
             $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
@@ -177,7 +168,11 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                     WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
                                 );
 
-            $supprimer = 0;
+            if($_POST["actif"]=="sup"){                    
+                $supprimer = 0;
+            }elseif ($_POST["actif"]=="react") {
+                $supprimer = 1;
+            }
             $reqInsert->bindParam(":actif", $supprimer);
             $reqInsert->execute();
 
@@ -205,27 +200,27 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
 
         if ( $_POST["action"]=="listeEvenmtTous"){
 
-            // echo "action ReqListe";
+            // echo "action listeEvenmtTous";
          
              try{
-                 $PDO1 ="";
-                 $PDO1 = CONNEXION_BD();    
-                 $PDO1->beginTransaction();   
-                 $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         
-                 $resultReq = array();
-         
-                 $reqActualite = "SELECT idEvenement,
-                                         titreEvenement,
-                                         dateEvenement, 
-                                         actif
-                                 FROM `evenement`;";
-         
-                 $execReq = $PDO1->query($reqActualite);
-                 $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
+                $PDO1 ="";
+                $PDO1 = CONNEXION_BD();    
+                $PDO1->beginTransaction();   
+                $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+                $resultReq = array();
+        
+                $reqActualite = "SELECT idEvenement,
+                                        titreEvenement,
+                                        dateEvenement,
+                                        heureDebutEvenmt, 
+                                        actif
+                                FROM `evenement`;";
+        
+                $execReq = $PDO1->query($reqActualite);
+                $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
                  
-                 $objResult = json_encode($resultReq);
-                 
+                $objResult = json_encode($resultReq);              
                  echo $objResult;
          
          
@@ -292,7 +287,6 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                         lieuEvenement,
                                         dateEvenement,                                                              
                                         heureDebutEvenmt,
-                                        heureFinEvenmt,                                                              
                                         texteEvenement,
                                         photoEvenement
                                 FROM `evenement`
