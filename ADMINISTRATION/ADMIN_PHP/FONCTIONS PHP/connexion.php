@@ -2,7 +2,8 @@
 function CONNEXION_BD(){
 $utilisateur="root";
 $passwword="root";
-$connect = 'mysql:host=localhost;dbname=420617ri_gr01; charset=utf8", "1647207", "1647207"';
+//$connect = 'mysql:host=localhost;dbname=420617ri_gr01; charset=utf8", "1647207", "1647207"';
+$connect = 'mysql:host=localhost;dbname=dept_info;charset=utf8';
 
 try {
    $pdo = new PDO($connect, $utilisateur, $passwword);

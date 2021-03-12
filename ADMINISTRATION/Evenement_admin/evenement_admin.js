@@ -35,7 +35,6 @@ function AjoutEvenememt(){
        form_data.append('lieuEvenmt', $("#LieuEvenement").val());
        form_data.append('dateEvenement', $("#dateEvenement").val());
        form_data.append('hrDebutEvenmt', $("#hrDebutEvenement").val());
-       form_data.append('hrFinEvenmt', $("#hrFinEvenement").val());
        form_data.append('texteEvenement', $("#texteEvenement").val());
 
        if(ValidationEvenemt()==true){
@@ -83,7 +82,6 @@ function ModifierEvenememt(){
        form_data.append('lieuEvenmt', $("#LieuEvenement").val());
        form_data.append('dateEvenement', $("#dateEvenement").val());
        form_data.append('hrDebutEvenmt', $("#hrDebutEvenement").val());
-       form_data.append('hrFinEvenmt', $("#hrFinEvenement").val());
        form_data.append('texteEvenement', $("#texteEvenement").val());
 
        
@@ -168,7 +166,7 @@ function SupprimerEvenememt(){
 
 
 function AffichageEvenmt_Tous(){
-
+   
     EffacerTableau();
     var reqEvenmt = new Array();
     var evenement;  
@@ -179,9 +177,9 @@ function AffichageEvenmt_Tous(){
             data: { action: "listeEvenmtTous" },
             dataType: 'text',        
             success: function(result, status, xhr) {
-                reqEvenmt = JSON.parse(result);                               
+                 reqEvenmt = JSON.parse(result);                               
                 let tableEvenmt = document.getElementById("corpsTabEvenement");
-
+               
                 for (x in reqEvenmt) {
                     evenement = reqEvenmt[x];
                     let lgnTab = document.createElement("tr");
@@ -203,14 +201,15 @@ function AffichageEvenmt_Tous(){
                         lgnTab.setAttribute("style", "background-color:  #d9534f ;");
                     }
                     tableEvenmt.appendChild(lgnTab);                   
-                }              
+                }             
             },
             error: function(xhr, status, error) {
-
+               
             },
             complete: function(xhr, status) {
-            
+               
             }         
+            
         });
 
 }
@@ -245,7 +244,7 @@ function AffichageEvenmt_Titre(){
                     lgnTab.setAttribute("data-toggle", "modal");
                     lgnTab.setAttribute("data-target", "#adminFormEvenement"); 
                     colTitre.innerHTML = evenement.titreEvenement;
-                    colDate.innerHTML = evenement.dateActu;
+                    colDate.innerHTML = evenement.dateEvenement;
                     colAutre.innerHTML = "Autre";                  
                     lgnTab.appendChild(colTitre);
                     lgnTab.appendChild(colDate);
@@ -293,8 +292,7 @@ function RemplirFormEvnmt(){
                 $("#titreEvenement").val(reqEvenmt[0].titreEvenement);
                 $("#LieuEvenement").val(reqEvenmt[0].lieuEvenement);
                 $("#dateEvenement").val(reqEvenmt[0].dateEvenement);
-                $("#hrDebutEvenement").val(reqEvenmt[0].heureDebutEvenmt);
-                $("#hrFinEvenement").val(reqEvenmt[0].heureFinEvenmt);
+                $("#hrDebutEvenement").val(reqEvenmt[0].heureEvenement);
                 $("#texteEvenement").val(reqEvenmt[0].texteEvenement);
                /* var strUrl = reqEvenmt[0].photoEvenement;
                     strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                   
@@ -342,7 +340,6 @@ function ViderChampsFrm(){
     $("#lblImgEvent").text("");
     $("#LieuEvenement").val("");
     $("#hrDebutEvenement").val("");                 
-    $("#hrFinEvenement").text("");
 
 }
 
@@ -357,15 +354,12 @@ function Annuler(){
         $("#lblTexte").remove();
         $("#lblDate").remove();
         $("#lblhrDebut").remove();
-        $("#lblhrFin").remove();
 
         $("#titreEvenement").css("border-color", "initial");
         $("#LieuEvenement").css("border-color", "initial");
         $("#dateEvenement").css("border-color", "initial");
         $("#texteEvenement").css("border-color", "initial");
         $("#hrDebutEvenement").css("border-color", "initial");
-        $("#hrFinEvenement").css("border-color", "initial");
-
     
     });
 }
@@ -427,170 +421,78 @@ function ValidationEvenemt(){
 
 
             var titreEvenmt =   $("#titreEvenement").val();
-            var lblvalidTitre = document.createElement("p");
-            lblvalidTitre.setAttribute("id", "lblTitre");
                 if(regex_Vide_OUI.test(titreEvenmt)==true){
-                    lblvalidTitre.setAttribute("class", "lblNonValid");
-                    lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-                    $("#titreEvenement").css("border-color", "red");
                     titreValide = false;
                 }else{
                     if(regex_StringTousCaracteres_OUI.test(titreEvenmt)==false){       
-                        lblvalidTitre.setAttribute("class", "lblNonValid");
-                        lblvalidTitre.innerHTML = "Titre non-valide ";
-                        $("#titreEvenement").css("border-color", "red");
                         titreValide = false;
                     }else{           
-                        lblvalidTitre.setAttribute("class", "lblValid");
-                        lblvalidTitre.innerHTML = "Titre valide";
-                        $("#titreEvenement").css("border-color", "green");
                         titreValide = true;
                     }
                 }
-                    $(lblvalidTitre).insertAfter("#divTitreEvent");
 
 
-            var lieuEvenmt =   $("#LieuEvenement").val();
-            var lblvalidLieu = document.createElement("p");
-            lblvalidLieu.setAttribute("id", "lblLieu");
-             if(regex_Vide_OUI.test(lieuEvenmt)==true){
-                lblvalidLieu.setAttribute("class", "lblNonValid");
-                lblvalidLieu.innerHTML = "Vous devez entrer un lieu";
-                 $("#LieuEvenement").css("border-color", "red");
+            var lieuEvenmt =   $("#LieuEvenement").val();          
+             if(regex_Vide_OUI.test(lieuEvenmt)==true){             
                  lieuValide = false;
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(lieuEvenmt)==false){       
-                    lblvalidLieu.setAttribute("class", "lblNonValid");
-                    lblvalidLieu.innerHTML = "Titre non-valide ";
-                     $("#LieuEvenement").css("border-color", "red");
+                 if(regex_StringTousCaracteres_OUI.test(lieuEvenmt)==false){                        
                      lieuValide = false;
-                 }else{           
-                    lblvalidLieu.setAttribute("class", "lblValid");
-                    lblvalidLieu.innerHTML = "Titre valide";
-                     $("#LieuEvenement").css("border-color", "green");
+                 }else{                             
                      lieuValide = true;
                  }
              }
-                 $(lblvalidLieu).insertAfter("#divLieuEvent");
 
-
-
-            var texteEvenmt =   $("#texteEvenement").val();      
-            var lblvalidTexte = document.createElement("p");
-            lblvalidTexte.setAttribute("id", "lblTexte");
-             if(regex_Vide_OUI.test(texteEvenmt)==true){
-                lblvalidTexte.setAttribute("class", "lblNonValid");
-                lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-                $("#texteEvenement").css("border-color", "red");
+            var texteEvenmt =   $("#texteEvenement").val();               
+             if(regex_Vide_OUI.test(texteEvenmt)==true){               
                 texteValide = false;
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(texteEvenmt)==false){       
-                    lblvalidTexte.setAttribute("class", "lblNonValid");
-                    lblvalidTexte.innerHTML = "Texte non-valide ";
-                    $("#texteEvenement").css("border-color", "red");
+                 if(regex_StringTousCaracteres_OUI.test(texteEvenmt)==false){                       
                     texteValide = false;
                  }else{           
-                    lblvalidTexte.setAttribute("class", "lblValid");
-                    lblvalidTexte.innerHTML = "Texte valide";
-                    $("#texteEvenement").css("border-color", "green");
+               
                     texteValide = true;
                  }
              }
-                 $(lblvalidTexte).insertAfter("#divTexteEvent");
 
 
-            var dateEvenmt =   $("#dateEvenement").val();    
-            var lblvalidDate = document.createElement("p");
-            lblvalidDate.setAttribute("id", "lblDate");
-            if(regex_Vide_OUI.test(dateEvenmt)==true){
-                lblvalidDate.setAttribute("class", "lblNonValid");
-                lblvalidDate.innerHTML = "Vous devez entrer une date";
-                $("#dateEvenement").css("border-color", "red");
+            var dateEvenmt =   $("#dateEvenement").val();             
+            if(regex_Vide_OUI.test(dateEvenmt)==true){             
                 dateValide = false;
             }else{
                 if(regex_Date_Int_OUI.test(dateEvenmt)==false){       
-                    lblvalidDate.setAttribute("class", "lblNonValid");
-                    lblvalidDate.innerHTML = "Date non-valide ";
-                    $("#dateEvenement").css("border-color", "red");
+                   
                     dateValide = false;
-                }else{           
-    
+                }else{              
                     let dateJour = new Date();
                     let dateFuture = new Date("01 Jan 2070");
-                    let dateUser = new Date(dateEvenmt);
-                
-                    if((dateUser < dateJour) || (dateFuture < dateUser)){
-                        lblvalidDate.setAttribute("class", "lblNonValid");
-                        lblvalidDate.innerHTML = "Date non-valide ";
+                    let dateUser = new Date(dateEvenmt);               
+                    if((dateUser < dateJour) || (dateFuture < dateUser)){                
                         dateValide = false;
-                    }else{
-                        lblvalidDate.setAttribute("class", "lblValid");
-                        lblvalidDate.innerHTML = "Date valide";
-                        $("#dateEvenement").css("border-color", "green");
+                    }else{                     
                         dateValide = true;
                     }
                 }
             }
-                $(lblvalidDate).insertAfter("#divDateEvent");
 
-
-                     
-
-            var hrDebutEvenmt =   $("#hrDebutEvenement").val();
-            var lblvalidhrDebut = document.createElement("p");
-            lblvalidhrDebut.setAttribute("id", "lblhrDebut");
-            if(regex_Vide_OUI.test(hrDebutEvenmt)==true){
-            lblvalidhrDebut.setAttribute("class", "lblNonValid");
-            lblvalidhrDebut.innerHTML = "Vous devez entrer une heure de début";
-                $("#hrDebutEvenement").css("border-color", "red");
+            var hrDebutEvenmt =   $("#hrDebutEvenement").val();       
+            if(regex_Vide_OUI.test(hrDebutEvenmt)==true){           
                 hrDebutValide = false;
             }else{
                 if(regex_StringTousCaracteres_OUI.test(hrDebutEvenmt)==false){       
-                lblvalidhrDebut.setAttribute("class", "lblNonValid");
-                lblvalidhrDebut.innerHTML = "Titre non-valide ";
-                    $("#hrDebutEvenement").css("border-color", "red");
+         
                     hrDebutValide = false;
-                }else{           
-                lblvalidhrDebut.setAttribute("class", "lblValid");
-                lblvalidhrDebut.innerHTML = "Titre valide";
-                    $("#hrDebutEvenement").css("border-color", "green");
+                }else{                    
                     hrDebutValide = true;
                 }
             }
-                    $(lblvalidhrDebut).insertAfter("#divDateEvent");
-
-
-
-            var hrFinEvenmt =   $("#hrFinEvenement").val();
-            var lblvalidhrFin = document.createElement("p");
-            lblvalidhrFin.setAttribute("id", "lblhrFin");
-            if(regex_Vide_OUI.test(hrFinEvenmt)==true){
-                lblvalidhrFin.setAttribute("class", "lblNonValid");
-                lblvalidhrFin.innerHTML = "Vous devez entrer une heure de fin";
-                $("#hrFinEvenement").css("border-color", "red");
-                hrFinValide = false;
-            }else{
-                if(regex_StringTousCaracteres_OUI.test(hrFinEvenmt)==false){       
-                    lblvalidhrFin.setAttribute("class", "lblNonValid");
-                    lblvalidhrFin.innerHTML = "Titre non-valide ";
-                    $("#hrFinEvenement").css("border-color", "red");
-                    hrFinValide = false;
-                }else{           
-                    lblvalidhrFin.setAttribute("class", "lblValid");
-                    lblvalidhrFin.innerHTML = "Titre valide";
-                    $("#hrFinEvenement").css("border-color", "green");
-                    hrFinValide = true;
-                }
-            }
-                $(lblvalidhrFin).insertAfter("#divDateEvent");
-
+        
 
         if((titreValide==true)
             &&(lieuValide==true)
                 &&(texteValide==true)
                     &&(dateValide==true)
-                        &&(hrDebutValide==true)
-                            &&(hrFinValide==true)){
+                        &&(hrDebutValide==true)){
             entreeValide = true;
         }
         return entreeValide;
@@ -612,29 +514,34 @@ function ValidationChamps(){
     $("#titreEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblTitre").remove();
-        $("#titreEvenement").css("border-color", "initial")
+        $("#titreEvenement").css("border-color", "initial");
+        $("#divTitreEvent").css("margin-bottom", "1rem");
     });
     $("#LieuEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblLieu").remove();
-        $("#LieuEvenement").css("border-color", "initial")
+        $("#LieuEvenement").css("border-color", "initial");
+        $("#divLieuEvent").css("margin-bottom", "1rem");
     });
     $("#texteEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblTexte").remove();
+        $("#texteEvenement").css("border-color", "initial");
+        $("#divTexteEvent").css("margin-bottom", "1rem");
     });
     $("#dateEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblDate").remove();
+        $("#dateEvenement").css("border-color", "initial");
+        $("#divDateEvent").css("margin-bottom", "1rem");
     });
     $("#hrDebutEvenement").focus(function (e) { 
         e.preventDefault();
         $("#lblhrDebut").remove();
+        $("#hrDebutEvenement").css("border-color", "initial");
+        $("#divDateEvent").css("margin-bottom", "1rem");
     });
-    $("#hrFinEvenement").focus(function (e) { 
-        e.preventDefault();
-        $("#lblhrFin").remove();
-    });
+   
 
 
    $("#titreEvenement").blur(function (e) { 
@@ -646,22 +553,24 @@ function ValidationChamps(){
         lblvalidTitre.setAttribute("class", "lblNonValid");
         lblvalidTitre.innerHTML = "Vous devez entrer un titre";
         $("#titreEvenement").css("border-color", "red");
-        
+        $("#lblTitre").css("color", "red");
     }else{
         if(regex_StringTousCaracteres_OUI.test(titreEvenmt)==false){       
             lblvalidTitre.setAttribute("class", "lblNonValid");
             lblvalidTitre.innerHTML = "Titre non-valide ";
             $("#titreEvenement").css("border-color", "red");
-            
+            $("#lblTitre").css("color", "red");           
         }else{           
             lblvalidTitre.setAttribute("class", "lblValid");
             lblvalidTitre.innerHTML = "Titre valide";
             $("#titreEvenement").css("border-color", "green");
-            
+            $("#lblTitre").css("color", "green");           
         }
     }
         $(lblvalidTitre).insertAfter("#divTitreEvent");
+        $("#divTitreEvent").css("margin-bottom", "0rem");
    });
+
 
    $("#LieuEvenement").blur(function (e) { 
     e.preventDefault();
@@ -672,21 +581,23 @@ function ValidationChamps(){
         lblvalidLieu.setAttribute("class", "lblNonValid");
         lblvalidLieu.innerHTML = "Vous devez entrer un lieu";
          $("#LieuEvenement").css("border-color", "red");
-         lieuValide = false;
+         $("#lblLieu").css("color", "red");
      }else{
          if(regex_StringTousCaracteres_OUI.test(lieuEvenmt)==false){       
             lblvalidLieu.setAttribute("class", "lblNonValid");
             lblvalidLieu.innerHTML = "Titre non-valide ";
              $("#LieuEvenement").css("border-color", "red");
-             lieuValide = false;
+             $("#lblLieu").css("color", "red");
          }else{           
             lblvalidLieu.setAttribute("class", "lblValid");
             lblvalidLieu.innerHTML = "Titre valide";
              $("#LieuEvenement").css("border-color", "green");
-             lieuValide = true;
+             $("#lblLieu").css("color", "green");
          }
      }
          $(lblvalidLieu).insertAfter("#divLieuEvent");
+         $("#divLieuEvent").css("margin-bottom", "0rem");
+
     });
        
 
@@ -699,21 +610,22 @@ function ValidationChamps(){
         lblvalidTexte.setAttribute("class", "lblNonValid");
         lblvalidTexte.innerHTML = "Vous devez entrer un texte";
         $("#texteEvenement").css("border-color", "red");
-        
+        $("#lblTexte").css("color", "red");
      }else{
          if(regex_StringTousCaracteres_OUI.test(texteEvenmt)==false){       
             lblvalidTexte.setAttribute("class", "lblNonValid");
             lblvalidTexte.innerHTML = "Texte non-valide ";
             $("#texteEvenement").css("border-color", "red");
-           
+            $("#lblTexte").css("color", "red");
          }else{           
             lblvalidTexte.setAttribute("class", "lblValid");
             lblvalidTexte.innerHTML = "Texte valide";
             $("#texteEvenement").css("border-color", "green");
-            
+            $("#lblTexte").css("color", "green");
          }
     }
          $(lblvalidTexte).insertAfter("#divTexteEvent");
+         $("#divTexteEvent").css("margin-bottom", "0rem");
     });
 
 
@@ -726,32 +638,33 @@ function ValidationChamps(){
         lblvalidDate.setAttribute("class", "lblNonValid");
         lblvalidDate.innerHTML = "Vous devez entrer une date";
         $("#dateEvenement").css("border-color", "red");
+        $("#lblDate").css("color", "red");
         
     }else{
         if(regex_Date_Int_OUI.test(dateEvenmt)==false){       
             lblvalidDate.setAttribute("class", "lblNonValid");
             lblvalidDate.innerHTML = "Date non-valide ";
             $("#dateEvenement").css("border-color", "red");
-            
+            $("#lblDate").css("color", "red");
         }else{           
-
             let dateJour = new Date();
             let dateFuture = new Date("01 Jan 2070");
-            let dateUser = new Date(dateEvenmt);
-        
+            let dateUser = new Date(dateEvenmt);      
             if((dateUser < dateJour) || (dateFuture < dateUser)){
                 lblvalidDate.setAttribute("class", "lblNonValid");
                 lblvalidDate.innerHTML = "Date non-valide ";
-                
+                $("#lblDate").css("color", "red");
             }else{
                 lblvalidDate.setAttribute("class", "lblValid");
                 lblvalidDate.innerHTML = "Date valide";
                 $("#dateEvenement").css("border-color", "green");
+                $("#lblDate").css("color", "green");
                 
             }
         }
     }
         $(lblvalidDate).insertAfter("#divDateEvent");
+        $("#divDateEvent").css("margin-bottom", "0rem");
     });
 
 
@@ -762,55 +675,28 @@ function ValidationChamps(){
     lblvalidhrDebut.setAttribute("id", "lblhrDebut");
     if(regex_Vide_OUI.test(hrDebutEvenmt)==true){
     lblvalidhrDebut.setAttribute("class", "lblNonValid");
-    lblvalidhrDebut.innerHTML = "Vous devez entrer un lieu";
+    lblvalidhrDebut.innerHTML = "Vous devez entrer une heure";
         $("#hrDebutEvenement").css("border-color", "red");
-        hrDebutValide = false;
+        $("#lblhrDebut").css("color", "red");
     }else{
         if(regex_StringTousCaracteres_OUI.test(hrDebutEvenmt)==false){       
         lblvalidhrDebut.setAttribute("class", "lblNonValid");
-        lblvalidhrDebut.innerHTML = "Titre non-valide ";
+        lblvalidhrDebut.innerHTML = "Heure non-valide ";
             $("#hrDebutEvenement").css("border-color", "red");
-            hrDebutValide = false;
+            $("#lblhrDebut").css("color", "red");
         }else{           
         lblvalidhrDebut.setAttribute("class", "lblValid");
-        lblvalidhrDebut.innerHTML = "Titre valide";
+        lblvalidhrDebut.innerHTML = "valide";
             $("#hrDebutEvenement").css("border-color", "green");
-            hrDebutValide = true;
+            $("#lblhrDebut").css("color", "green");
         }
     }
         $(lblvalidhrDebut).insertAfter("#divDateEvent");
-
+        $("#divDateEvent").css("margin-bottom", "0rem");
 });
 
 
-    $("#hrFinEvenement").blur(function (e) { 
-    e.preventDefault();
-    var hrFinEvenmt =   $("#hrFinEvenement").val();
-    var lblvalidhrFin = document.createElement("p");
-    lblvalidhrFin.setAttribute("id", "lblhrFin");
-    if(regex_Vide_OUI.test(hrFinEvenmt)==true){
-        lblvalidhrFin.setAttribute("class", "lblNonValid");
-        lblvalidhrFin.innerHTML = "Vous devez entrer un lieu";
-        $("#hrFinEvenement").css("border-color", "red");
-        hrFinValide = false;
-    }else{
-        if(regex_StringTousCaracteres_OUI.test(hrFinEvenmt)==false){       
-            lblvalidhrFin.setAttribute("class", "lblNonValid");
-            lblvalidhrFin.innerHTML = "Titre non-valide ";
-            $("#hrFinEvenement").css("border-color", "red");
-            hrFinValide = false;
-        }else{           
-            lblvalidhrFin.setAttribute("class", "lblValid");
-            lblvalidhrFin.innerHTML = "Titre valide";
-            $("#hrFinEvenement").css("border-color", "green");
-            hrFinValide = true;
-        }
-    }
-        $(lblvalidhrFin).insertAfter("#divDateEvent");
-
-
-    });
-
+   
 
 
 
