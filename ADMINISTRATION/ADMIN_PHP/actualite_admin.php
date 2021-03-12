@@ -46,14 +46,16 @@ echo var_dump($_FILES);*/
 if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite") &&!( $_POST["action"]=="infoActif")){
 
     if(!empty($imageActu)){
+
     if($_FILES['imageActu']['tmp_name'] == "" || $_FILES['imageActu']['size'] == 0){
         $urlPhoto = "NULL";
     }
     else{
         $urlPhoto = TelechargerPhoto();
     }
-
     }
+
+
     if ( $_POST["action"]=="Ajouter"){
 
        // echo "action Ajouter";
@@ -117,9 +119,11 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
             $reqInsert->bindParam(":dateActu", $dateActu);
             $reqInsert->bindParam(":texteActu", $texteActu);
             $reqInsert->bindParam(":photoActu", $urlPhoto);
-            $reqInsert->execute();
+              $reqInsert->execute();
 
-
+         echo var_dump($_POST);
+         echo var_dump($_FILES);
+            echo $urlPhoto;
 
         }
         catch(PDOException $e){
@@ -333,13 +337,13 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
     function TelechargerPhoto(){
 
 
-        //$dossierTlcg = "C:/UwAmp/www/SERVEUR_YAN/Projet_Web/Images/Actualites/";
-       // $dossier_cible = $dossierTlcg . basename($_FILES["imageActu"]["name"]);
-        $dossier_cible = basename($_FILES["imageActu"]["name"]);
+        $dossierTlcg = "C:/UwAmp/www/SERVEUR_YAN/Projet_Web/Images/Actualites/";
+        $dossier_cible = $dossierTlcg . basename($_FILES["imageActu"]["name"]);
         $TelOk = 1;
         $fichierImgType = strtolower(pathinfo($dossier_cible, PATHINFO_EXTENSION));
     
-    
+       /* echo var_dump($_FILES);
+        echo  $dossier_cible;*/
        
             if(isset($_POST["submit"])){
                 $verifier = getimagesize($_FILES["imageActu"]["tmp_name"]);      

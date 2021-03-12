@@ -10,7 +10,7 @@ $(document).ready(function () {
     AffichageEvenmt_Tous();
     RemplirFormEvnmt();
     ValidationChamps();
-    Annuler();
+    AnnulerEvent();
   //  AffichageEvenmt_Titre();
    
    // PopoverLigne();
@@ -277,7 +277,7 @@ function RemplirFormEvnmt(){
     $(document).on("click", ".lgnTblEvenmt", function() {
         idEvenmt =  $(this).attr("id");
         idEvenmt = idEvenmt.slice(idEvenmt.indexOf("_") + 1, idEvenmt.length);
-    //    ModaleAjout();
+        Annuler();
 
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/evenement_admin.php',
@@ -294,9 +294,9 @@ function RemplirFormEvnmt(){
                 $("#dateEvenement").val(reqEvenmt[0].dateEvenement);
                 $("#hrDebutEvenement").val(reqEvenmt[0].heureEvenement);
                 $("#texteEvenement").val(reqEvenmt[0].texteEvenement);
-               /* var strUrl = reqEvenmt[0].photoEvenement;
+                var strUrl = reqEvenmt[0].photoEvenement;
                     strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                   
-                $("#lblImgEvent").text(strUrl.slice(strUrl.lastIndexOf("/") + 1, strUrl.length));*/
+                $("#lblImgEvent").text(strUrl.slice(strUrl.lastIndexOf("/") + 1, strUrl.length));
 
                 if(reqEvenmt[0].actif==0){
                     $("#btnSupprimerActu").css("background-color", " #f0ad4e ");
@@ -344,24 +344,45 @@ function ViderChampsFrm(){
 }
 
 function Annuler(){
+    ViderChampsFrm();
+
+    $("#lblTitre").remove();
+    $("#lblLieu").remove();
+    $("#lblTexte").remove();
+    $("#lblDate").remove();
+    $("#lblhrDebut").remove();
+
+    $("#titreEvenement").css("border-color", "initial");
+    $("#LieuEvenement").css("border-color", "initial");
+    $("#dateEvenement").css("border-color", "initial");
+    $("#texteEvenement").css("border-color", "initial");
+    $("#hrDebutEvenement").css("border-color", "initial");
+
+    $("#titreEvenement").css("border-color", "initial");
+    $("#divTitreEvent").css("margin-bottom", "1rem");
+    $("#LieuEvenement").css("border-color", "initial");
+    $("#divLieuEvent").css("margin-bottom", "1rem");
+    $("#texteEvenement").css("border-color", "initial");
+    $("#divTexteEvent").css("margin-bottom", "1rem");
+    $("#dateEvenement").css("border-color", "initial");
+    $("#divDateEvent").css("margin-bottom", "1rem");
+    $("#hrDebutEvenement").css("border-color", "initial");
+    $("#divDateEvent").css("margin-bottom", "1rem");
+
+   
+}
+
+function AnnulerEvent(){
    
     $("#btnAnnulerEvenement").click(function (e) { 
         e.preventDefault();
-        ViderChampsFrm();
-
-        $("#lblTitre").remove();
-        $("#lblLieu").remove();
-        $("#lblTexte").remove();
-        $("#lblDate").remove();
-        $("#lblhrDebut").remove();
-
-        $("#titreEvenement").css("border-color", "initial");
-        $("#LieuEvenement").css("border-color", "initial");
-        $("#dateEvenement").css("border-color", "initial");
-        $("#texteEvenement").css("border-color", "initial");
-        $("#hrDebutEvenement").css("border-color", "initial");
-    
+        Annuler();   
     });
+    $("#BtnModalAjoutEvnmt").click(function (e) { 
+        e.preventDefault();
+        Annuler();   
+    });
+    
 }
 
 function PopoverLigne(){

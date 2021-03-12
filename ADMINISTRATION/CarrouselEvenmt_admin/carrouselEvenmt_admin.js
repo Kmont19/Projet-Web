@@ -12,7 +12,7 @@ $(document).ready(function () {
     //IdActuTableau();
     RemplirFormCarrousel();
     ValidationChamps();
-    Annuler();
+    AnnulerCarsl()
 });
 
 //TODO: VALIDATIONS DES ENTRÉES
@@ -29,7 +29,7 @@ function AjoutCarrousel(){
         form_data.append('titreCarrousel', $("#titreCarslEvnt").val());
         form_data.append('texteCarrousel', $("#texteCarslEvnt").val());
 
-       // if(ValidationActu()==true){
+        if(ValidationCarsl()==true){
             $.ajax({
                 url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
                 method: 'POST',
@@ -49,7 +49,7 @@ function AjoutCarrousel(){
                 }
             });
             AffichageListeCarrousel();
-       // }
+        }
     });
     
 }
@@ -71,7 +71,7 @@ function ModifierCarrousel(){
 
         //BUG: PROBLÈME AVEC LA MODIFICATION DES IMAGES.
 
-    //    if(ValidationActu()==true){
+       if(ValidationCarsl()==true){
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
             method: 'POST',
@@ -91,7 +91,7 @@ function ModifierCarrousel(){
             }
         });
         AffichageListeCarrousel();
-   // }
+    }
        
     });
     
@@ -254,7 +254,7 @@ function RemplirFormCarrousel(){
     $(document).on("click", ".lgnTblCarsl", function() {
         idCarsl =  $(this).attr("id");
         idCarsl = idCarsl.slice(idCarsl.indexOf("_") + 1, idCarsl.length);
-        
+        Annuler();
 
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/carrouselEvenmt_admin.php',
@@ -313,10 +313,23 @@ function ViderChampsFrm(){
     $("#lgnTblCarsl").text("");
 }
 
-function Annuler(){
+function AnnulerCarsl(){
    
     $("#btnAnnulerCarslEvnt").click(function (e) { 
         e.preventDefault();
+        Annuler();   
+    });
+    $("#BtnModalAjoutCarslEvnt").click(function (e) { 
+        e.preventDefault();
+        Annuler();   
+    });
+    
+}
+
+
+function Annuler(){
+   
+
         ViderChampsFrm();
 
         $("#lblTitre").remove();
@@ -327,7 +340,7 @@ function Annuler(){
         $("#divTitreActu").css("margin-bottom", "1rem");
         $("#divTexteActu").css("margin-bottom", "1rem");
     
-    });
+    
 }
 
 /*

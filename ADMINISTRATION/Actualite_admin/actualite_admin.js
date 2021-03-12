@@ -12,7 +12,7 @@ $(document).ready(function () {
     IdActuTableau();
     RemplirFormActu();
     ValidationChamps();
-    Annuler();
+    AnnulerEvent();
 });
 
 //TODO: VALIDATIONS DES ENTRÉES
@@ -74,7 +74,7 @@ function ModifierActualite(){
 
         //BUG: PROBLÈME AVEC LA MODIFICATION DES IMAGES.
 
-       // if(ValidationActu()==true){
+        if(ValidationActu()==true){
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
             method: 'POST',
@@ -94,7 +94,7 @@ function ModifierActualite(){
             }
         });
         AffichageActu_Tous();
-   // }
+    }
        
     });
     
@@ -184,6 +184,7 @@ function AffichageActu_Tous(){
                     lgnTab.setAttribute("class", "lgnTblActu");
                     lgnTab.setAttribute("data-toggle", "modal");
                     lgnTab.setAttribute("data-target", "#adminFormActu");
+                    lgnTab.setAttribute("onclick", "Annuler()");
                     colTitre.innerHTML = actualite.titreActu;
                     colDate.innerHTML = actualite.dateActu;
                     colAutre.innerHTML = "Autre";                  
@@ -260,7 +261,7 @@ function RemplirFormActu(){
     $(document).on("click", ".lgnTblActu", function() {
         idActu =  $(this).attr("id");
         idActu = idActu.slice(idActu.indexOf("_") + 1, idActu.length);
-        
+        Annuler();
 
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
@@ -275,9 +276,9 @@ function RemplirFormActu(){
                 $("#titreActu").val(reqActu[0].titreActu);
                 $("#dateActu").val(reqActu[0].dateActu);
                 $("#texteActu").val(reqActu[0].texteActu);
-             /*   var strUrl = reqActu[0].photoActu;
-                    strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                 
-                $("#lgnTblActu").text(strUrl.slice(strUrl.lastIndexOf("/") + 1, strUrl.length));*/
+                var strUrl = reqActu[0].photoActu;
+                    strUrl = strUrl.replace(String.fromCharCode(92),String.fromCharCode(92,92));                
+                $("#lblImgActu").text(strUrl.slice(strUrl.lastIndexOf("/") + 1, strUrl.length));
                 if(reqActu[0].actif==0){
                     $("#btnSupprimerActu").css("background-color", " #f0ad4e ");
                     $("#btnSupprimerActu").css("color", "black ");
@@ -311,7 +312,7 @@ function ModaleAjout(){
     $("#btnSupprimerActu").hide();
     $("#btnAjoutActu").show();
     ViderChampsFrm();
-
+    Annuler();
 }
 
 function ViderChampsFrm(){
@@ -323,8 +324,7 @@ function ViderChampsFrm(){
 
 function Annuler(){
    
-    $("#btnAnnulerActu").click(function (e) { 
-        e.preventDefault();
+        
         ViderChampsFrm();
 
         $("#lblTitre").remove();
@@ -338,8 +338,24 @@ function Annuler(){
         $("#divTexteActu").css("margin-bottom", "1rem");
         $("#divDateActu").css("margin-bottom", "1rem");
     
-    });
+
+    
 }
+
+
+function AnnulerEvent(){
+   
+    $("#btnAnnulerActu").click(function (e) { 
+        e.preventDefault();
+        Annuler();   
+    });
+    $("#BtnModalAjoutActu").click(function (e) { 
+        e.preventDefault();
+        Annuler();   
+    });
+    
+}
+
 
 function IdActuTableau(){
 

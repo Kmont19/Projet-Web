@@ -12,7 +12,7 @@ $(document).ready(function () {
     //IdActuTableau();
     RemplirFormLiens();
     ValidationChamps();
-    Annuler();
+    AnnulerLien();
 });
 
 //TODO: VALIDATIONS DES ENTRÉES
@@ -27,7 +27,7 @@ function AjoutLiens(){
         form_data.append('texteLiens', $("#texteLiens").val());
         form_data.append('urlLiens', $("#urlLiens").val());
 
-       // if(ValidationActu()==true){
+        if(ValidationLiens()==true){
             $.ajax({
                 url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
                 method: 'POST',
@@ -47,7 +47,7 @@ function AjoutLiens(){
                 }
             });
             AffichageListeLiens();
-       // }
+        }
     });
     
 }
@@ -68,7 +68,7 @@ function ModifierLiens(){
 
         //BUG: PROBLÈME AVEC LA MODIFICATION DES IMAGES.
 
-    //    if(ValidationActu()==true){
+        if(ValidationLiens()==true){
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
             method: 'POST',
@@ -88,7 +88,7 @@ function ModifierLiens(){
             }
         });
         AffichageListeLiens();
-   // }
+    }
        
     });
     
@@ -251,7 +251,7 @@ function RemplirFormLiens(){
     $(document).on("click", ".lgnTblLiens", function() {
         idLiens =  $(this).attr("id");
         idLiens = idLiens.slice(idLiens.indexOf("_") + 1, idLiens.length);
-        
+        Annuler();
 
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/liens_admin.php',
@@ -307,10 +307,21 @@ function ViderChampsFrm(){
     $("#lgnTblLiens").text("");
 }
 
-function Annuler(){
+function AnnulerLien(){
    
     $("#btnAnnulerLiens").click(function (e) { 
         e.preventDefault();
+        Annuler();   
+    });
+    $("#BtnModalAjoutCarslEvnt").click(function (e) { 
+        e.preventDefault();
+        Annuler();   
+    });
+    
+}
+
+function Annuler(){
+   
         ViderChampsFrm();
 
         $("#lblUrl").remove();
@@ -322,7 +333,6 @@ function Annuler(){
         $("#divTitreActu").css("margin-bottom", "1rem");
         $("#divTexteActu").css("margin-bottom", "1rem");
     
-    });
 }
 
 /*
