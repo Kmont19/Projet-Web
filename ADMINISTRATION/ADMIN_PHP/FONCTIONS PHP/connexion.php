@@ -2,7 +2,7 @@
 function CONNEXION_BD(){
     $utilisateur="1647207";
     $passwword="1647207";
-    $connect = 'mysql:host=localhost;dbname=h2021_420626ri_gr01_équipe_5;port=3306,charset=utf8';
+    $connect = 'mysql:host=206.167.140.56;dbname=h2021_420626ri_gr01_équipe_5;port=3306,charset=utf8';
     //$connect = 'mysql:host=localhost;dbname=dept_info;charset=utf8';
 
     try {
