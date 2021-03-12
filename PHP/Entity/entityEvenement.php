@@ -20,8 +20,8 @@
         {
             try {
                 $stmt = $this->connexion->prepare("SELECT idEvenement, titreEvenement, DATE_FORMAT(dateEvenement, '%d %b %Y') as dateEvenement , 
-                                                    DATE_FORMAT(heureEvenement, '%Hh%i') as heure, lieuEvenement, texteEvenement, photoEvenement  
-                                                    FROM evenement ORDER BY dateEvenement DESC");
+                                                    DATE_FORMAT(heureEvenement, '%Hh%i') as heure, lieuEvenement, texteEvenement, photoEvenement, actif  
+                                                    FROM evenement WHERE actif = 1 ORDER BY dateEvenement DESC");
                 $stmt->execute();
                 $evenements = $stmt->fetchAll();
                 return $evenements;
@@ -34,8 +34,8 @@
         {
             try {
                 $stmt = $this->connexion->prepare("SELECT idEvenement, titreEvenement, DATE_FORMAT(dateEvenement, '%d %b %Y') as dateEvenement ,
-                                                DATE_FORMAT(heureEvenement, '%Hh%i') as heure, lieuEvenement, texteEvenement, photoEvenement  
-                                                FROM evenement ORDER BY dateEvenement DESC LIMIT 3");
+                                                DATE_FORMAT(heureEvenement, '%Hh%i') as heure, lieuEvenement, texteEvenement, photoEvenement, actif  
+                                                FROM evenement WHERE actif = 1 ORDER BY dateEvenement DESC LIMIT 3");
                 $stmt->execute();
                 $evenements = $stmt->fetchAll();
                 return $evenements;
@@ -48,7 +48,7 @@
         {
             try {
                 $variable = "%".$recherche."%";
-                $stmt = $this->connexion->prepare("SELECT idEvenement, titreEvenement, DATE_FORMAT(dateEvenement, '%d %b %Y') as dateEvenement , DATE_FORMAT(heureEvenement, '%Hh%i') as heure, lieuEvenement, texteEvenement, photoEvenement  FROM evenement WHERE titreEvenement LIKE :recherche");
+                $stmt = $this->connexion->prepare("SELECT idEvenement, titreEvenement, DATE_FORMAT(dateEvenement, '%d %b %Y') as dateEvenement , DATE_FORMAT(heureEvenement, '%Hh%i') as heure, lieuEvenement, texteEvenement, photoEvenement, actif  FROM evenement WHERE titreEvenement LIKE :recherche AND actif = 1");
                 $stmt->execute(['recherche' => $variable]);
                 $evenements = $stmt->fetchAll();
                 return $evenements;

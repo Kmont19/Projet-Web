@@ -19,7 +19,7 @@
         public function getActualites()
         {
             try {
-                $stmt = $this->connexion->prepare("SELECT idActualite, titreActu, DATE_FORMAT(dateActu, '%d %M %Y') as dateActu, texteActu, photoActu FROM actualite ORDER BY dateActu DESC");
+                $stmt = $this->connexion->prepare("SELECT idActualite, titreActu, DATE_FORMAT(dateActu, '%d %M %Y') as dateActu, texteActu, photoActu , actif FROM actualite WHERE actif = 1 ORDER BY dateActu DESC");
                 $stmt->execute();
                 $actualites = $stmt->fetchAll();
                 return $actualites;
@@ -31,7 +31,7 @@
         public function getActualitesAccueil()
         {
             try {
-                $stmt = $this->connexion->prepare("SELECT idActualite, titreActu, DATE_FORMAT(dateActu, '%d %M %Y') as dateActu, texteActu, photoActu FROM actualite ORDER BY dateActu DESC LIMIT 3");
+                $stmt = $this->connexion->prepare("SELECT idActualite, titreActu, DATE_FORMAT(dateActu, '%d %M %Y') as dateActu, texteActu, photoActu, actif FROM actualite WHERE actif = 1 ORDER BY dateActu DESC LIMIT 3");
                 $stmt->execute();
                 $actualites = $stmt->fetchAll();
                 return $actualites;
@@ -44,7 +44,7 @@
         {
             try {
                 $variable = "%".$recherche."%";
-                $stmt = $this->connexion->prepare("SELECT * FROM actualite WHERE titreActu LIKE :recherche");
+                $stmt = $this->connexion->prepare("SELECT * FROM actualite WHERE titreActu LIKE :recherche AND actif = 1");
                 $stmt->execute(['recherche' => $variable]);
                 $actualites = $stmt->fetchAll();
                 return $actualites;
