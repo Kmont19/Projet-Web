@@ -17,8 +17,8 @@ function createCardEventGauche(id, titre, date, heure, lieu, description, img) {
                             <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
                                 <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a class="text-theme-color">${titre}</a></h5>
                                 <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
-                                    <li><i class="far fa-clock margin-10px-right"></i>${heure}</li>
-                                    <li><i class="far fa-calendar-alt margin-5px-right"></i> ${lieu}</li>
+                                    <li><i class="material-icons margin-10px-right">schedule</i>${heure}</li>
+                                    <li><i class="material-icons margin-5px-right">event</i> ${lieu}</li>
                                 </ul>
                                 <p>${description}</p>
                             </div>
@@ -33,8 +33,8 @@ function createCardEventDroite(id, titre, date, heure, lieu, description, img) {
                             <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
                                 <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a class="text-theme-color">CV Virtuel</a></h5>
                                 <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
-                                    <li><i class="far fa-clock margin-10px-right"></i>${heure}</li>
-                                    <li><i class="far fa-calendar-alt margin-5px-right"></i> ${lieu}</li>
+                                    <li><i class="material-icons margin-10px-right">schedule</i>${heure}</li>
+                                    <li><i class="material-icons margin-5px-right">event</i> ${lieu}</li>
                                 </ul>
                                 <p>${description}</p>
                             </div>
