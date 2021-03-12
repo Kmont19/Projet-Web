@@ -105,7 +105,8 @@
 }
 
 .bloc-actualites .widget.single-news:hover {
-    box-shadow: 0 0 5px 5px #707070;
+    box-shadow: 0 0 8px 8px #474747;
+    transition: all .2s ease-in-out;
 }
 
 .bloc-actualites .widget.single-news .image img {
@@ -116,10 +117,9 @@
     max-height: 720px;
 }
 
-
-
 .bloc-actualites .widget.single-news .image .gradient {
     position: absolute;
+    transition: all .4s ease-in-out;
     left: 0;
     right: 0;
     top: 0;
@@ -128,6 +128,7 @@
     background-image: -moz-linear-gradient(bottom, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
     background-image: -o-linear-gradient(bottom, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
     background-image: linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
+    
 }
 
 .bloc-actualites .widget.single-news .text-actualite {
@@ -144,7 +145,6 @@
     overflow: auto;
     height: fit-content;
 }
-
 
 .bloc-actualites .widget.single-news .details {
     position: absolute;
@@ -171,6 +171,7 @@
     padding: 0;
     margin-bottom: 15px;
     font-size: 24px;
+    transition: all .4s ease-in-out;
 }
 
 .bloc-actualites .widget.single-news .details h3 a {
@@ -183,44 +184,8 @@
     filter: alpha(opacity=80);
 }
 
-.bloc-actualites .widget.single-news .details h3 a { 
-    cursor: pointer;
-}
-
 .bloc-actualites .widget.single-news .details time {
     color: rgba(255, 255, 255, 0.705);
-}
-
-/*.bloc-actualites .widget.single-news .details:hover time {
-    position: relative;
-    display: block;
-    color: white;
-    font-size: 13px;
-    margin-bottom: -20px;
-    -webkit-transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-    -moz-transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-    -o-transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-    transition: all 350ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-    zoom: 1;
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
-}*/
-
-
-#ctnheadMod{
-    min-width: 100%;
-}
-
-#imgModal{
-    min-width: 100%;
-}
-
-#btnXmodal{
-    float: left;
-    min-width: 100%;
 }
 
 @media (max-width: 767px) {

@@ -1,19 +1,19 @@
-<?php           
+<?php  
 function CONNEXION_BD(){
-$utilisateur="root";
-$passwword="root";
-//$connect = 'mysql:host=localhost;dbname=420617ri_gr01; charset=utf8", "1647207", "1647207"';
-$connect = 'mysql:host=localhost;dbname=dept_info;charset=utf8';
+    $utilisateur="1647207";
+    $passwword="1647207";
+    $connect = 'mysql:host=206.167.140.56;dbname=h2021_420626ri_gr01_équipe_5;port=3306,charset=utf8';
+    //$connect = 'mysql:host=localhost;dbname=dept_info;charset=utf8';
 
-try {
-   $pdo = new PDO($connect, $utilisateur, $passwword);
-   $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die();
-    echo 'ERREUR!!!<br>Connexion impossible.';
-    echo $e->getMessage();
-}
+    try {
+        $pdo = new PDO($connect, $utilisateur, $passwword);
+        $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die();
+        echo 'ERREUR!!!<br>Connexion impossible.';
+        echo $e->getMessage();
+    }
 
-return $pdo;
+    return $pdo;
 }
 ?>

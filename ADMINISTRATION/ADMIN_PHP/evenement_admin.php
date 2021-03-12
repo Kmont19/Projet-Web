@@ -74,7 +74,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $PDO1->beginTransaction();   
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $reqInsert = $PDO1->prepare("INSERT INTO `evenement`(titreEvenement,
+            $reqInsert = $PDO1->prepare("INSERT INTO evenement(titreEvenement,
                                                                 lieuEvenement,
                                                                 dateEvenement,                                                              
                                                                 heureEvenement,
@@ -87,7 +87,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                                                 :heureEvenement,
                                                                 :texteEvenement,
                                                                 :photoEvenement
-                                                                );");
+                                                                )");
 
 
             $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
@@ -123,14 +123,13 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $PDO1->beginTransaction();   
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $reqInsert = $PDO1->prepare("UPDATE `evenement` SET titreEvenement = :titreEvenement,
+            $reqInsert = $PDO1->prepare("UPDATE evenement SET titreEvenement = :titreEvenement,
                                                                     lieuEvenement = :lieuEvenement,
                                                                     dateEvenement = :dateEvenement,
                                                                     heureEvenement = :heureEvenement,
                                                                     texteEvenement= :texteEvenement,
                                                                     photoEvenement = :photoEvenement                                                      
-                                    WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
-                                );
+                                    WHERE idEvenement = ". $_POST["idEvnmt"]);
 
             $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
             $reqInsert->bindParam(":lieuEvenement", $lieuEvenmt);
@@ -164,9 +163,8 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $PDO1->beginTransaction();   
             $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $reqInsert = $PDO1->prepare("UPDATE `evenement` SET actif = :actif                                              
-                                    WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
-                                );
+            $reqInsert = $PDO1->prepare("UPDATE evenement SET actif = :actif                                              
+                                    WHERE idEvenement = ". $_POST["idEvnmt"]);
 
             if($_POST["actif"]=="sup"){                    
                 $supprimer = 0;
@@ -215,13 +213,13 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                         dateEvenement,
                                         heureEvenement, 
                                         actif
-                                FROM `evenement`;";
+                                FROM evenement";
         
                 $execReq = $PDO1->query($reqActualite);
                 $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
                  
                 $objResult = json_encode($resultReq);              
-                 echo $objResult;
+                echo $objResult;
          
          
              }
@@ -252,7 +250,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                  $reqActualite = "SELECT idEvenement,
                                          titreEvenement,
                                          dateEvenement
-                                 FROM `evenement`;";
+                                 FROM evenement";
          
                  $execReq = $PDO1->query($reqActualite);
                  $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
@@ -289,8 +287,8 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                         heureEvenement,
                                         texteEvenement,
                                         photoEvenement
-                                FROM `evenement`
-                                WHERE idEvenement = ". $_POST["idEvnmt"] . ";";
+                                FROM evenement
+                                WHERE idEvenement = ". $_POST["idEvnmt"];
          
                  $execReq = $PDO1->query($reqActualite);
                  $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
@@ -322,8 +320,8 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                 $resultReq = array();
         
                 $reqActualite = "SELECT actif
-                               FROM `evenement`
-                               WHERE idEvenement = ". $_POST["idEvnmt"] . ";";
+                               FROM evenement
+                               WHERE idEvenement = ". $_POST["idEvnmt"];
         
                 $execReq = $PDO1->query($reqActualite);
                 $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);

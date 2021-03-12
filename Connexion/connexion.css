@@ -1,0 +1,109 @@
+.menu-admin {
+    display: none;
+}
+
+.menu-connexion .dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    margin-top: 8px;
+    background: rgb(243, 243, 243);
+}
+
+.menu-admin .dropdown-menu{
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.menu-admin a {
+    height: 100%;
+    font-family: inherit;
+    color: #da1a32;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.menu-admin a:hover {
+    background-color: rgb(216, 216, 216);
+    color: #061f50;
+}
+
+.form-connexion:hover, .form-connexion:focus{
+    outline: none;
+}
+
+.form-connexion:active{
+    background-color: rgb(243, 243, 243);
+    color:#000;
+}
+
+.form-box {
+    width: 380px;
+    transition: 0.1s;
+    border-radius: 10px;
+}
+
+@media (max-width: 991px) {
+    .form-box {
+        max-width: 991px;
+    }
+}
+
+@media (max-width: 380px) {
+    
+}
+
+.data-group {
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 280px;
+    transition: .5s;
+
+}
+
+.user-data {
+    width: 100%;
+    padding: 10px 0;
+    margin: 0 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    outline: none;
+    background: transparent;
+    color: black;
+}
+
+.submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto;
+    background: linear-gradient(to right, #092d74, #061f50);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+}
+
+.submit-btn:focus {
+    outline: none;
+}
+
+#errorLogin {
+    display: block;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    font-style: italic;
+    padding: 5px;
+}
+
+.logout {
+    display: none;
+}

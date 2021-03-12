@@ -6,7 +6,6 @@ include("../ADMIN_PHP/FONCTIONS PHP/Fonctions_Gest_InputUser.php");
 include("../ADMIN_PHP/FONCTIONS PHP/connexion.php");
 include("../ADMIN_PHP/FONCTIONS PHP/Regex.php");
 
-
 $titreCarrousel = "";
 $texteCarrousel = "";
 
@@ -31,11 +30,14 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")
     $RETOUR_ENTRE = GestionErreursSanitization(($_POST["texteCarrousel"]), $regex_StringTousCaracteres_OUI, "string");
     $texteCarrousel = $RETOUR_ENTRE["Valeur"];
 
+    
 
 }
 
 
 if(!( $_POST["action"]=="listeCarrousel") &&!( $_POST["action"]=="infoCarrousel") &&!( $_POST["action"]=="infoActif")){
+
+    
 
     if(!empty($imageActu)){
     if($_FILES['imageCarslEvnt']['tmp_name'] == "" || $_FILES['imageCarslEvnt']['size'] == 0){
@@ -157,7 +159,7 @@ if(!( $_POST["action"]=="listeCarrousel") &&!( $_POST["action"]=="infoCarrousel"
    
     }
     else{
-
+        
         if ( $_POST["action"]=="listeCarrousel"){
 
             // echo "action ReqListe";

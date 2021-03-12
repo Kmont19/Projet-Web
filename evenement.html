@@ -4,7 +4,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <title>Departement Informatique Cegep T-R</title>
+        <title>Département Informatique Cégep T-R</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,9 +12,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="shortcut icon" href="Images/logo département informatique.ico" type="image/x-icon" />
         
         <link rel="stylesheet" type="text/css" href="Evenement/evenement.css"/>
         <script src="Evenement/evenement.js" ></script>
+        <script src="Menu/menu.js"></script>
     </head>
     <body>
         <div id="menu"></div>
@@ -22,15 +24,15 @@
         <div class="bloc-events pt-5">
             <div class="header row justify-content-center no-gutters">
                 <div class="row no-gutters w-100 justify-content-center pt-3">
-                    <h2 >Événements</h2>
+                    <h2 >Évenements</h2>
                 </div>
                 <div class="row no-gutters justify-content-center w-100">
                     <section class="search-bar mt-1 pb-4 w-50">
                         <form>
                             <div class="input-group col-md-12">
-                                <input type="search" class="form-control" placeholder="Rechercher une actualité">
+                                <input type="search" class="form-control" placeholder="Rechercher une actualité" id="searchtext">
                                 <div class="input-group-append">
-                                    <button class="btn btn-search btn-link" type="submit">
+                                    <button class="btn btn-search btn-link" type="submit" id="boutonrecherche">
                                         <i class="material-icons">search</i>
                                     </button>
                                 </div>
@@ -42,11 +44,11 @@
             <section class="filtre-bar">
                 <ul class="filtre-events mx-auto">
                     <label>Filtrer par: </label>
-                    <li class="active">
-                        <a id="filtre-recent">Le plus récents</a>
+                    <li id="filtre-recent">
+                        <a id="filtrerecent">Date de l'évenement</a>
                     </li>
-                    <li>
-                        <a id="filtre-nom">Par order alphabetique</a>
+                    <li id="filtre-nom">
+                        <a id="filtrenom">Ordre alphabétique</a>
                     </li>
                 </ul>
             </section>            
@@ -87,6 +89,21 @@
         $(document).ready(function() {
           $("#menu").load("menu.html")
           $("#footer").load("footer.html")
+        })
+
+        $("#boutonrecherche").click(function (e) {
+            e.preventDefault();
+            //appel à ma fonction
+            let recherche = $('#searchtext').val();
+            rechercheEv(recherche);
+        })
+
+        $("#filtre-nom").click(function(){
+            trierEvenementsParNom();
+        })
+
+        $("#filtre-recent").click(function(){
+            trierEvenementsParDate();
         })
     </script>
 </html>

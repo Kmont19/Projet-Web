@@ -159,16 +159,6 @@
     margin-right: 10px;
 }
 
-.section-events .btn {
-    background-color: #da1a32;
-    color: white;
-    width: 120px;
-    font-weight: 600;
-}
-
-.section-events .btn:hover {
-    box-shadow: 0 0 5px 5px #707070;
-}
 
 @media screen and (max-width: 1199px) {
     .event-date {
@@ -210,5 +200,11 @@
 
     .event-card p {
         margin-top: 5%;
+    }
+}
+
+@media (max-width: 800px) {
+    .bloc-events .search-bar {
+        width: 100% !important;
     }
 }
