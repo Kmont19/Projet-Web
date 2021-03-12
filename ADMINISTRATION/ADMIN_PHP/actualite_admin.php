@@ -337,7 +337,7 @@ if(!( $_POST["action"]=="listeActuTous") &&!( $_POST["action"]=="infoActualite")
     function TelechargerPhoto(){
 
 
-        $dossierTlcg = "C:/UwAmp/www/SERVEUR_YAN/Projet_Web/Images/Actualites/";
+        $dossierTlcg = "Images/Actualites/";
         $dossier_cible = $dossierTlcg . basename($_FILES["imageActu"]["name"]);
         $TelOk = 1;
         $fichierImgType = strtolower(pathinfo($dossier_cible, PATHINFO_EXTENSION));
