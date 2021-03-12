@@ -272,8 +272,8 @@ function TelechargerPhoto(){
 
     echo var_dump($_FILES);
 
-    $dossierTlcg = "C:/UwAmp/www/SERVEUR_YAN/Projet_Web/Images/Actualites/";
-    $dossier_cible = $dossierTlcg . basename($_FILES["imageCarslEvnt"]["name"]);
+   
+    $dossier_cible = basename($_FILES["imageCarslEvnt"]["name"]);
     $TelOk = 1;
     $fichierImgType = strtolower(pathinfo($dossier_cible, PATHINFO_EXTENSION));
 

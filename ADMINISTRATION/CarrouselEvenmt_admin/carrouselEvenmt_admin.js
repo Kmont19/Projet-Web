@@ -321,11 +321,11 @@ function Annuler(){
 
         $("#lblTitre").remove();
         $("#lblTexte").remove();
-        $("#lblDate").remove();
 
         $("#titreCarslEvnt").css("border-color", "initial");
         $("#texteCarslEvnt").css("border-color", "initial");
-       
+        $("#divTitreActu").css("margin-bottom", "1rem");
+        $("#divTexteActu").css("margin-bottom", "1rem");
     
     });
 }
@@ -367,53 +367,26 @@ function ValidationCarsl(){
 
 
     var titreCarsl =   $("#titreCarslEvnt").val();
-       var lblvalidTitre = document.createElement("p");
-       lblvalidTitre.setAttribute("id", "lblTitre");
         if(regex_Vide_OUI.test(titreCarsl)==true){
-            lblvalidTitre.setAttribute("class", "lblNonValid");
-            lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-            $("#titreActu").css("border-color", "red");
             titreValide = false;
         }else{
             if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
-                lblvalidTitre.setAttribute("class", "lblNonValid");
-                lblvalidTitre.innerHTML = "Titre non-valide ";
-                $("#titreActu").css("border-color", "red");
                 titreValide = false;
             }else{           
-                lblvalidTitre.setAttribute("class", "lblValid");
-                lblvalidTitre.innerHTML = "Titre valide";
-                $("#titreActu").css("border-color", "green");
                 titreValide = true;
             }
         }
-            $(lblvalidTitre).insertAfter("#divTitreActu");
 
-
-
-            var texteCarsl =   $("#texteCarslEvnt").val();      
-            var lblvalidTexte = document.createElement("p");
-            lblvalidTexte.setAttribute("id", "lblTexte");
+            var texteCarsl =   $("#texteCarslEvnt").val();                
              if(regex_Vide_OUI.test(texteCarsl)==true){
-                lblvalidTexte.setAttribute("class", "lblNonValid");
-                lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-                $("#texteActu").css("border-color", "red");
                 texteValide = false;
              }else{
                  if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
-                    lblvalidTexte.setAttribute("class", "lblNonValid");
-                    lblvalidTexte.innerHTML = "Texte non-valide ";
-                    $("#texteActu").css("border-color", "red");
                     texteValide = false;
                  }else{           
-                    lblvalidTexte.setAttribute("class", "lblValid");
-                    lblvalidTexte.innerHTML = "Texte valide";
-                    $("#texteActu").css("border-color", "green");
                     texteValide = true;
                  }
              }
-                 $(lblvalidTexte).insertAfter("#divTexteActu");
-
 
         if((titreValide==true)&&(texteValide==true)){
             entreeValide = true;
@@ -438,12 +411,14 @@ function ValidationChamps(){
     $("#titreCarslEvnt").focus(function (e) { 
         e.preventDefault();
         $("#lblTitre").remove();
-        $("#titreCarslEvnt").css("border-color", "initial")
+        $("#titreCarslEvnt").css("border-color", "initial");
+        $("#divTitreActu").css("margin-bottom", "1rem");
     });
     $("#texteCarslEvnt").focus(function (e) { 
         e.preventDefault();
         $("#lblTexte").remove();
-        $("#texteCarslEvnt").css("border-color", "initial")
+        $("#texteCarslEvnt").css("border-color", "initial");
+        $("#divTexteActu").css("margin-bottom", "1rem");
     });
     
 
@@ -455,22 +430,22 @@ function ValidationChamps(){
         if(regex_Vide_OUI.test(titreCarsl)==true){
             lblvalidTitre.setAttribute("class", "lblNonValid");
             lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-            $("#titreActu").css("border-color", "red");
-            titreValide = false;
+            $("#titreCarslEvnt").css("border-color", "red");
         }else{
-            if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
+            if(regex_StringTousCaracteres_OUI.test(titreCarsl)==false){       
                 lblvalidTitre.setAttribute("class", "lblNonValid");
                 lblvalidTitre.innerHTML = "Titre non-valide ";
-                $("#titreActu").css("border-color", "red");
-                titreValide = false;
+                $("#titreCarslEvnt").css("border-color", "red");
             }else{           
                 lblvalidTitre.setAttribute("class", "lblValid");
                 lblvalidTitre.innerHTML = "Titre valide";
-                $("#titreActu").css("border-color", "green");
-                titreValide = true;
+                $("#titreCarslEvnt").css("border-color", "green");
             }
         }
             $(lblvalidTitre).insertAfter("#divTitreActu");
+            $("#divTitreActu").css("margin-bottom", "0rem");
+           
+
    });
        
 
@@ -482,22 +457,20 @@ function ValidationChamps(){
              if(regex_Vide_OUI.test(texteCarsl)==true){
                 lblvalidTexte.setAttribute("class", "lblNonValid");
                 lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-                $("#texteActu").css("border-color", "red");
-                texteValide = false;
+                $("#texteCarslEvnt").css("border-color", "red");
              }else{
                  if(regex_StringTousCaracteres_OUI.test(texteCarsl)==false){       
                     lblvalidTexte.setAttribute("class", "lblNonValid");
                     lblvalidTexte.innerHTML = "Texte non-valide ";
-                    $("#texteActu").css("border-color", "red");
-                    texteValide = false;
+                    $("#texteCarslEvnt").css("border-color", "red");
                  }else{           
                     lblvalidTexte.setAttribute("class", "lblValid");
-                    lblvalidTexte.innerHTML = "Texte valide";
-                    $("#texteActu").css("border-color", "green");
-                    texteValide = true;
+                    lblvalidTexte.innerHTML = "Valide";
+                    $("#texteCarslEvnt").css("border-color", "green");
                  }
              }
                  $(lblvalidTexte).insertAfter("#divTexteActu");
+                 $("#divTexteActu").css("margin-bottom", "0rem");
     });
 
 

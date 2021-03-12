@@ -173,9 +173,13 @@ h1{
 
 .lblValid{
     color: green;
-    font-size: 14px;
+    font-size: 16px;
 }
 .lblNonValid{
     color: red;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+#divTitreActu, #divTexteActu, #divDateActu{
+    margin-bottom: 1rem;
 }

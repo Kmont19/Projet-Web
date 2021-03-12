@@ -132,3 +132,15 @@ h1{
     height: 72%!important;
 }
 
+.lblValid{
+    color: green;
+    font-size: 16px;
+}
+.lblNonValid{
+    color: red;
+    font-size: 16px;
+}
+
+#divTitreActu, #divTexteActu{
+    margin-bottom: 1rem;
+}

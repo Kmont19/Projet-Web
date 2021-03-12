@@ -313,13 +313,14 @@ function Annuler(){
         e.preventDefault();
         ViderChampsFrm();
 
-        $("#lblTitre").remove();
+        $("#lblUrl").remove();
         $("#lblTexte").remove();
-        $("#lblDate").remove();
+   
 
         $("#texteLiens").css("border-color", "initial");
         $("#urlLiens").css("border-color", "initial");
-       
+        $("#divTitreActu").css("margin-bottom", "1rem");
+        $("#divTexteActu").css("margin-bottom", "1rem");
     
     });
 }
@@ -357,55 +358,33 @@ function ValidationLiens(){
     var regex_Courriel_OUI = /(^(.+)(@)((.+)([\.]{1})(.+))+$)/;
     var regex_MotDePasse_OUI = /((^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#!\"$%?&*()_+|=\/*]).{8,}$))/;
     var regex_StringTousCaracteres_OUI = /((^[A-Z a-z 0-9 |(){}\[\]±@£¢­<>#!%?$&*-+\/=,.;:´`'\"«»°_\ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
+    var regex_UrlWeb_OUI = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 
 
     var texteLien =   $("#texteLiens").val();
-       var lblvalidTexte = document.createElement("p");
-       lblvalidTitre.setAttribute("id", "lblTitre");
-        if(regex_Vide_OUI.test(texteLien)==true){
-            lblvalidTexte.setAttribute("class", "lblNonValid");
-            lblvalidTexte.innerHTML = "Vous devez entrer un texte de lien";
-            $("#texteLiens").css("border-color", "red");
+        if(regex_Vide_OUI.test(texteLien)==true){          
             texteValide = false;
         }else{
-            if(regex_StringTousCaracteres_OUI.test(texteLien)==false){       
-                lblvalidTexte.setAttribute("class", "lblNonValid");
-                lblvalidTexte.innerHTML = "Titre non-valide ";
-                $("#texteLiens").css("border-color", "red");
+            if(regex_StringTousCaracteres_OUI.test(texteLien)==false){                    
                 texteValide = false;
-            }else{           
-                lblvalidTexte.setAttribute("class", "lblValid");
-                lblvalidTexte.innerHTML = "Titre valide";
-                $("#texteLiens").css("border-color", "green");
+            }else{                       
                 texteValide = true;
             }
         }
-            $(lblvalidTexte).insertAfter("#divTitreActu");
-
 
 
             var urlLien =   $("#urlLiens").val();      
-            var lblvalidUrl = document.createElement("p");
-            lblvalidTexte.setAttribute("id", "lblTexte");
              if(regex_Vide_OUI.test(urlLien)==true){
-                lblvalidUrl.setAttribute("class", "lblNonValid");
-                lblvalidUrl.innerHTML = "Vous devez entrer un texte";
-                $("#urlLiens").css("border-color", "red");
                 urlValide = false;
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(urlLien)==false){       
-                    lblvalidUrl.setAttribute("class", "lblNonValid");
-                    lblvalidUrl.innerHTML = "Texte non-valide ";
-                    $("#urlLiens").css("border-color", "red");
+                 if(regex_UrlWeb_OUI.test(urlLien)==false){       
                     urlValide = false;
                  }else{           
-                    lblvalidUrl.setAttribute("class", "lblValid");
-                    lblvalidUrl.innerHTML = "Texte valide";
                     $("#urlLiens").css("border-color", "green");
                     urlValide = true;
                  }
              }
-                 $(lblvalidUrl).insertAfter("#divTexteActu");
+
 
         if((texteValide==true)&&(urlValide==true)){
             entreeValide = true;
@@ -426,42 +405,47 @@ function ValidationChamps(){
     var regex_Courriel_OUI = /(^(.+)(@)((.+)([\.]{1})(.+))+$)/;
     var regex_MotDePasse_OUI = /((^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#!\"$%?&*()_+|=\/*]).{8,}$))/;
     var regex_StringTousCaracteres_OUI = /((^[A-Z a-z 0-9 |(){}\[\]±@£¢­<>#!%?$&*-+\/=,.;:´`'\"«»°_\ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
+    var regex_UrlWeb_OUI = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 
     $("#texteLiens").focus(function (e) { 
         e.preventDefault();
         $("#lblTexte").remove();
         $("#texteLiens").css("border-color", "initial");
+        $("#divTitreActu").css("margin-bottom", "1rem");
     });
     $("#urlLiens").focus(function (e) { 
         e.preventDefault();
         $("#lblUrl").remove();
-        $("#urlLiens").css("border-color", "initial")
+        $("#urlLiens").css("border-color", "initial");
+        $("#divTexteActu").css("margin-bottom", "1rem");
     });
    
    $("#texteLiens").blur(function (e) { 
        e.preventDefault();
        var texteLien =   $("#texteLiens").val();
        var lblvalidTexte = document.createElement("p");
-       lblvalidTitre.setAttribute("id", "lblTexte");
+       lblvalidTexte.setAttribute("id", "lblTexte");
         if(regex_Vide_OUI.test(texteLien)==true){
             lblvalidTexte.setAttribute("class", "lblNonValid");
             lblvalidTexte.innerHTML = "Vous devez entrer un texte de lien";
             $("#texteLiens").css("border-color", "red");
-            texteValide = false;
+            $("#lblTexte").css("color", "red");
         }else{
             if(regex_StringTousCaracteres_OUI.test(texteLien)==false){       
                 lblvalidTexte.setAttribute("class", "lblNonValid");
-                lblvalidTexte.innerHTML = "Titre non-valide ";
+                lblvalidTexte.innerHTML = "Texte non-valide ";
                 $("#texteLiens").css("border-color", "red");
-                texteValide = false;
+                $("#lblTexte").css("color", "red");
             }else{           
                 lblvalidTexte.setAttribute("class", "lblValid");
-                lblvalidTexte.innerHTML = "Titre valide";
+                lblvalidTexte.innerHTML = "Valide";
                 $("#texteLiens").css("border-color", "green");
-                texteValide = true;
+                $("#lblTexte").css("color", "green");
             }
         }
             $(lblvalidTexte).insertAfter("#divTitreActu");
+            $("#divTitreActu").css("margin-bottom", "0rem");
+
    });
        
 
@@ -469,26 +453,27 @@ function ValidationChamps(){
     e.preventDefault();
     var urlLien =   $("#urlLiens").val();      
             var lblvalidUrl = document.createElement("p");
-            lblvalidTexte.setAttribute("id", "lblUrl");
+            lblvalidUrl.setAttribute("id", "lblUrl");
              if(regex_Vide_OUI.test(urlLien)==true){
                 lblvalidUrl.setAttribute("class", "lblNonValid");
-                lblvalidUrl.innerHTML = "Vous devez entrer un texte";
+                lblvalidUrl.innerHTML = "Vous devez entrer un URL de lien";
                 $("#urlLiens").css("border-color", "red");
-                urlValide = false;
+                $("#lblUrl").css("color", "red");
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(urlLien)==false){       
+                 if(regex_UrlWeb_OUI.test(urlLien)==false){       
                     lblvalidUrl.setAttribute("class", "lblNonValid");
-                    lblvalidUrl.innerHTML = "Texte non-valide ";
+                    lblvalidUrl.innerHTML = "URL non-valide ";
                     $("#urlLiens").css("border-color", "red");
-                    urlValide = false;
+                    $("#lblUrl").css("color", "red");
                  }else{           
                     lblvalidUrl.setAttribute("class", "lblValid");
-                    lblvalidUrl.innerHTML = "Texte valide";
+                    lblvalidUrl.innerHTML = "Valide";
                     $("#urlLiens").css("border-color", "green");
-                    urlValide = true;
+                    $("#lblUrl").css("color", "green");
                  }
              }
                  $(lblvalidUrl).insertAfter("#divTexteActu");
+                 $("#divTexteActu").css("margin-bottom", "0rem");
     });
 
 

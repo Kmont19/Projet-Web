@@ -74,7 +74,7 @@ function ModifierActualite(){
 
         //BUG: PROBLÈME AVEC LA MODIFICATION DES IMAGES.
 
-        if(ValidationActu()==true){
+       // if(ValidationActu()==true){
         $.ajax({
             url: 'ADMINISTRATION/ADMIN_PHP/actualite_admin.php',
             method: 'POST',
@@ -94,7 +94,7 @@ function ModifierActualite(){
             }
         });
         AffichageActu_Tous();
-    }
+   // }
        
     });
     
@@ -334,7 +334,9 @@ function Annuler(){
         $("#titreActu").css("border-color", "initial");
         $("#dateActu").css("border-color", "initial");
         $("#texteActu").css("border-color", "initial");
-
+        $("#divTitreActu").css("margin-bottom", "1rem");
+        $("#divTexteActu").css("margin-bottom", "1rem");
+        $("#divDateActu").css("margin-bottom", "1rem");
     
     });
 }
@@ -375,95 +377,51 @@ function ValidationActu(){
     var regex_StringTousCaracteres_OUI = /((^[A-Z a-z 0-9 |(){}\[\]±@£¢­<>#!%?$&*-+\/=,.;:´`'\"«»°_\ áÁàÀâÂäÄéÉèÈëËêÊíÍîÎïÏóÓôÔòÒöÖúÚùÙûÛüÜçÇ\\s\-]+$){1})/;
 
 
-    var titreActu =   $("#titreActu").val();
-       var lblvalidTitre = document.createElement("p");
-       lblvalidTitre.setAttribute("id", "lblTitre");
+    var titreActu =   $("#titreActu").val();    
         if(regex_Vide_OUI.test(titreActu)==true){
-            lblvalidTitre.setAttribute("class", "lblNonValid");
-            lblvalidTitre.innerHTML = "Vous devez entrer un titre";
-            $("#titreActu").css("border-color", "red");
             titreValide = false;
         }else{
             if(regex_StringTousCaracteres_OUI.test(titreActu)==false){       
-                lblvalidTitre.setAttribute("class", "lblNonValid");
-                lblvalidTitre.innerHTML = "Titre non-valide ";
-                $("#titreActu").css("border-color", "red");
                 titreValide = false;
             }else{           
-                lblvalidTitre.setAttribute("class", "lblValid");
-                lblvalidTitre.innerHTML = "Titre valide";
-                $("#titreActu").css("border-color", "green");
                 titreValide = true;
             }
         }
-            $(lblvalidTitre).insertAfter("#divTitreActu");
-
-
 
             var texteActu =   $("#texteActu").val();      
-            var lblvalidTexte = document.createElement("p");
-            lblvalidTexte.setAttribute("id", "lblTexte");
-             if(regex_Vide_OUI.test(texteActu)==true){
-                lblvalidTexte.setAttribute("class", "lblNonValid");
-                lblvalidTexte.innerHTML = "Vous devez entrer un texte";
-                $("#texteActu").css("border-color", "red");
+             if(regex_Vide_OUI.test(texteActu)==true){             
                 texteValide = false;
              }else{
-                 if(regex_StringTousCaracteres_OUI.test(texteActu)==false){       
-                    lblvalidTexte.setAttribute("class", "lblNonValid");
-                    lblvalidTexte.innerHTML = "Texte non-valide ";
-                    $("#texteActu").css("border-color", "red");
+                 if(regex_StringTousCaracteres_OUI.test(texteActu)==false){                     
                     texteValide = false;
                  }else{           
-                    lblvalidTexte.setAttribute("class", "lblValid");
-                    lblvalidTexte.innerHTML = "Texte valide";
-                    $("#texteActu").css("border-color", "green");
                     texteValide = true;
                  }
              }
-                 $(lblvalidTexte).insertAfter("#divTexteActu");
-
 
                  var dateActu =   $("#dateActu").val();    
-                 var lblvalidDate = document.createElement("p");
-                 lblvalidDate.setAttribute("id", "lblDate");
                  if(regex_Vide_OUI.test(dateActu)==true){
-                     lblvalidDate.setAttribute("class", "lblNonValid");
-                     lblvalidDate.innerHTML = "Vous devez entrer une date";
-                     $("#dateActu").css("border-color", "red");
                      dateValide = false;
                  }else{
-                     if(regex_Date_Int_OUI.test(dateActu)==false){       
-                         lblvalidDate.setAttribute("class", "lblNonValid");
-                         lblvalidDate.innerHTML = "Date non-valide ";
-                         $("#dateActu").css("border-color", "red");
+                     if(regex_Date_Int_OUI.test(dateActu)==false){                      
                          dateValide = false;
                      }else{           
-         
                          let dateJour = new Date();
                          let dateFuture = new Date("01 Jan 2070");
                          let dateUser = new Date(dateActu);
-                     
                          if((dateUser < dateJour) || (dateFuture < dateUser)){
-                             lblvalidDate.setAttribute("class", "lblNonValid");
-                             lblvalidDate.innerHTML = "Date non-valide ";
                              dateValide = false;
-                         }else{
-                             lblvalidDate.setAttribute("class", "lblValid");
-                             lblvalidDate.innerHTML = "Date valide";
-                             $("#dateActu").css("border-color", "green");
+                         }else{                         
                              dateValide = true;
                          }
                      }
                  }
-                     $(lblvalidDate).insertAfter("#divDateActu");
 
 
         if((titreValide==true)&&(texteValide==true)&&(dateValide==true)){
             entreeValide = true;
         }
-        alert("titreValide: " + titreValide + " || " + "texteValide: " + texteValide + " || " + "dateValide: " + dateValide + " || ");
-        alert("entreeValide: " + entreeValide);
+      
         return entreeValide;
 }
 
@@ -483,15 +441,20 @@ function ValidationChamps(){
     $("#titreActu").focus(function (e) { 
         e.preventDefault();
         $("#lblTitre").remove();
-        $("#titreActu").css("border-color", "initial")
+        $("#titreActu").css("border-color", "initial");
+        $("#divTitreActu").css("margin-bottom", "1rem");
     });
     $("#texteActu").focus(function (e) { 
         e.preventDefault();
         $("#lblTexte").remove();
+        $("#titreActu").css("border-color", "initial");
+        $("#divTexteActu").css("margin-bottom", "1rem");
     });
     $("#dateActu").focus(function (e) { 
         e.preventDefault();
         $("#lblDate").remove();
+        $("#titreActu").css("border-color", "initial");
+        $("#divDateActu").css("margin-bottom", "1rem");
     });
 
 
@@ -504,21 +467,25 @@ function ValidationChamps(){
             lblvalidTitre.setAttribute("class", "lblNonValid");
             lblvalidTitre.innerHTML = "Vous devez entrer un titre";
             $("#titreActu").css("border-color", "red");
+            $("#lblTitre").css("color", "red");
            
         }else{
             if(regex_StringTousCaracteres_OUI.test(titreActu)==false){       
                 lblvalidTitre.setAttribute("class", "lblNonValid");
                 lblvalidTitre.innerHTML = "Titre non-valide ";
                 $("#titreActu").css("border-color", "red");
+                $("#lblTitre").css("color", "red");
                 
             }else{           
                 lblvalidTitre.setAttribute("class", "lblValid");
                 lblvalidTitre.innerHTML = "Titre valide";
                 $("#titreActu").css("border-color", "green");
+                $("#lblTitre").css("color", "green");
                 
             }
         }
             $(lblvalidTitre).insertAfter("#divTitreActu");
+            $("#divTitreActu").css("margin-bottom", "0rem");
    });
        
 
@@ -531,21 +498,25 @@ function ValidationChamps(){
         lblvalidTexte.setAttribute("class", "lblNonValid");
         lblvalidTexte.innerHTML = "Vous devez entrer un texte";
         $("#texteActu").css("border-color", "red");
+        $("#lblTexte").css("color", "red");
         
      }else{
          if(regex_StringTousCaracteres_OUI.test(texteActu)==false){       
             lblvalidTexte.setAttribute("class", "lblNonValid");
             lblvalidTexte.innerHTML = "Texte non-valide ";
             $("#texteActu").css("border-color", "red");
+            $("#lblTexte").css("color", "red");
            
          }else{           
             lblvalidTexte.setAttribute("class", "lblValid");
             lblvalidTexte.innerHTML = "Texte valide";
             $("#texteActu").css("border-color", "green");
+            $("#lblTexte").css("color", "green");
             
          }
      }
          $(lblvalidTexte).insertAfter("#divTexteActu");
+         $("#divTexteActu").css("margin-bottom", "0rem");
     });
 
 
@@ -558,19 +529,17 @@ function ValidationChamps(){
             lblvalidDate.setAttribute("class", "lblNonValid");
             lblvalidDate.innerHTML = "Vous devez entrer une date";
             $("#dateActu").css("border-color", "red");
-            
+            $("#lblDate").css("color", "red");            
         }else{
             if(regex_Date_Int_OUI.test(dateActu)==false){       
                 lblvalidDate.setAttribute("class", "lblNonValid");
                 lblvalidDate.innerHTML = "Date non-valide ";
                 $("#dateActu").css("border-color", "red");
-               
+                $("#lblDate").css("color", "red");
             }else{           
-
                 let dateJour = new Date();
                 let dateFuture = new Date("01 Jan 2070");
-                let dateUser = new Date(dateActu);
-            
+                let dateUser = new Date(dateActu);          
                 if((dateUser < dateJour) || (dateFuture < dateUser)){
                     lblvalidDate.setAttribute("class", "lblNonValid");
                     lblvalidDate.innerHTML = "Date non-valide ";
@@ -579,11 +548,12 @@ function ValidationChamps(){
                     lblvalidDate.setAttribute("class", "lblValid");
                     lblvalidDate.innerHTML = "Date valide";
                     $("#dateActu").css("border-color", "green");
-                    
+                    $("#lblDate").css("color", "red");
                 }
             }
         }
             $(lblvalidDate).insertAfter("#divDateActu");
+            $("#divDateActu").css("margin-bottom", "0rem");
     });
 
 }

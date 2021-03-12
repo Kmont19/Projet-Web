@@ -77,14 +77,14 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $reqInsert = $PDO1->prepare("INSERT INTO `evenement`(titreEvenement,
                                                                 lieuEvenement,
                                                                 dateEvenement,                                                              
-                                                                heureDebutEvenmt,
+                                                                heureEvenement,
                                                                 texteEvenement,
                                                                 photoEvenement
                                                                 )
                                                         VALUES (:titreEvenement,
                                                                 :lieuEvenement,
                                                                 :dateEvenement,
-                                                                :heureDebutEvenmt,
+                                                                :heureEvenement,
                                                                 :texteEvenement,
                                                                 :photoEvenement
                                                                 );");
@@ -93,7 +93,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
             $reqInsert->bindParam(":lieuEvenement", $lieuEvenmt);
             $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
-            $reqInsert->bindParam(":heureDebutEvenmt", $hrDebutEvenmt);
+            $reqInsert->bindParam(":heureEvenement", $hrDebutEvenmt);
             $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
             $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
@@ -126,7 +126,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $reqInsert = $PDO1->prepare("UPDATE `evenement` SET titreEvenement = :titreEvenement,
                                                                     lieuEvenement = :lieuEvenement,
                                                                     dateEvenement = :dateEvenement,
-                                                                    heureDebutEvenmt = :heureDebutEvenmt,
+                                                                    heureEvenement = :heureEvenement,
                                                                     texteEvenement= :texteEvenement,
                                                                     photoEvenement = :photoEvenement                                                      
                                     WHERE idEvenement = ". $_POST["idEvnmt"] . " ; "
@@ -135,7 +135,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
             $reqInsert->bindParam(":titreEvenement", $titreEvenmt);
             $reqInsert->bindParam(":lieuEvenement", $lieuEvenmt);
             $reqInsert->bindParam(":dateEvenement", $dateEvenmt);
-            $reqInsert->bindParam(":heureDebutEvenmt", $hrDebutEvenmt);
+            $reqInsert->bindParam(":heureEvenement", $hrDebutEvenmt);
             $reqInsert->bindParam(":texteEvenement", $texteEvenmt);
             $reqInsert->bindParam(":photoEvenement", $urlPhoto);
             $reqInsert->execute();
@@ -213,7 +213,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                 $reqActualite = "SELECT idEvenement,
                                         titreEvenement,
                                         dateEvenement,
-                                        heureDebutEvenmt, 
+                                        heureEvenement, 
                                         actif
                                 FROM `evenement`;";
         
@@ -286,7 +286,7 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
                                         titreEvenement,
                                         lieuEvenement,
                                         dateEvenement,                                                              
-                                        heureDebutEvenmt,
+                                        heureEvenement,
                                         texteEvenement,
                                         photoEvenement
                                 FROM `evenement`
@@ -354,8 +354,8 @@ if(!( $_POST["action"]=="listeEvenmtTous") &&!( $_POST["action"]=="infoEvenement
 
         echo var_dump($_FILES);
 
-        $dossierTlcg = "C:/UwAmp/www/SERVEUR_YAN/Projet_Web/Images/Evenements/";
-        $dossier_cible = $dossierTlcg . basename($_FILES["imageEvenement"]["name"]);
+      
+        $dossier_cible = basename($_FILES["imageEvenement"]["name"]);
         $TelOk = 1;
         $fichierImgType = strtolower(pathinfo($dossier_cible, PATHINFO_EXTENSION));
     
