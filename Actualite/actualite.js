@@ -1,3 +1,5 @@
+let tableauActu = [];
+
 $(document).ready(function () {
     getListeActu();
 });
@@ -22,6 +24,7 @@ function createCardActu(id, titre, date, texte, img) {
 
 //Avoir la liste d'actualités
 function getListeActu() {
+    tableauActu = [];
     $.ajax({
         url: "PHP/Actualite/getActualites.php",
         method: "GET",
@@ -29,6 +32,7 @@ function getListeActu() {
         data: "getActualites",
         success: function(result) {
             result.forEach(function(actualite) {
+                tableauActu.push(actualite);
                 var cardActu = createCardActu(actualite.idActualite, actualite.titreActu, actualite.dateActu, actualite.texteActu, actualite.photoActu);
                 $('#cntActu').append(cardActu);
             })
@@ -48,9 +52,6 @@ function showActuText(text, details) {
     }
 
 }
-
-let tableauActu = [];
-
 
 function clearActu() {
     $("#cntActu").empty();
@@ -78,4 +79,49 @@ function rechercheActu(recherche) {
             })
         }
     })
+}
+
+function sortByDate(a, b) {
+    return a.dateActu.localeCompare(b.dateActu)
+}
+
+function sortByNom(a, b) {
+    return a.titreActu.localeCompare(b.titreActu)
+}
+
+function reverseDateActus() {
+    tableauActu.forEach(function(e){
+        e.dateActu = e.dateActu.split(" ").reverse().join(" ");
+    })
+}
+
+function trierActusParDate() {
+    var flag = true;
+    var cardEvent;
+    if(tableauActu.length > 0) {
+        clearActu();
+        document.getElementById("filtre-nom").classList.remove("active");
+        document.getElementById("filtre-recent").classList.add("active");
+        tableauActu.sort(sortByDate)
+        tableauActu.reverse();
+        tableauActu.forEach(function(actualite) {
+            var cardActu = createCardActu(actualite.idActualite, actualite.titreActu, actualite.dateActu, actualite.texteActu, actualite.photoActu);
+            $('#cntActu').append(cardActu);
+        })
+    }
+}
+
+function trierActusParNom() {
+    var flag = true;
+    var cardEvent;
+    if(tableauActu.length > 0) {
+        clearActu();
+        document.getElementById("filtre-recent").classList.remove("active");
+        document.getElementById("filtre-nom").classList.add("active");
+        tableauActu.sort(sortByNom)
+        tableauActu.forEach(function(actualite) {
+            var cardActu = createCardActu(actualite.idActualite, actualite.titreActu, actualite.dateActu, actualite.texteActu, actualite.photoActu);
+            $('#cntActu').append(cardActu);
+        })
+    }
 }
