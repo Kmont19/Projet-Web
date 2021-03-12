@@ -2,12 +2,6 @@ $(document).ready(function () {
     getListeActu();
 });
 
-$("#boutonrechercher").click(function () {
-    //appel à ma fonction
-    let recherche = $('#textsearch').val();
-    rechercheActu(recherche);
-})
-
 //Creation des cards
 function createCardActu(id, titre, date, texte, img) {
     var cardActu = `<div class="widget single-news my-5 " id="cardActu" onclick="showActuText('textActu${id}', 'details${id}')">

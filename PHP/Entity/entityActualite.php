@@ -27,11 +27,12 @@
             }
         }
 
-        public function getActualite($recherche)
+        public function getActualitesRecherche($recherche)
         {
             try {
-                $stmt = $this->connexion->prepare("SELECT * FROM actualite WHERE titreActu LIKE %:recherche%");
-                $stmt->execute(['recherche' => $recherche]);
+                $variable = "%".$recherche."%";
+                $stmt = $this->connexion->prepare("SELECT * FROM actualite WHERE titreActu LIKE :recherche");
+                $stmt->execute(['recherche' => $variable]);
                 $actualites = $stmt->fetchAll();
                 return $actualites;
             } catch (PDOException $e) {

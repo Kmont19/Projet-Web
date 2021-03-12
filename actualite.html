@@ -116,6 +116,13 @@
           $("#menu").load("menu.html")
           $("#footer").load("footer.html")
         })
+
+        $("#boutonrechercher").click(function (e) {
+            e.preventDefault();
+            //appel à ma fonction
+            let recherche = $('#textsearch').val();
+            rechercheActu(recherche);
+        })
     </script>
 </html>
 

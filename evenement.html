@@ -30,7 +30,7 @@
                             <div class="input-group col-md-12">
                                 <input type="search" class="form-control" placeholder="Rechercher une actualité" id="searchtext">
                                 <div class="input-group-append">
-                                    <button class="btn btn-search btn-link" type="submit" id="boutonRecherche">
+                                    <button class="btn btn-search btn-link" type="submit" id="boutonrecherche">
                                         <i class="material-icons">search</i>
                                     </button>
                                 </div>
@@ -87,6 +87,13 @@
         $(document).ready(function() {
           $("#menu").load("menu.html")
           $("#footer").load("footer.html")
+        })
+
+        $("#boutonrecherche").click(function (e) {
+            e.preventDefault();
+            //appel à ma fonction
+            let recherche = $('#searchtext').val();
+            rechercheEv(recherche);
         })
     </script>
 </html>

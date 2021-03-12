@@ -3,12 +3,6 @@ $(document).ready(function () {
     getListeEvents();
 });
 
-$("#boutonRecherche").click(function () {
-    //appel à ma fonction
-    let recherche = $('#searchtext').val();
-    recherche(recherche);
-})
-
 //Creation des cards avec la photo à gauche
 function createCardEventGauche(id, titre, date, heure, lieu, description, img) {
     var cardActu = `<div class="row align-items-center event-card no-gutters mb-5 w-100">
@@ -95,8 +89,9 @@ function clearEvenements() {
     $("#eventContainer").empty();
 }
 
-function recherche(recherche) {
+function rechercheEv(recherche) {
     //clear list
+    console.log("HELLO YEAH");
     clearEvenements();
     //ma fonction
     tableauEvenemnets = [];
