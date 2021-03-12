@@ -1,0 +1,99 @@
+.form-box {
+    width: 380px;
+    height: 400px;
+    position: absolute;
+    left: 79.5%;
+    margin: 4.25rem auto;
+    background: rgba(180, 180, 180, 0.9);
+    padding: 5px;
+    overflow: hidden;
+    transition: 0.1s;
+    border-radius: 10px;
+}
+
+@media (max-width: 991px) {
+    .form-box {
+
+        max-width: 991px;
+
+    }
+}
+
+@media (max-width: 380px) {
+    .form-box {
+        left: 0;
+    }
+}
+
+.form-box:hover {
+    box-shadow: 0 0 20px 9px #0000008c;
+}
+
+
+.button-box{
+    width: 276px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #0c0c0c71;
+    border-radius: 30px;
+}
+
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #092d74, #061f50);
+    border-radius: 30px;
+    transition: .5s;
+}
+
+#connecter {
+    color: black;
+}
+
+.data-group {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    transition: .5s;
+}
+
+.user-data {
+    width: 100%;
+    padding: 10px 0;
+    margin: 0 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    outline: none;
+    background: transparent;
+    color: black;
+}
+
+.submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto;
+    background: linear-gradient(to right, #092d74, #061f50);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+}
+
+#errorLogin {
+    display: block;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    font-style: italic;
+    padding: 5px;
+}
