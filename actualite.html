@@ -33,9 +33,9 @@
                     <section class="search-bar mt-1 pb-4 w-50">
                         <form>
                             <div class="input-group col-md-12">
-                                <input type="search" class="form-control" placeholder="Rechercher une actualité">
+                                <input type="search" class="form-control" placeholder="Rechercher une actualité" id="textsearch">
                                 <div class="input-group-append">
-                                    <button class="btn btn-search btn-link" type="submit">
+                                    <button class="btn btn-search btn-link" type="submit" id="boutonrechercher">
                                         <i class="material-icons">search</i>
                                     </button>
                                 </div>
@@ -47,11 +47,11 @@
             <section class="filtre-bar">
                 <ul class="filtre-actualites  mx-auto">
                     <label>Filtrer par: </label>
-                    <li class="active">
-                        <a id="filtre-recent">Le plus récents</a>
+                    <li id="filtre-recent">
+                        <a>Le plus récent</a>
                     </li>
-                    <li>
-                        <a id="filtre-nom">Par order alphabetique</a>
+                    <li id="filtre-nom">
+                        <a>Ordre alphabétique</a>
                     </li>
                 </ul>
             </section>
@@ -117,6 +117,21 @@
           $("#menu").load("menu.html")
           $("#footer").load("footer.html")
           getListeActu();
+        })
+
+        $("#boutonrechercher").click(function (e) {
+            e.preventDefault();
+            //appel à ma fonction
+            let recherche = $('#textsearch').val();
+            rechercheActu(recherche);
+        })
+
+        $("#filtre-nom").click(function(){
+            trierActusParNom();
+        })
+
+        $("#filtre-recent").click(function(){
+            trierActusParDate();
         })
     </script>
 </html>

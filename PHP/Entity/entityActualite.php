@@ -39,5 +39,18 @@
                 echo "Échec lors de la connexion à la base de données: " . $e->getMessage();
             }
         }
+
+        public function getActualitesRecherche($recherche)
+        {
+            try {
+                $variable = "%".$recherche."%";
+                $stmt = $this->connexion->prepare("SELECT * FROM actualite WHERE titreActu LIKE :recherche");
+                $stmt->execute(['recherche' => $variable]);
+                $actualites = $stmt->fetchAll();
+                return $actualites;
+            } catch (PDOException $e) {
+                echo "Échec lors de la connexion à la base de données: " . $e->getMessage();
+            }
+        }
     }
     

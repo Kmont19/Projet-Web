@@ -78,5 +78,41 @@ include("../ADMINISTRATION/ADMIN_PHP/FONCTIONS PHP/Regex.php");
     
         }
 
+        if ( $_POST["action"]=="rechercheModale"){
+      
+            try{
+                $PDO1 ="";
+                $PDO1 = CONNEXION_BD();    
+                $PDO1->beginTransaction();   
+                $PDO1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+                $resultReq = array();
+                $reqEvenement = "SELECT idEvenement,
+                                        titreEvenement,
+                                        dateEvenement,
+                                        texteEvenement,
+                                        photoEvenement 
+                                FROM `evenement`
+                                WHERE titreEvenement LIKE %". $_POST["recherche"] . "%;";
+        
+                $execReq = $PDO1->query($reqEvenement);
+                $resultReq = $execReq->fetchAll(PDO::FETCH_ASSOC);
+                
+                $objResult = json_encode($resultReq);
+                
+                echo $objResult;
+        
+        
+            }
+            catch(Exception $e){
+                echo '<br><br><b>ERREUR!!!<br>Échec lecture des données.<br></b>';
+                echo $e->getMessage();
+                echo '<br><br><br><br>';
+                }
+                $PDO1->commit();
+                $PDO1=null;
+        
+            }
+
 
 ?>

@@ -1,3 +1,4 @@
+let tableauEvenemnets = [];
 
 $(document).ready(function () {
     getListeEvents();
@@ -60,6 +61,7 @@ function createCardEventDroite(id, titre, date, heure, lieu, description, img) {
 function getListeEvents() {
     var flag = true;
     var cardEvent;
+    tableauEvenemnets = [];
     $.ajax({
         url: "PHP/Evenement/getEvenements.php",
         method: "GET",
@@ -67,6 +69,7 @@ function getListeEvents() {
         data: "getEvenements",
         success: function(result) {
             result.forEach(function(event) {
+                tableauEvenemnets.push(event);
                 if(flag === true) {
                     cardEvent = createCardEventGauche(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
                     $('#eventContainer').append(cardEvent);
@@ -82,3 +85,98 @@ function getListeEvents() {
     })
 }
 
+
+function clearEvenements() {
+    $("#eventContainer").empty();
+}
+
+function rechercheEv(recherche) {
+    //clear list
+    clearEvenements();
+    //ma fonction
+    tableauEvenemnets = [];
+    var flag = true;
+    var cardEvent;
+    $.ajax({
+        url: "PHP/Evenement/getEvenementsRech.php",
+        method: "GET",
+        dataType: "json",
+        data: {
+            recherche: recherche
+        },
+        success: function(result) {
+            result.forEach(function(event) {
+                tableauEvenemnets.push(event);
+                if(flag === true) {
+                    cardEvent = createCardEventGauche(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                    $('#eventContainer').append(cardEvent);
+                    flag = false;
+                } else {
+                    cardEvent = createCardEventDroite(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                    $('#eventContainer').append(cardEvent);
+                    flag = true;
+                }
+            })
+            
+        }
+    })
+}
+
+function sortByDate(a, b) {
+    return a.dateEvenement.localeCompare(b.dateEvenement)
+}
+
+function sortByNom(a, b) {
+    return a.titreEvenement.localeCompare(b.titreEvenement)
+}
+
+function trierEvenementsParDate() {
+    var flag = true;
+    var cardEvent;
+    if(tableauEvenemnets.length > 0) {
+        clearEvenements();
+        document.getElementById("filtre-nom").classList.remove("active");
+        document.getElementById("filtre-recent").classList.add("active");
+        tableauEvenemnets.forEach(function(e){
+            e.dateEvenement = e.dateEvenement.split(" ").reverse().join(" ");
+        })
+        tableauEvenemnets.sort(sortByDate)
+        tableauEvenemnets.reverse();
+        tableauEvenemnets.forEach(function(e){
+            e.dateEvenement = e.dateEvenement.split(" ").reverse().join(" ");
+        })
+        tableauEvenemnets.forEach(function(event) {
+            if(flag === true) {
+                cardEvent = createCardEventGauche(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                $('#eventContainer').append(cardEvent);
+                flag = false;
+            } else {
+                cardEvent = createCardEventDroite(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                $('#eventContainer').append(cardEvent);
+                flag = true;
+            }
+        })
+    }
+}
+
+function trierEvenementsParNom() {
+    var flag = true;
+    var cardEvent;
+    if(tableauEvenemnets.length > 0) {
+        clearEvenements();
+        document.getElementById("filtre-recent").classList.remove("active");
+        document.getElementById("filtre-nom").classList.add("active");
+        tableauEvenemnets.sort(sortByNom)
+        tableauEvenemnets.forEach(function(event) {
+            if(flag === true) {
+                cardEvent = createCardEventGauche(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                $('#eventContainer').append(cardEvent);
+                flag = false;
+            } else {
+                cardEvent = createCardEventDroite(event.idEvenement, event.titreEvenement, event.dateEvenement, event.heure, event.lieuEvenement, event.texteEvenement, event.photoEvenement);
+                $('#eventContainer').append(cardEvent);
+                flag = true;
+            }
+        })
+    }
+}
